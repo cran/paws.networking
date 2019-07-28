@@ -3,11 +3,11 @@
 #' @include directconnect_service.R
 NULL
 
-#' Accepts a proposal request to attach a virtual private gateway to a
-#' Direct Connect gateway
+#' Accepts a proposal request to attach a virtual private gateway or
+#' transit gateway to a Direct Connect gateway
 #'
-#' Accepts a proposal request to attach a virtual private gateway to a
-#' Direct Connect gateway.
+#' Accepts a proposal request to attach a virtual private gateway or
+#' transit gateway to a Direct Connect gateway.
 #'
 #' @usage
 #' directconnect_accept_direct_connect_gateway_association_proposal(
@@ -16,9 +16,14 @@ NULL
 #'
 #' @param directConnectGatewayId &#91;required&#93; The ID of the Direct Connect gateway.
 #' @param proposalId &#91;required&#93; The ID of the request proposal.
-#' @param associatedGatewayOwnerAccount &#91;required&#93; The ID of the AWS account that owns the virtual private gateway.
+#' @param associatedGatewayOwnerAccount &#91;required&#93; The ID of the AWS account that owns the virtual private gateway or
+#' transit gateway.
 #' @param overrideAllowedPrefixesToDirectConnectGateway Overrides the Amazon VPC prefixes advertised to the Direct Connect
 #' gateway.
+#' 
+#' For information about how to set the prefixes, see [Allowed
+#' Prefixes](https://docs.aws.amazon.com/directconnect/latest/UserGuide/multi-account-associate-vgw.html#allowed-prefixes)
+#' in the *AWS Direct Connect User Guide*.
 #'
 #' @section Request syntax:
 #' ```
@@ -125,7 +130,7 @@ directconnect_allocate_connection_on_interconnect <- function(bandwidth, connect
 #'
 #' @usage
 #' directconnect_allocate_hosted_connection(connectionId, ownerAccount,
-#'   bandwidth, connectionName, vlan)
+#'   bandwidth, connectionName, vlan, tags)
 #'
 #' @param connectionId &#91;required&#93; The ID of the interconnect or LAG.
 #' @param ownerAccount &#91;required&#93; The ID of the AWS account ID of the customer for the connection.
@@ -136,6 +141,7 @@ directconnect_allocate_connection_on_interconnect <- function(bandwidth, connect
 #' 10Gbps hosted connection.
 #' @param connectionName &#91;required&#93; The name of the hosted connection.
 #' @param vlan &#91;required&#93; The dedicated VLAN provisioned to the hosted connection.
+#' @param tags The tags to assign to the hosted connection.
 #'
 #' @section Request syntax:
 #' ```
@@ -144,21 +150,27 @@ directconnect_allocate_connection_on_interconnect <- function(bandwidth, connect
 #'   ownerAccount = "string",
 #'   bandwidth = "string",
 #'   connectionName = "string",
-#'   vlan = 123
+#'   vlan = 123,
+#'   tags = list(
+#'     list(
+#'       key = "string",
+#'       value = "string"
+#'     )
+#'   )
 #' )
 #' ```
 #'
 #' @keywords internal
 #'
 #' @rdname directconnect_allocate_hosted_connection
-directconnect_allocate_hosted_connection <- function(connectionId, ownerAccount, bandwidth, connectionName, vlan) {
+directconnect_allocate_hosted_connection <- function(connectionId, ownerAccount, bandwidth, connectionName, vlan, tags = NULL) {
   op <- new_operation(
     name = "AllocateHostedConnection",
     http_method = "POST",
     http_path = "/",
     paginator = list()
   )
-  input <- .directconnect$allocate_hosted_connection_input(connectionId = connectionId, ownerAccount = ownerAccount, bandwidth = bandwidth, connectionName = connectionName, vlan = vlan)
+  input <- .directconnect$allocate_hosted_connection_input(connectionId = connectionId, ownerAccount = ownerAccount, bandwidth = bandwidth, connectionName = connectionName, vlan = vlan, tags = tags)
   output <- .directconnect$allocate_hosted_connection_output()
   svc <- .directconnect$service()
   request <- new_request(svc, op, input, output)
@@ -200,7 +212,13 @@ directconnect_allocate_hosted_connection <- function(connectionId, ownerAccount,
 #'     authKey = "string",
 #'     amazonAddress = "string",
 #'     addressFamily = "ipv4"|"ipv6",
-#'     customerAddress = "string"
+#'     customerAddress = "string",
+#'     tags = list(
+#'       list(
+#'         key = "string",
+#'         value = "string"
+#'       )
+#'     )
 #'   )
 #' )
 #' ```
@@ -268,6 +286,12 @@ directconnect_allocate_private_virtual_interface <- function(connectionId, owner
 #'       list(
 #'         cidr = "string"
 #'       )
+#'     ),
+#'     tags = list(
+#'       list(
+#'         key = "string",
+#'         value = "string"
+#'       )
 #'     )
 #'   )
 #' )
@@ -291,6 +315,73 @@ directconnect_allocate_public_virtual_interface <- function(connectionId, ownerA
   return(response)
 }
 .directconnect$operations$allocate_public_virtual_interface <- directconnect_allocate_public_virtual_interface
+
+#' Provisions a transit virtual interface to be owned by the specified AWS
+#' account
+#'
+#' Provisions a transit virtual interface to be owned by the specified AWS
+#' account. Use this type of interface to connect a transit gateway to your
+#' Direct Connect gateway.
+#' 
+#' The owner of a connection provisions a transit virtual interface to be
+#' owned by the specified AWS account.
+#' 
+#' After you create a transit virtual interface, it must be confirmed by
+#' the owner using ConfirmTransitVirtualInterface. Until this step has been
+#' completed, the transit virtual interface is in the `requested` state and
+#' is not available to handle traffic.
+#'
+#' @usage
+#' directconnect_allocate_transit_virtual_interface(connectionId,
+#'   ownerAccount, newTransitVirtualInterfaceAllocation)
+#'
+#' @param connectionId &#91;required&#93; The ID of the connection on which the transit virtual interface is
+#' provisioned.
+#' @param ownerAccount &#91;required&#93; The ID of the AWS account that owns the transit virtual interface.
+#' @param newTransitVirtualInterfaceAllocation &#91;required&#93; Information about the transit virtual interface.
+#'
+#' @section Request syntax:
+#' ```
+#' svc$allocate_transit_virtual_interface(
+#'   connectionId = "string",
+#'   ownerAccount = "string",
+#'   newTransitVirtualInterfaceAllocation = list(
+#'     virtualInterfaceName = "string",
+#'     vlan = 123,
+#'     asn = 123,
+#'     mtu = 123,
+#'     authKey = "string",
+#'     amazonAddress = "string",
+#'     customerAddress = "string",
+#'     addressFamily = "ipv4"|"ipv6",
+#'     tags = list(
+#'       list(
+#'         key = "string",
+#'         value = "string"
+#'       )
+#'     )
+#'   )
+#' )
+#' ```
+#'
+#' @keywords internal
+#'
+#' @rdname directconnect_allocate_transit_virtual_interface
+directconnect_allocate_transit_virtual_interface <- function(connectionId, ownerAccount, newTransitVirtualInterfaceAllocation) {
+  op <- new_operation(
+    name = "AllocateTransitVirtualInterface",
+    http_method = "POST",
+    http_path = "/",
+    paginator = list()
+  )
+  input <- .directconnect$allocate_transit_virtual_interface_input(connectionId = connectionId, ownerAccount = ownerAccount, newTransitVirtualInterfaceAllocation = newTransitVirtualInterfaceAllocation)
+  output <- .directconnect$allocate_transit_virtual_interface_output()
+  svc <- .directconnect$service()
+  request <- new_request(svc, op, input, output)
+  response <- send_request(request)
+  return(response)
+}
+.directconnect$operations$allocate_transit_virtual_interface <- directconnect_allocate_transit_virtual_interface
 
 #' Associates an existing connection with a link aggregation group (LAG)
 #'
@@ -570,6 +661,50 @@ directconnect_confirm_public_virtual_interface <- function(virtualInterfaceId) {
 }
 .directconnect$operations$confirm_public_virtual_interface <- directconnect_confirm_public_virtual_interface
 
+#' Accepts ownership of a transit virtual interface created by another AWS
+#' account
+#'
+#' Accepts ownership of a transit virtual interface created by another AWS
+#' account.
+#' 
+#' After the owner of the transit virtual interface makes this call, the
+#' specified transit virtual interface is created and made available to
+#' handle traffic.
+#'
+#' @usage
+#' directconnect_confirm_transit_virtual_interface(virtualInterfaceId,
+#'   directConnectGatewayId)
+#'
+#' @param virtualInterfaceId &#91;required&#93; The ID of the virtual interface.
+#' @param directConnectGatewayId &#91;required&#93; The ID of the Direct Connect gateway.
+#'
+#' @section Request syntax:
+#' ```
+#' svc$confirm_transit_virtual_interface(
+#'   virtualInterfaceId = "string",
+#'   directConnectGatewayId = "string"
+#' )
+#' ```
+#'
+#' @keywords internal
+#'
+#' @rdname directconnect_confirm_transit_virtual_interface
+directconnect_confirm_transit_virtual_interface <- function(virtualInterfaceId, directConnectGatewayId) {
+  op <- new_operation(
+    name = "ConfirmTransitVirtualInterface",
+    http_method = "POST",
+    http_path = "/",
+    paginator = list()
+  )
+  input <- .directconnect$confirm_transit_virtual_interface_input(virtualInterfaceId = virtualInterfaceId, directConnectGatewayId = directConnectGatewayId)
+  output <- .directconnect$confirm_transit_virtual_interface_output()
+  svc <- .directconnect$service()
+  request <- new_request(svc, op, input, output)
+  response <- send_request(request)
+  return(response)
+}
+.directconnect$operations$confirm_transit_virtual_interface <- directconnect_confirm_transit_virtual_interface
+
 #' Creates a BGP peer on the specified virtual interface
 #'
 #' Creates a BGP peer on the specified virtual interface.
@@ -649,12 +784,13 @@ directconnect_create_bgp_peer <- function(virtualInterfaceId = NULL, newBGPPeer 
 #'
 #' @usage
 #' directconnect_create_connection(location, bandwidth, connectionName,
-#'   lagId)
+#'   lagId, tags)
 #'
 #' @param location &#91;required&#93; The location of the connection.
 #' @param bandwidth &#91;required&#93; The bandwidth of the connection.
 #' @param connectionName &#91;required&#93; The name of the connection.
 #' @param lagId The ID of the LAG.
+#' @param tags The tags to assign to the connection.
 #'
 #' @section Request syntax:
 #' ```
@@ -662,21 +798,27 @@ directconnect_create_bgp_peer <- function(virtualInterfaceId = NULL, newBGPPeer 
 #'   location = "string",
 #'   bandwidth = "string",
 #'   connectionName = "string",
-#'   lagId = "string"
+#'   lagId = "string",
+#'   tags = list(
+#'     list(
+#'       key = "string",
+#'       value = "string"
+#'     )
+#'   )
 #' )
 #' ```
 #'
 #' @keywords internal
 #'
 #' @rdname directconnect_create_connection
-directconnect_create_connection <- function(location, bandwidth, connectionName, lagId = NULL) {
+directconnect_create_connection <- function(location, bandwidth, connectionName, lagId = NULL, tags = NULL) {
   op <- new_operation(
     name = "CreateConnection",
     http_method = "POST",
     http_path = "/",
     paginator = list()
   )
-  input <- .directconnect$create_connection_input(location = location, bandwidth = bandwidth, connectionName = connectionName, lagId = lagId)
+  input <- .directconnect$create_connection_input(location = location, bandwidth = bandwidth, connectionName = connectionName, lagId = lagId, tags = tags)
   output <- .directconnect$create_connection_output()
   svc <- .directconnect$service()
   request <- new_request(svc, op, input, output)
@@ -748,8 +890,12 @@ directconnect_create_direct_connect_gateway <- function(directConnectGatewayName
 #'   addAllowedPrefixesToDirectConnectGateway, virtualGatewayId)
 #'
 #' @param directConnectGatewayId &#91;required&#93; The ID of the Direct Connect gateway.
-#' @param gatewayId The ID of the virtual private gateway.
+#' @param gatewayId The ID of the virtual private gateway or transit gateway.
 #' @param addAllowedPrefixesToDirectConnectGateway The Amazon VPC prefixes to advertise to the Direct Connect gateway
+#' 
+#' For information about how to set the prefixes, see [Allowed
+#' Prefixes](https://docs.aws.amazon.com/directconnect/latest/UserGuide/multi-account-associate-vgw.html#allowed-prefixes)
+#' in the *AWS Direct Connect User Guide*.
 #' @param virtualGatewayId The ID of the virtual private gateway.
 #'
 #' @section Request syntax:
@@ -785,15 +931,16 @@ directconnect_create_direct_connect_gateway_association <- function(directConnec
 }
 .directconnect$operations$create_direct_connect_gateway_association <- directconnect_create_direct_connect_gateway_association
 
-#' Creates a proposal to associate the specified virtual private gateway
-#' with the specified Direct Connect gateway
+#' Creates a proposal to associate the specified virtual private gateway or
+#' transit gateway with the specified Direct Connect gateway
 #'
-#' Creates a proposal to associate the specified virtual private gateway
-#' with the specified Direct Connect gateway.
+#' Creates a proposal to associate the specified virtual private gateway or
+#' transit gateway with the specified Direct Connect gateway.
 #' 
 #' You can only associate a Direct Connect gateway and virtual private
-#' gateway when the account that owns the Direct Connect gateway and the
-#' account that owns the virtual private gateway have the same payer ID.
+#' gateway or transit gateway when the account that owns the Direct Connect
+#' gateway and the account that owns the virtual private gateway or transit
+#' gateway have the same AWS Payer ID.
 #'
 #' @usage
 #' directconnect_create_direct_connect_gateway_association_proposal(
@@ -803,7 +950,7 @@ directconnect_create_direct_connect_gateway_association <- function(directConnec
 #'
 #' @param directConnectGatewayId &#91;required&#93; The ID of the Direct Connect gateway.
 #' @param directConnectGatewayOwnerAccount &#91;required&#93; The ID of the AWS account that owns the Direct Connect gateway.
-#' @param gatewayId &#91;required&#93; The ID of the virtual private gateway.
+#' @param gatewayId &#91;required&#93; The ID of the virtual private gateway or transit gateway.
 #' @param addAllowedPrefixesToDirectConnectGateway The Amazon VPC prefixes to advertise to the Direct Connect gateway.
 #' @param removeAllowedPrefixesToDirectConnectGateway The Amazon VPC prefixes to no longer advertise to the Direct Connect
 #' gateway.
@@ -876,12 +1023,13 @@ directconnect_create_direct_connect_gateway_association_proposal <- function(dir
 #'
 #' @usage
 #' directconnect_create_interconnect(interconnectName, bandwidth, location,
-#'   lagId)
+#'   lagId, tags)
 #'
 #' @param interconnectName &#91;required&#93; The name of the interconnect.
 #' @param bandwidth &#91;required&#93; The port bandwidth, in Gbps. The possible values are 1 and 10.
 #' @param location &#91;required&#93; The location of the interconnect.
 #' @param lagId The ID of the LAG.
+#' @param tags The tags to assign to the interconnect,
 #'
 #' @section Request syntax:
 #' ```
@@ -889,21 +1037,27 @@ directconnect_create_direct_connect_gateway_association_proposal <- function(dir
 #'   interconnectName = "string",
 #'   bandwidth = "string",
 #'   location = "string",
-#'   lagId = "string"
+#'   lagId = "string",
+#'   tags = list(
+#'     list(
+#'       key = "string",
+#'       value = "string"
+#'     )
+#'   )
 #' )
 #' ```
 #'
 #' @keywords internal
 #'
 #' @rdname directconnect_create_interconnect
-directconnect_create_interconnect <- function(interconnectName, bandwidth, location, lagId = NULL) {
+directconnect_create_interconnect <- function(interconnectName, bandwidth, location, lagId = NULL, tags = NULL) {
   op <- new_operation(
     name = "CreateInterconnect",
     http_method = "POST",
     http_path = "/",
     paginator = list()
   )
-  input <- .directconnect$create_interconnect_input(interconnectName = interconnectName, bandwidth = bandwidth, location = location, lagId = lagId)
+  input <- .directconnect$create_interconnect_input(interconnectName = interconnectName, bandwidth = bandwidth, location = location, lagId = lagId, tags = tags)
   output <- .directconnect$create_interconnect_output()
   svc <- .directconnect$service()
   request <- new_request(svc, op, input, output)
@@ -945,7 +1099,7 @@ directconnect_create_interconnect <- function(interconnectName, bandwidth, locat
 #'
 #' @usage
 #' directconnect_create_lag(numberOfConnections, location,
-#'   connectionsBandwidth, lagName, connectionId)
+#'   connectionsBandwidth, lagName, connectionId, tags, childConnectionTags)
 #'
 #' @param numberOfConnections &#91;required&#93; The number of physical connections initially provisioned and bundled by
 #' the LAG.
@@ -955,6 +1109,12 @@ directconnect_create_interconnect <- function(interconnectName, bandwidth, locat
 #' 500Mbps, 1Gbps, 2Gbps, 5Gbps, and 10Gbps.
 #' @param lagName &#91;required&#93; The name of the LAG.
 #' @param connectionId The ID of an existing connection to migrate to the LAG.
+#' @param tags The tags to assign to the link aggregation group (LAG).
+#' @param childConnectionTags The tags to assign to the child connections of the LAG. Only newly
+#' created child connections as the result of creating a LAG connection are
+#' assigned the provided tags. The tags are not assigned to an existing
+#' connection that is provided via the "connectionId" parameter that will
+#' be migrated to the LAG.
 #'
 #' @section Request syntax:
 #' ```
@@ -963,21 +1123,33 @@ directconnect_create_interconnect <- function(interconnectName, bandwidth, locat
 #'   location = "string",
 #'   connectionsBandwidth = "string",
 #'   lagName = "string",
-#'   connectionId = "string"
+#'   connectionId = "string",
+#'   tags = list(
+#'     list(
+#'       key = "string",
+#'       value = "string"
+#'     )
+#'   ),
+#'   childConnectionTags = list(
+#'     list(
+#'       key = "string",
+#'       value = "string"
+#'     )
+#'   )
 #' )
 #' ```
 #'
 #' @keywords internal
 #'
 #' @rdname directconnect_create_lag
-directconnect_create_lag <- function(numberOfConnections, location, connectionsBandwidth, lagName, connectionId = NULL) {
+directconnect_create_lag <- function(numberOfConnections, location, connectionsBandwidth, lagName, connectionId = NULL, tags = NULL, childConnectionTags = NULL) {
   op <- new_operation(
     name = "CreateLag",
     http_method = "POST",
     http_path = "/",
     paginator = list()
   )
-  input <- .directconnect$create_lag_input(numberOfConnections = numberOfConnections, location = location, connectionsBandwidth = connectionsBandwidth, lagName = lagName, connectionId = connectionId)
+  input <- .directconnect$create_lag_input(numberOfConnections = numberOfConnections, location = location, connectionsBandwidth = connectionsBandwidth, lagName = lagName, connectionId = connectionId, tags = tags, childConnectionTags = childConnectionTags)
   output <- .directconnect$create_lag_output()
   svc <- .directconnect$service()
   request <- new_request(svc, op, input, output)
@@ -1018,7 +1190,13 @@ directconnect_create_lag <- function(numberOfConnections, location, connectionsB
 #'     customerAddress = "string",
 #'     addressFamily = "ipv4"|"ipv6",
 #'     virtualGatewayId = "string",
-#'     directConnectGatewayId = "string"
+#'     directConnectGatewayId = "string",
+#'     tags = list(
+#'       list(
+#'         key = "string",
+#'         value = "string"
+#'       )
+#'     )
 #'   )
 #' )
 #' ```
@@ -1075,6 +1253,12 @@ directconnect_create_private_virtual_interface <- function(connectionId, newPriv
 #'       list(
 #'         cidr = "string"
 #'       )
+#'     ),
+#'     tags = list(
+#'       list(
+#'         key = "string",
+#'         value = "string"
+#'       )
 #'     )
 #'   )
 #' )
@@ -1098,6 +1282,69 @@ directconnect_create_public_virtual_interface <- function(connectionId, newPubli
   return(response)
 }
 .directconnect$operations$create_public_virtual_interface <- directconnect_create_public_virtual_interface
+
+#' Creates a transit virtual interface
+#'
+#' Creates a transit virtual interface. A transit virtual interface should
+#' be used to access one or more transit gateways associated with Direct
+#' Connect gateways. A transit virtual interface enables the connection of
+#' multiple VPCs attached to a transit gateway to a Direct Connect gateway.
+#' 
+#' If you associate your transit gateway with one or more Direct Connect
+#' gateways, the Autonomous System Number (ASN) used by the transit gateway
+#' and the Direct Connect gateway must be different. For example, if you
+#' use the default ASN 64512 for both your the transit gateway and Direct
+#' Connect gateway, the association request fails.
+#'
+#' @usage
+#' directconnect_create_transit_virtual_interface(connectionId,
+#'   newTransitVirtualInterface)
+#'
+#' @param connectionId &#91;required&#93; The ID of the connection.
+#' @param newTransitVirtualInterface &#91;required&#93; Information about the transit virtual interface.
+#'
+#' @section Request syntax:
+#' ```
+#' svc$create_transit_virtual_interface(
+#'   connectionId = "string",
+#'   newTransitVirtualInterface = list(
+#'     virtualInterfaceName = "string",
+#'     vlan = 123,
+#'     asn = 123,
+#'     mtu = 123,
+#'     authKey = "string",
+#'     amazonAddress = "string",
+#'     customerAddress = "string",
+#'     addressFamily = "ipv4"|"ipv6",
+#'     directConnectGatewayId = "string",
+#'     tags = list(
+#'       list(
+#'         key = "string",
+#'         value = "string"
+#'       )
+#'     )
+#'   )
+#' )
+#' ```
+#'
+#' @keywords internal
+#'
+#' @rdname directconnect_create_transit_virtual_interface
+directconnect_create_transit_virtual_interface <- function(connectionId, newTransitVirtualInterface) {
+  op <- new_operation(
+    name = "CreateTransitVirtualInterface",
+    http_method = "POST",
+    http_path = "/",
+    paginator = list()
+  )
+  input <- .directconnect$create_transit_virtual_interface_input(connectionId = connectionId, newTransitVirtualInterface = newTransitVirtualInterface)
+  output <- .directconnect$create_transit_virtual_interface_output()
+  svc <- .directconnect$service()
+  request <- new_request(svc, op, input, output)
+  response <- send_request(request)
+  return(response)
+}
+.directconnect$operations$create_transit_virtual_interface <- directconnect_create_transit_virtual_interface
 
 #' Deletes the specified BGP peer on the specified virtual interface with
 #' the specified customer address and ASN
@@ -1267,10 +1514,10 @@ directconnect_delete_direct_connect_gateway_association <- function(associationI
 .directconnect$operations$delete_direct_connect_gateway_association <- directconnect_delete_direct_connect_gateway_association
 
 #' Deletes the association proposal request between the specified Direct
-#' Connect gateway and virtual private gateway
+#' Connect gateway and virtual private gateway or transit gateway
 #'
 #' Deletes the association proposal request between the specified Direct
-#' Connect gateway and virtual private gateway.
+#' Connect gateway and virtual private gateway or transit gateway.
 #'
 #' @usage
 #' directconnect_delete_direct_connect_gateway_association_proposal(
@@ -1541,10 +1788,10 @@ directconnect_describe_connections_on_interconnect <- function(interconnectId) {
 .directconnect$operations$describe_connections_on_interconnect <- directconnect_describe_connections_on_interconnect
 
 #' Describes one or more association proposals for connection between a
-#' virtual private gateway and a Direct Connect gateway
+#' virtual private gateway or transit gateway and a Direct Connect gateway
 #'
 #' Describes one or more association proposals for connection between a
-#' virtual private gateway and a Direct Connect gateway.
+#' virtual private gateway or transit gateway and a Direct Connect gateway.
 #'
 #' @usage
 #' directconnect_describe_direct_connect_gateway_association_proposals(
@@ -1553,7 +1800,7 @@ directconnect_describe_connections_on_interconnect <- function(interconnectId) {
 #'
 #' @param directConnectGatewayId The ID of the Direct Connect gateway.
 #' @param proposalId The ID of the proposal.
-#' @param associatedGatewayId The ID of the associated virtual private gateway.
+#' @param associatedGatewayId The ID of the associated gateway.
 #' @param maxResults The maximum number of results to return with a single call. To retrieve
 #' the remaining results, make another call with the returned `nextToken`
 #' value.
@@ -2180,7 +2427,7 @@ directconnect_disassociate_connection_from_lag <- function(connectionId, lagId) 
 #' directconnect_tag_resource(resourceArn, tags)
 #'
 #' @param resourceArn &#91;required&#93; The Amazon Resource Name (ARN) of the resource.
-#' @param tags &#91;required&#93; The tags to add.
+#' @param tags &#91;required&#93; The tags to assign.
 #'
 #' @section Request syntax:
 #' ```

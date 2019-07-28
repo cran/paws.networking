@@ -12,9 +12,12 @@ directconnect_create_direct_connect_gateway_association(
 \arguments{
 \item{directConnectGatewayId}{[required] The ID of the Direct Connect gateway.}
 
-\item{gatewayId}{The ID of the virtual private gateway.}
+\item{gatewayId}{The ID of the virtual private gateway or transit gateway.}
 
-\item{addAllowedPrefixesToDirectConnectGateway}{The Amazon VPC prefixes to advertise to the Direct Connect gateway}
+\item{addAllowedPrefixesToDirectConnectGateway}{The Amazon VPC prefixes to advertise to the Direct Connect gateway
+
+For information about how to set the prefixes, see \href{https://docs.aws.amazon.com/directconnect/latest/UserGuide/multi-account-associate-vgw.html#allowed-prefixes}{Allowed Prefixes}
+in the \emph{AWS Direct Connect User Guide}.}
 
 \item{virtualGatewayId}{The ID of the virtual private gateway.}
 }

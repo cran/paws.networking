@@ -57,7 +57,7 @@ NULL
 #'
 #' @examples
 #' # This example adds the specified tags to the specified load balancer.
-#' \donttest{svc <- elbv2()
+#' \dontrun{svc <- elbv2()
 #' svc$add_tags(
 #'   ResourceArns = list(
 #'     "arn:aws:elasticloadbalancing:us-west-2:123456789012:loadbalancer/app/my-load-balancer/5..."
@@ -135,8 +135,7 @@ elbv2 <- function(config = list()) {
   target_prefix = ""
 )
 
-.elbv2$handlers <- new_handlers("query", "v4")
-
 .elbv2$service <- function(config = list()) {
-  new_service(.elbv2$metadata, .elbv2$handlers, config)
+  handlers <- new_handlers("query", "v4")
+  new_service(.elbv2$metadata, handlers, config)
 }

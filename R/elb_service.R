@@ -57,7 +57,7 @@ NULL
 #'
 #' @examples
 #' # This example adds two tags to the specified load balancer.
-#' \donttest{svc <- elb()
+#' \dontrun{svc <- elb()
 #' svc$add_tags(
 #'   LoadBalancerNames = list(
 #'     "my-load-balancer"
@@ -130,8 +130,7 @@ elb <- function(config = list()) {
   target_prefix = ""
 )
 
-.elb$handlers <- new_handlers("query", "v4")
-
 .elb$service <- function(config = list()) {
-  new_service(.elb$metadata, .elb$handlers, config)
+  handlers <- new_handlers("query", "v4")
+  new_service(.elb$metadata, handlers, config)
 }

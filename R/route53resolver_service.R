@@ -62,7 +62,7 @@ NULL
 #' ```
 #'
 #' @examples
-#' \donttest{svc <- route53resolver()
+#' \dontrun{svc <- route53resolver()
 #' svc$associate_resolver_endpoint_ip_address(
 #'   Foo = 123
 #' )}
@@ -116,8 +116,7 @@ route53resolver <- function(config = list()) {
   target_prefix = "Route53Resolver"
 )
 
-.route53resolver$handlers <- new_handlers("jsonrpc", "v4")
-
 .route53resolver$service <- function(config = list()) {
-  new_service(.route53resolver$metadata, .route53resolver$handlers, config)
+  handlers <- new_handlers("jsonrpc", "v4")
+  new_service(.route53resolver$metadata, handlers, config)
 }

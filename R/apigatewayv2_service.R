@@ -30,7 +30,7 @@ NULL
 #' ```
 #'
 #' @examples
-#' \donttest{svc <- apigatewayv2()
+#' \dontrun{svc <- apigatewayv2()
 #' svc$create_api(
 #'   Foo = 123
 #' )}
@@ -125,8 +125,7 @@ apigatewayv2 <- function(config = list()) {
   target_prefix = ""
 )
 
-.apigatewayv2$handlers <- new_handlers("restjson", "v4")
-
 .apigatewayv2$service <- function(config = list()) {
-  new_service(.apigatewayv2$metadata, .apigatewayv2$handlers, config)
+  handlers <- new_handlers("restjson", "v4")
+  new_service(.apigatewayv2$metadata, handlers, config)
 }

@@ -47,7 +47,7 @@ NULL
 #' ```
 #'
 #' @examples
-#' \donttest{svc <- appmesh()
+#' \dontrun{svc <- appmesh()
 #' svc$create_mesh(
 #'   Foo = 123
 #' )}
@@ -107,8 +107,7 @@ appmesh <- function(config = list()) {
   target_prefix = ""
 )
 
-.appmesh$handlers <- new_handlers("restjson", "v4")
-
 .appmesh$service <- function(config = list()) {
-  new_service(.appmesh$metadata, .appmesh$handlers, config)
+  handlers <- new_handlers("restjson", "v4")
+  new_service(.appmesh$metadata, handlers, config)
 }

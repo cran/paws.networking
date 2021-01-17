@@ -53,9 +53,8 @@ instance in the next group of \code{MaxItems} traffic policy instances.}
 \description{
 Gets information about the traffic policy instances that you created by
 using the current AWS account.
-}
-\details{
-After you submit an \code{UpdateTrafficPolicyInstance} request, there\'s a
+
+After you submit an \code{UpdateTrafficPolicyInstance} request, there's a
 brief delay while Amazon Route 53 creates the resource record sets that
 are specified in the traffic policy definition. For more information,
 see the \code{State} response element.
@@ -68,7 +67,7 @@ list them in groups of up to 100.
 \preformatted{svc$list_traffic_policy_instances(
   HostedZoneIdMarker = "string",
   TrafficPolicyInstanceNameMarker = "string",
-  TrafficPolicyInstanceTypeMarker = "SOA"|"A"|"TXT"|"NS"|"CNAME"|"MX"|"NAPTR"|"PTR"|"SRV"|"SPF"|"AAAA"|"CAA",
+  TrafficPolicyInstanceTypeMarker = "SOA"|"A"|"TXT"|"NS"|"CNAME"|"MX"|"NAPTR"|"PTR"|"SRV"|"SPF"|"AAAA"|"CAA"|"DS",
   MaxItems = "string"
 )
 }

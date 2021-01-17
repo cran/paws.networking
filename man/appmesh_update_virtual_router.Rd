@@ -15,7 +15,7 @@ underscores are allowed.}
 \item{meshName}{[required] The name of the service mesh that the virtual router resides in.}
 
 \item{meshOwner}{The AWS IAM account ID of the service mesh owner. If the account ID is
-not your own, then it\'s the ID of the account that shared the mesh with
+not your own, then it's the ID of the account that shared the mesh with
 your account. For more information about mesh sharing, see \href{https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html}{Working with shared meshes}.}
 
 \item{spec}{[required] The new virtual router specification to apply. This overwrites the
@@ -36,7 +36,7 @@ Updates an existing virtual router in a specified service mesh.
       list(
         portMapping = list(
           port = 123,
-          protocol = "grpc"|"http"|"http2"|"tcp"
+          protocol = "http"|"tcp"|"http2"|"grpc"
         )
       )
     )

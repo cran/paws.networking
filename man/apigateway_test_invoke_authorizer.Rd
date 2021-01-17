@@ -12,8 +12,7 @@ apigateway_test_invoke_authorizer(restApiId, authorizerId, headers,
 \arguments{
 \item{restApiId}{[required] [Required] The string identifier of the associated RestApi.}
 
-\item{authorizerId}{[required] [Required] Specifies a test invoke authorizer request\'s Authorizer
-ID.}
+\item{authorizerId}{[required] [Required] Specifies a test invoke authorizer request's Authorizer ID.}
 
 \item{headers}{[Required] A key-value map of headers to simulate an incoming
 invocation request. This is where the incoming authorization token, or
@@ -37,13 +36,11 @@ deployed Stage.}
 }
 \description{
 Simulate the execution of an Authorizer in your RestApi with headers,
-parameters, and an incoming request body.
-}
-\details{
-::: \{.seeAlso\}
+parameters, and an incoming request body.<div class="seeAlso">
+
+
 \href{https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html}{Use Lambda Function as Authorizer}
-\href{https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html}{Use Cognito User Pool as Authorizer}
-:::
+\href{https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html}{Use Cognito User Pool as Authorizer}</div>
 }
 \section{Request syntax}{
 \preformatted{svc$test_invoke_authorizer(

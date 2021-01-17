@@ -10,15 +10,14 @@ appmesh_delete_virtual_node(meshName, meshOwner, virtualNodeName)
 \item{meshName}{[required] The name of the service mesh to delete the virtual node in.}
 
 \item{meshOwner}{The AWS IAM account ID of the service mesh owner. If the account ID is
-not your own, then it\'s the ID of the account that shared the mesh with
+not your own, then it's the ID of the account that shared the mesh with
 your account. For more information about mesh sharing, see \href{https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html}{Working with shared meshes}.}
 
 \item{virtualNodeName}{[required] The name of the virtual node to delete.}
 }
 \description{
 Deletes an existing virtual node.
-}
-\details{
+
 You must delete any virtual services that list a virtual node as a
 service provider before you can delete the virtual node itself.
 }

@@ -26,7 +26,7 @@ codes:
 
 \item{SubdivisionCode}{For \code{SubdivisionCode}, Amazon Route 53 supports only states of the
 United States. For a list of state abbreviations, see Appendix B:
-Two--Letter State and Possession Abbreviations on the United States
+Two–Letter State and Possession Abbreviations on the United States
 Postal Service website.
 
 If you specify \code{subdivisioncode}, you must also specify \code{US} for
@@ -35,8 +35,7 @@ If you specify \code{subdivisioncode}, you must also specify \code{US} for
 \description{
 Gets information about whether a specified geographic location is
 supported for Amazon Route 53 geolocation resource record sets.
-}
-\details{
+
 Use the following syntax to determine whether a continent is supported
 for geolocation:
 

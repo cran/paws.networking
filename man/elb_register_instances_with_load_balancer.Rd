@@ -13,8 +13,7 @@ elb_register_instances_with_load_balancer(LoadBalancerName, Instances)
 }
 \description{
 Adds the specified instances to the specified load balancer.
-}
-\details{
+
 The instance must be a running instance in the same network as the load
 balancer (EC2-Classic or the same VPC). If you have EC2-Classic
 instances and a load balancer in a VPC with ClassicLink enabled, you can
@@ -36,7 +35,7 @@ the \code{InService} state.
 To deregister instances from a load balancer, use
 DeregisterInstancesFromLoadBalancer.
 
-For more information, see \href{http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html}{Register or De-Register EC2 Instances}
+For more information, see \href{https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html}{Register or De-Register EC2 Instances}
 in the \emph{Classic Load Balancers Guide}.
 }
 \section{Request syntax}{

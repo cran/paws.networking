@@ -25,8 +25,7 @@ the browser session.}
 Generates a stickiness policy with sticky session lifetimes controlled
 by the lifetime of the browser (user-agent) or a specified expiration
 period. This policy can be associated only with HTTP/HTTPS listeners.
-}
-\details{
+
 When a load balancer implements this policy, the load balancer uses a
 special cookie to track the instance for each request. When the load
 balancer receives a request, it first checks to see if this cookie is
@@ -40,7 +39,7 @@ from the same user to that server. The validity of the cookie is based
 on the cookie expiration time, which is specified in the policy
 configuration.
 
-For more information, see \href{http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration}{Duration-Based Session Stickiness}
+For more information, see \href{https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration}{Duration-Based Session Stickiness}
 in the \emph{Classic Load Balancers Guide}.
 }
 \section{Request syntax}{

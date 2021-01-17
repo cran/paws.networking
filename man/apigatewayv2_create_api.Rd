@@ -5,8 +5,9 @@
 \title{Creates an Api resource}
 \usage{
 apigatewayv2_create_api(ApiKeySelectionExpression, CorsConfiguration,
-  CredentialsArn, Description, DisableSchemaValidation, Name,
-  ProtocolType, RouteKey, RouteSelectionExpression, Tags, Target, Version)
+  CredentialsArn, Description, DisableSchemaValidation,
+  DisableExecuteApiEndpoint, Name, ProtocolType, RouteKey,
+  RouteSelectionExpression, Tags, Target, Version)
 }
 \arguments{
 \item{ApiKeySelectionExpression}{An API key selection expression. Supported only for WebSocket APIs. See
@@ -18,8 +19,8 @@ for more information.}
 \item{CredentialsArn}{This property is part of quick create. It specifies the credentials
 required for the integration, if any. For a Lambda integration, three
 options are available. To specify an IAM Role for API Gateway to assume,
-use the role\'s Amazon Resource Name (ARN). To require that the
-caller\'s identity be passed through from the request, specify
+use the role's Amazon Resource Name (ARN). To require that the caller's
+identity be passed through from the request, specify
 arn:aws:iam::\emph{:user/}. To use resource-based permissions on supported
 AWS services, specify null. Currently, this property is not used for
 HTTP integrations. Supported only for HTTP APIs.}
@@ -29,19 +30,25 @@ HTTP integrations. Supported only for HTTP APIs.}
 \item{DisableSchemaValidation}{Avoid validating models when creating a deployment. Supported only for
 WebSocket APIs.}
 
+\item{DisableExecuteApiEndpoint}{Specifies whether clients can invoke your API by using the default
+execute-api endpoint. By default, clients can invoke your API with the
+default https://\{api\\_id\}.execute-api.\{region\}.amazonaws.com endpoint.
+To require that clients use a custom domain name to invoke your API,
+disable the default endpoint.}
+
 \item{Name}{[required] The name of the API.}
 
 \item{ProtocolType}{[required] The API protocol.}
 
-\item{RouteKey}{This property is part of quick create. If you don\'t specify a routeKey,
-a default route of \\$default is created. The \\$default route acts as a
+\item{RouteKey}{This property is part of quick create. If you don't specify a routeKey,
+a default route of $default is created. The $default route acts as a
 catch-all for any request made to your API, for a particular stage. The
-\\$default route key can\'t be modified. You can add routes after
-creating the API, and you can update the route keys of additional
-routes. Supported only for HTTP APIs.}
+$default route key can't be modified. You can add routes after creating
+the API, and you can update the route keys of additional routes.
+Supported only for HTTP APIs.}
 
 \item{RouteSelectionExpression}{The route selection expression for the API. For HTTP APIs, the
-routeSelectionExpression must be \\$\{request.method\} \\$\{request.path\}. If
+routeSelectionExpression must be $\{request.method\} $\{request.path\}. If
 not provided, this will be the default for HTTP APIs. This property is
 required for WebSocket APIs.}
 
@@ -82,6 +89,7 @@ Creates an Api resource.
   CredentialsArn = "string",
   Description = "string",
   DisableSchemaValidation = TRUE|FALSE,
+  DisableExecuteApiEndpoint = TRUE|FALSE,
   Name = "string",
   ProtocolType = "WEBSOCKET"|"HTTP",
   RouteKey = "string",

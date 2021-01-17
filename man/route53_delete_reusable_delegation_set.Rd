@@ -11,9 +11,8 @@ route53_delete_reusable_delegation_set(Id)
 }
 \description{
 Deletes a reusable delegation set.
-}
-\details{
-You can delete a reusable delegation set only if it isn\'t associated
+
+You can delete a reusable delegation set only if it isn't associated
 with any hosted zones.
 
 To verify that the reusable delegation set is not associated with any

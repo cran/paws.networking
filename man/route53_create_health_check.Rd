@@ -13,7 +13,7 @@ identical health checks:
 \itemize{
 \item If you send a \code{CreateHealthCheck} request with the same
 \code{CallerReference} and settings as a previous request, and if the
-health check doesn\'t exist, Amazon Route 53 creates the health
+health check doesn't exist, Amazon Route 53 creates the health
 check. If the health check does exist, Route 53 returns the settings
 for the existing health check.
 \item If you send a \code{CreateHealthCheck} request with the same
@@ -31,8 +31,7 @@ check, Route 53 creates the health check.
 }
 \description{
 Creates a new health check.
-}
-\details{
+
 For information about adding health checks to resource record sets, see
 \href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_ResourceRecordSet.html#Route53-Type-ResourceRecordSet-HealthCheckId}{HealthCheckId}
 in
@@ -40,10 +39,10 @@ in
 
 \strong{ELB Load Balancers}
 
-If you\'re registering EC2 instances with an Elastic Load Balancing
-(ELB) load balancer, do not create Amazon Route 53 health checks for the
-EC2 instances. When you register an EC2 instance with a load balancer,
-you configure settings for an ELB health check, which performs a similar
+If you're registering EC2 instances with an Elastic Load Balancing (ELB)
+load balancer, do not create Amazon Route 53 health checks for the EC2
+instances. When you register an EC2 instance with a load balancer, you
+configure settings for an ELB health check, which performs a similar
 function to a Route 53 health check.
 
 \strong{Private Hosted Zones}
@@ -63,7 +62,7 @@ the alarm. For example, you might create a CloudWatch metric that
 checks the status of the Amazon EC2 \code{StatusCheckFailed} metric, add
 an alarm to the metric, and then create a health check that is based
 on the state of the alarm. For information about creating CloudWatch
-metrics and alarms by using the CloudWatch console, see the \href{https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatch.html}{Amazon CloudWatch User Guide}.
+metrics and alarms by using the CloudWatch console, see the \href{https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html}{Amazon CloudWatch User Guide}.
 }
 }
 \section{Request syntax}{

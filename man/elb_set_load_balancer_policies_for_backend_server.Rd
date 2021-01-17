@@ -22,8 +22,7 @@ the EC2 instance is listening with a new set of policies. At this time,
 only the back-end server authentication policy type can be applied to
 the instance ports; this policy type is composed of multiple public key
 policies.
-}
-\details{
+
 Each time you use \code{SetLoadBalancerPoliciesForBackendServer} to enable
 the policies, use the \code{PolicyNames} parameter to list the policies that
 you want to enable.
@@ -32,9 +31,9 @@ You can use DescribeLoadBalancers or DescribeLoadBalancerPolicies to
 verify that the policy is associated with the EC2 instance.
 
 For more information about enabling back-end instance authentication,
-see \href{http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-create-https-ssl-load-balancer.html#configure_backendauth_clt}{Configure Back-end Instance Authentication}
+see \href{https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-create-https-ssl-load-balancer.html#configure_backendauth_clt}{Configure Back-end Instance Authentication}
 in the \emph{Classic Load Balancers Guide}. For more information about Proxy
-Protocol, see \href{http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html}{Configure Proxy Protocol Support}
+Protocol, see \href{https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html}{Configure Proxy Protocol Support}
 in the \emph{Classic Load Balancers Guide}.
 }
 \section{Request syntax}{

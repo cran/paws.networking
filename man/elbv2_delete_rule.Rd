@@ -11,6 +11,8 @@ elbv2_delete_rule(RuleArn)
 }
 \description{
 Deletes the specified rule.
+
+You can't delete the default rule.
 }
 \section{Request syntax}{
 \preformatted{svc$delete_rule(

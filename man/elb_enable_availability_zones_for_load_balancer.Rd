@@ -17,14 +17,13 @@ balancer.}
 \description{
 Adds the specified Availability Zones to the set of Availability Zones
 for the specified load balancer in EC2-Classic or a default VPC.
-}
-\details{
+
 For load balancers in a non-default VPC, use
 AttachLoadBalancerToSubnets.
 
 The load balancer evenly distributes requests across all its registered
 Availability Zones that contain instances. For more information, see
-\href{http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html}{Add or Remove Availability Zones}
+\href{https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html}{Add or Remove Availability Zones}
 in the \emph{Classic Load Balancers Guide}.
 }
 \section{Request syntax}{

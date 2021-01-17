@@ -14,8 +14,8 @@ already returned a page or more of results, if \code{IsTruncated} is true,
 and if \code{NextContinentCode} from the previous response has a value, enter
 that value in \code{startcontinentcode} to return the next page of results.
 
-Include \code{startcontinentcode} only if you want to list continents. Don\'t
-include \code{startcontinentcode} when you\'re listing countries or countries
+Include \code{startcontinentcode} only if you want to list continents. Don't
+include \code{startcontinentcode} when you're listing countries or countries
 with their subdivisions.}
 
 \item{StartCountryCode}{The code for the country with which you want to start listing locations
@@ -41,8 +41,7 @@ response is \code{true}.}
 }
 \description{
 Retrieves a list of supported geographic locations.
-}
-\details{
+
 Countries are listed first, and continents are listed last. If Amazon
 Route 53 supports subdivisions for a country (for example, states or
 provinces), the subdivisions for that country are listed in alphabetical

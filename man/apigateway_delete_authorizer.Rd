@@ -12,12 +12,10 @@ apigateway_delete_authorizer(restApiId, authorizerId)
 \item{authorizerId}{[required] [Required] The identifier of the Authorizer resource.}
 }
 \description{
-Deletes an existing Authorizer resource.
-}
-\details{
-::: \{.seeAlso\}
-\href{https://docs.aws.amazon.com/cli/latest/reference/apigateway/delete-authorizer.html}{AWS CLI}
-:::
+Deletes an existing Authorizer resource.<div class="seeAlso">
+
+
+\href{https://docs.aws.amazon.com/cli/latest/reference/apigateway/delete-authorizer.html}{AWS CLI}</div>
 }
 \section{Request syntax}{
 \preformatted{svc$delete_authorizer(

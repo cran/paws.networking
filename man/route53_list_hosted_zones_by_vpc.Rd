@@ -17,8 +17,8 @@ you created the VPC in.}
 \item{MaxItems}{(Optional) The maximum number of hosted zones that you want Amazon Route
 53 to return. If the specified VPC is associated with more than
 \code{MaxItems} hosted zones, the response includes a \code{NextToken} element.
-\code{NextToken} contains the hosted zone ID of the first hosted zone that
-Route 53 will return if you submit another request.}
+\code{NextToken} contains an encrypted token that identifies the first hosted
+zone that Route 53 will return if you submit another request.}
 
 \item{NextToken}{If the previous response included a \code{NextToken} element, the specified
 VPC is associated with more hosted zones. To get more hosted zones,
@@ -27,16 +27,14 @@ submit another \code{ListHostedZonesByVPC} request.
 For the value of \code{NextToken}, specify the value of \code{NextToken} from the
 previous response.
 
-If the previous response didn\'t include a \code{NextToken} element, there
-are no more hosted zones to get.}
+If the previous response didn't include a \code{NextToken} element, there are
+no more hosted zones to get.}
 }
 \description{
 Lists all the private hosted zones that a specified VPC is associated
 with, regardless of which AWS account or AWS service owns the hosted
 zones. The \code{HostedZoneOwner} structure in the response contains one of
 the following values:
-}
-\details{
 \itemize{
 \item An \code{OwningAccount} element, which contains the account number of
 either the current AWS account or another AWS account. Some

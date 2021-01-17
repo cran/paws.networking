@@ -20,14 +20,13 @@ If the list is empty, all current policies are disabled.}
 \description{
 Replaces the current set of policies for the specified load balancer
 port with the specified set of policies.
-}
-\details{
+
 To enable back-end server authentication, use
 SetLoadBalancerPoliciesForBackendServer.
 
-For more information about setting policies, see \href{http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/ssl-config-update.html}{Update the SSL Negotiation Configuration},
-\href{http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration}{Duration-Based Session Stickiness},
-and \href{http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application}{Application-Controlled Session Stickiness}
+For more information about setting policies, see \href{https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/ssl-config-update.html}{Update the SSL Negotiation Configuration},
+\href{https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration}{Duration-Based Session Stickiness},
+and \href{https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application}{Application-Controlled Session Stickiness}
 in the \emph{Classic Load Balancers Guide}.
 }
 \section{Request syntax}{

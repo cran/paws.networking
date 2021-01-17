@@ -2,16 +2,19 @@
 % Please edit documentation in R/cloudfront_operations.R
 \name{cloudfront_create_streaming_distribution_with_tags}
 \alias{cloudfront_create_streaming_distribution_with_tags}
-\title{Create a new streaming distribution with tags}
+\title{This API is deprecated}
 \usage{
 cloudfront_create_streaming_distribution_with_tags(
   StreamingDistributionConfigWithTags)
 }
 \arguments{
-\item{StreamingDistributionConfigWithTags}{[required] The streaming distribution\'s configuration information.}
+\item{StreamingDistributionConfigWithTags}{[required] The streaming distribution's configuration information.}
 }
 \description{
-Create a new streaming distribution with tags.
+This API is deprecated. Amazon CloudFront is deprecating real-time
+messaging protocol (RTMP) distributions on December 31, 2020. For more
+information, \href{https://forums.aws.amazon.com:443/ann.jspa?annID=7356}{read the announcement} on
+the Amazon CloudFront discussion forum.
 }
 \section{Request syntax}{
 \preformatted{svc$create_streaming_distribution_with_tags(

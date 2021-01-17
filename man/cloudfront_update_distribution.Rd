@@ -7,17 +7,16 @@
 cloudfront_update_distribution(DistributionConfig, Id, IfMatch)
 }
 \arguments{
-\item{DistributionConfig}{[required] The distribution\'s configuration information.}
+\item{DistributionConfig}{[required] The distribution's configuration information.}
 
-\item{Id}{[required] The distribution\'s id.}
+\item{Id}{[required] The distribution's id.}
 
 \item{IfMatch}{The value of the \code{ETag} header that you received when retrieving the
-distribution\'s configuration. For example: \code{E2QWRUHAPOMQZL}.}
+distribution's configuration. For example: \code{E2QWRUHAPOMQZL}.}
 }
 \description{
 Updates the configuration for a web distribution.
-}
-\details{
+
 When you update a distribution, there are more required fields than when
 you create a distribution. When you update your distribution by using
 this API action, follow the steps here to get the current configuration
@@ -51,9 +50,9 @@ When you edit the XML file, be aware of the following:
 \item You must strip out the ETag parameter that is returned.
 \item Additional fields are required when you update a distribution.
 There may be fields included in the XML file for features that
-you haven\'t configured for your distribution. This is expected
+you haven't configured for your distribution. This is expected
 and required to successfully update the distribution.
-\item You can\'t change the value of \code{CallerReference}. If you try to
+\item You can't change the value of \code{CallerReference}. If you try to
 change this value, CloudFront returns an \code{IllegalUpdate} error.
 \item The new configuration replaces the existing configuration; the
 values that you specify in an \code{UpdateDistribution} request are
@@ -125,7 +124,11 @@ propagation is complete, the value of \code{Status} is \code{Deployed}.
             OriginKeepaliveTimeout = 123
           ),
           ConnectionAttempts = 123,
-          ConnectionTimeout = 123
+          ConnectionTimeout = 123,
+          OriginShield = list(
+            Enabled = TRUE|FALSE,
+            OriginShieldRegion = "string"
+          )
         )
       )
     ),
@@ -155,6 +158,49 @@ propagation is complete, the value of \code{Status} is \code{Deployed}.
     ),
     DefaultCacheBehavior = list(
       TargetOriginId = "string",
+      TrustedSigners = list(
+        Enabled = TRUE|FALSE,
+        Quantity = 123,
+        Items = list(
+          "string"
+        )
+      ),
+      TrustedKeyGroups = list(
+        Enabled = TRUE|FALSE,
+        Quantity = 123,
+        Items = list(
+          "string"
+        )
+      ),
+      ViewerProtocolPolicy = "allow-all"|"https-only"|"redirect-to-https",
+      AllowedMethods = list(
+        Quantity = 123,
+        Items = list(
+          "GET"|"HEAD"|"POST"|"PUT"|"PATCH"|"OPTIONS"|"DELETE"
+        ),
+        CachedMethods = list(
+          Quantity = 123,
+          Items = list(
+            "GET"|"HEAD"|"POST"|"PUT"|"PATCH"|"OPTIONS"|"DELETE"
+          )
+        )
+      ),
+      SmoothStreaming = TRUE|FALSE,
+      Compress = TRUE|FALSE,
+      LambdaFunctionAssociations = list(
+        Quantity = 123,
+        Items = list(
+          list(
+            LambdaFunctionARN = "string",
+            EventType = "viewer-request"|"viewer-response"|"origin-request"|"origin-response",
+            IncludeBody = TRUE|FALSE
+          )
+        )
+      ),
+      FieldLevelEncryptionId = "string",
+      RealtimeLogConfigArn = "string",
+      CachePolicyId = "string",
+      OriginRequestPolicyId = "string",
       ForwardedValues = list(
         QueryString = TRUE|FALSE,
         Cookies = list(
@@ -179,42 +225,9 @@ propagation is complete, the value of \code{Status} is \code{Deployed}.
           )
         )
       ),
-      TrustedSigners = list(
-        Enabled = TRUE|FALSE,
-        Quantity = 123,
-        Items = list(
-          "string"
-        )
-      ),
-      ViewerProtocolPolicy = "allow-all"|"https-only"|"redirect-to-https",
       MinTTL = 123,
-      AllowedMethods = list(
-        Quantity = 123,
-        Items = list(
-          "GET"|"HEAD"|"POST"|"PUT"|"PATCH"|"OPTIONS"|"DELETE"
-        ),
-        CachedMethods = list(
-          Quantity = 123,
-          Items = list(
-            "GET"|"HEAD"|"POST"|"PUT"|"PATCH"|"OPTIONS"|"DELETE"
-          )
-        )
-      ),
-      SmoothStreaming = TRUE|FALSE,
       DefaultTTL = 123,
-      MaxTTL = 123,
-      Compress = TRUE|FALSE,
-      LambdaFunctionAssociations = list(
-        Quantity = 123,
-        Items = list(
-          list(
-            LambdaFunctionARN = "string",
-            EventType = "viewer-request"|"viewer-response"|"origin-request"|"origin-response",
-            IncludeBody = TRUE|FALSE
-          )
-        )
-      ),
-      FieldLevelEncryptionId = "string"
+      MaxTTL = 123
     ),
     CacheBehaviors = list(
       Quantity = 123,
@@ -222,6 +235,49 @@ propagation is complete, the value of \code{Status} is \code{Deployed}.
         list(
           PathPattern = "string",
           TargetOriginId = "string",
+          TrustedSigners = list(
+            Enabled = TRUE|FALSE,
+            Quantity = 123,
+            Items = list(
+              "string"
+            )
+          ),
+          TrustedKeyGroups = list(
+            Enabled = TRUE|FALSE,
+            Quantity = 123,
+            Items = list(
+              "string"
+            )
+          ),
+          ViewerProtocolPolicy = "allow-all"|"https-only"|"redirect-to-https",
+          AllowedMethods = list(
+            Quantity = 123,
+            Items = list(
+              "GET"|"HEAD"|"POST"|"PUT"|"PATCH"|"OPTIONS"|"DELETE"
+            ),
+            CachedMethods = list(
+              Quantity = 123,
+              Items = list(
+                "GET"|"HEAD"|"POST"|"PUT"|"PATCH"|"OPTIONS"|"DELETE"
+              )
+            )
+          ),
+          SmoothStreaming = TRUE|FALSE,
+          Compress = TRUE|FALSE,
+          LambdaFunctionAssociations = list(
+            Quantity = 123,
+            Items = list(
+              list(
+                LambdaFunctionARN = "string",
+                EventType = "viewer-request"|"viewer-response"|"origin-request"|"origin-response",
+                IncludeBody = TRUE|FALSE
+              )
+            )
+          ),
+          FieldLevelEncryptionId = "string",
+          RealtimeLogConfigArn = "string",
+          CachePolicyId = "string",
+          OriginRequestPolicyId = "string",
           ForwardedValues = list(
             QueryString = TRUE|FALSE,
             Cookies = list(
@@ -246,42 +302,9 @@ propagation is complete, the value of \code{Status} is \code{Deployed}.
               )
             )
           ),
-          TrustedSigners = list(
-            Enabled = TRUE|FALSE,
-            Quantity = 123,
-            Items = list(
-              "string"
-            )
-          ),
-          ViewerProtocolPolicy = "allow-all"|"https-only"|"redirect-to-https",
           MinTTL = 123,
-          AllowedMethods = list(
-            Quantity = 123,
-            Items = list(
-              "GET"|"HEAD"|"POST"|"PUT"|"PATCH"|"OPTIONS"|"DELETE"
-            ),
-            CachedMethods = list(
-              Quantity = 123,
-              Items = list(
-                "GET"|"HEAD"|"POST"|"PUT"|"PATCH"|"OPTIONS"|"DELETE"
-              )
-            )
-          ),
-          SmoothStreaming = TRUE|FALSE,
           DefaultTTL = 123,
-          MaxTTL = 123,
-          Compress = TRUE|FALSE,
-          LambdaFunctionAssociations = list(
-            Quantity = 123,
-            Items = list(
-              list(
-                LambdaFunctionARN = "string",
-                EventType = "viewer-request"|"viewer-response"|"origin-request"|"origin-response",
-                IncludeBody = TRUE|FALSE
-              )
-            )
-          ),
-          FieldLevelEncryptionId = "string"
+          MaxTTL = 123
         )
       )
     ),
@@ -309,7 +332,7 @@ propagation is complete, the value of \code{Status} is \code{Deployed}.
       CloudFrontDefaultCertificate = TRUE|FALSE,
       IAMCertificateId = "string",
       ACMCertificateArn = "string",
-      SSLSupportMethod = "sni-only"|"vip",
+      SSLSupportMethod = "sni-only"|"vip"|"static-ip",
       MinimumProtocolVersion = "SSLv3"|"TLSv1"|"TLSv1_2016"|"TLSv1.1_2016"|"TLSv1.2_2018"|"TLSv1.2_2019",
       Certificate = "string",
       CertificateSource = "cloudfront"|"iam"|"acm"

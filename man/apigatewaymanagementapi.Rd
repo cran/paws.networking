@@ -12,11 +12,11 @@ apigatewaymanagementapi(config = list())
 \description{
 The Amazon API Gateway Management API allows you to directly manage
 runtime aspects of your deployed APIs. To use it, you must explicitly
-set the SDK\'s endpoint to point to the endpoint of your deployed API.
+set the SDK's endpoint to point to the endpoint of your deployed API.
 The endpoint will be of the form
 https://\{api-id\}.execute-api.\{region\}.amazonaws.com/\{stage\}, or will be
-the endpoint corresponding to your API\'s custom domain and base path,
-if applicable.
+the endpoint corresponding to your API's custom domain and base path, if
+applicable.
 }
 \section{Service syntax}{
 \preformatted{svc <- apigatewaymanagementapi(
@@ -39,7 +39,7 @@ if applicable.
 \section{Operations}{
 
 \tabular{ll}{
-\link[=apigatewaymanagementapi_delete_connection]{delete_connection} \tab Delete the connection with the provided id \cr
+\link[=apigatewaymanagementapi_delete_connection]{delete_connection} \tab Delete the connection with the provided id\cr
 \link[=apigatewaymanagementapi_get_connection]{get_connection} \tab Get information about the connection with the provided id\cr
 \link[=apigatewaymanagementapi_post_to_connection]{post_to_connection} \tab Sends the provided data to the specified connection
 }

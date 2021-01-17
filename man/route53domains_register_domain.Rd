@@ -19,7 +19,7 @@ The domain name can contain only the following characters:
 \itemize{
 \item Letters a through z. Domain names are not case sensitive.
 \item Numbers 0 through 9.
-\item Hyphen (-). You can\'t specify a hyphen at the beginning or end of a
+\item Hyphen (-). You can't specify a hyphen at the beginning or end of a
 label.
 \item Period (.) to separate the labels in the name, such as the \code{.} in
 \code{example.com}.
@@ -59,29 +59,29 @@ that you specify for each element, see
 \href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_domains_ContactDetail.html}{ContactDetail}.}
 
 \item{PrivacyProtectAdminContact}{Whether you want to conceal contact information from WHOIS queries. If
-you specify \code{true}, WHOIS (\"who is\") queries return contact
-information either for Amazon Registrar (for .com, .net, and .org
-domains) or for our registrar associate, Gandi (for all other TLDs). If
-you specify \code{false}, WHOIS queries return the information that you
-entered for the admin contact.
+you specify \code{true}, WHOIS ("who is") queries return contact information
+either for Amazon Registrar (for .com, .net, and .org domains) or for
+our registrar associate, Gandi (for all other TLDs). If you specify
+\code{false}, WHOIS queries return the information that you entered for the
+admin contact.
 
 Default: \code{true}}
 
 \item{PrivacyProtectRegistrantContact}{Whether you want to conceal contact information from WHOIS queries. If
-you specify \code{true}, WHOIS (\"who is\") queries return contact
-information either for Amazon Registrar (for .com, .net, and .org
-domains) or for our registrar associate, Gandi (for all other TLDs). If
-you specify \code{false}, WHOIS queries return the information that you
-entered for the registrant contact (the domain owner).
+you specify \code{true}, WHOIS ("who is") queries return contact information
+either for Amazon Registrar (for .com, .net, and .org domains) or for
+our registrar associate, Gandi (for all other TLDs). If you specify
+\code{false}, WHOIS queries return the information that you entered for the
+registrant contact (the domain owner).
 
 Default: \code{true}}
 
 \item{PrivacyProtectTechContact}{Whether you want to conceal contact information from WHOIS queries. If
-you specify \code{true}, WHOIS (\"who is\") queries return contact
-information either for Amazon Registrar (for .com, .net, and .org
-domains) or for our registrar associate, Gandi (for all other TLDs). If
-you specify \code{false}, WHOIS queries return the information that you
-entered for the technical contact.
+you specify \code{true}, WHOIS ("who is") queries return contact information
+either for Amazon Registrar (for .com, .net, and .org domains) or for
+our registrar associate, Gandi (for all other TLDs). If you specify
+\code{false}, WHOIS queries return the information that you entered for the
+technical contact.
 
 Default: \code{true}}
 }
@@ -90,8 +90,7 @@ This operation registers a domain. Domains are registered either by
 Amazon Registrar (for .com, .net, and .org domains) or by our registrar
 associate, Gandi (for all other domains). For some top-level domains
 (TLDs), this operation requires extra parameters.
-}
-\details{
+
 When you register a domain, Amazon Route 53 does the following:
 \itemize{
 \item Creates a Route 53 hosted zone that has the same name as the domain.
@@ -99,12 +98,12 @@ Route 53 assigns four name servers to your hosted zone and
 automatically updates your domain registration with the names of
 these name servers.
 \item Enables autorenew, so your domain registration will renew
-automatically each year. We\'ll notify you in advance of the renewal
+automatically each year. We'll notify you in advance of the renewal
 date so you can choose whether to renew the registration.
 \item Optionally enables privacy protection, so WHOIS queries return
 contact information either for Amazon Registrar (for .com, .net, and
 .org domains) or for our registrar associate, Gandi (for all other
-TLDs). If you don\'t enable privacy protection, WHOIS queries return
+TLDs). If you don't enable privacy protection, WHOIS queries return
 the information that you entered for the registrant, admin, and tech
 contacts.
 \item If registration is successful, returns an operation ID that you can
@@ -112,7 +111,7 @@ use to track the progress and completion of the action. If the
 request is not completed successfully, the domain registrant is
 notified by email.
 \item Charges your AWS account an amount based on the top-level domain.
-For more information, see \href{http://aws.amazon.com/route53/pricing/}{Amazon Route 53 Pricing}.
+For more information, see \href{https://aws.amazon.com/route53/pricing/}{Amazon Route 53 Pricing}.
 }
 }
 \section{Request syntax}{

@@ -11,10 +11,12 @@ elbv2_delete_target_group(TargetGroupArn)
 }
 \description{
 Deletes the specified target group.
-}
-\details{
+
 You can delete a target group if it is not referenced by any actions.
 Deleting a target group also deletes any associated health checks.
+Deleting a target group does not affect its registered targets. For
+example, any EC2 instances continue to run until you stop or terminate
+them.
 }
 \section{Request syntax}{
 \preformatted{svc$delete_target_group(

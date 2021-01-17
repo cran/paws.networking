@@ -21,8 +21,7 @@ authoritative DNS information for a specified domain name or subdomain
 name. For example, you can use \code{ChangeResourceRecordSets} to create a
 resource record set that routes traffic for test.example.com to a web
 server that has an IP address of 192.0.2.44.
-}
-\details{
+
 \strong{Deleting Resource Record Sets}
 
 To delete a resource record set, you must specify all the same values
@@ -35,8 +34,8 @@ The request body must include a document with a
 list of change items, known as a change batch. Change batches are
 considered transactional changes. Route 53 validates the changes in the
 request and then either makes all or none of the changes in the change
-batch request. This ensures that DNS routing isn\'t adversely affected
-by partial changes to the resource record sets in a hosted zone.
+batch request. This ensures that DNS routing isn't adversely affected by
+partial changes to the resource record sets in a hosted zone.
 
 For example, suppose a change batch request contains two changes: it
 deletes the \code{CNAME} resource record set for www.example.com and creates
@@ -58,7 +57,7 @@ actions for traffic policies and traffic policy instances. Save the
 configuration as a traffic policy, then associate the traffic policy
 with one or more domain names (such as example.com) or subdomain names
 (such as www.example.com), in the same hosted zone or in multiple hosted
-zones. You can roll back the updates if the new configuration isn\'t
+zones. You can roll back the updates if the new configuration isn't
 performing as expected. For more information, see \href{https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/traffic-flow.html}{Using Traffic Flow to Route DNS Traffic}
 in the \emph{Amazon Route 53 Developer Guide}.
 
@@ -82,9 +81,9 @@ you want to create, delete, or update, such as weighted, alias, or
 failover. The XML elements in your request must appear in the order
 listed in the syntax.
 
-For an example for each type of resource record set, see \"Examples.\"
+For an example for each type of resource record set, see "Examples."
 
-Don\'t refer to the syntax in the \"Parameter Syntax\" section, which
+Don't refer to the syntax in the "Parameter Syntax" section, which
 includes all of the elements for every kind of resource record set that
 you can create, delete, or update by using \code{ChangeResourceRecordSets}.
 
@@ -115,7 +114,7 @@ in the \emph{Amazon Route 53 Developer Guide}.
         Action = "CREATE"|"DELETE"|"UPSERT",
         ResourceRecordSet = list(
           Name = "string",
-          Type = "SOA"|"A"|"TXT"|"NS"|"CNAME"|"MX"|"NAPTR"|"PTR"|"SRV"|"SPF"|"AAAA"|"CAA",
+          Type = "SOA"|"A"|"TXT"|"NS"|"CNAME"|"MX"|"NAPTR"|"PTR"|"SRV"|"SPF"|"AAAA"|"CAA"|"DS",
           SetIdentifier = "string",
           Weight = 123,
           Region = "us-east-1"|"us-east-2"|"us-west-1"|"us-west-2"|"ca-central-1"|"eu-west-1"|"eu-west-2"|"eu-west-3"|"eu-central-1"|"ap-southeast-1"|"ap-southeast-2"|"ap-northeast-1"|"ap-northeast-2"|"ap-northeast-3"|"eu-north-1"|"sa-east-1"|"cn-north-1"|"cn-northwest-1"|"ap-east-1"|"me-south-1"|"ap-south-1"|"af-south-1"|"eu-south-1",

@@ -9,19 +9,17 @@ globalaccelerator_advertise_byoip_cidr(Cidr)
 }
 \arguments{
 \item{Cidr}{[required] The address range, in CIDR notation. This must be the exact range that
-you provisioned. You can\'t advertise only a portion of the provisioned
+you provisioned. You can't advertise only a portion of the provisioned
 range.}
 }
 \description{
 Advertises an IPv4 address range that is provisioned for use with your
 AWS resources through bring your own IP addresses (BYOIP). It can take a
 few minutes before traffic to the specified addresses starts routing to
-AWS because of propagation delays. To see an AWS CLI example of
-advertising an address range, scroll down to \strong{Example}.
-}
-\details{
+AWS because of propagation delays.
+
 To stop advertising the BYOIP address range, use
-\href{https://docs.aws.amazon.com/global-accelerator/latest/api/WithdrawByoipCidr.html}{WithdrawByoipCidr}.
+\href{https://docs.aws.amazon.com/global-accelerator/latest/api/}{WithdrawByoipCidr}.
 
 For more information, see \href{https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html}{Bring Your Own IP Addresses (BYOIP)}
 in the \emph{AWS Global Accelerator Developer Guide}.

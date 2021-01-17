@@ -16,8 +16,7 @@ elb_disable_availability_zones_for_load_balancer(LoadBalancerName,
 \description{
 Removes the specified Availability Zones from the set of Availability
 Zones for the specified load balancer in EC2-Classic or a default VPC.
-}
-\details{
+
 For load balancers in a non-default VPC, use
 DetachLoadBalancerFromSubnets.
 
@@ -28,7 +27,7 @@ Availability Zone go into the \code{OutOfService} state. Then, the load
 balancer attempts to equally balance the traffic among its remaining
 Availability Zones.
 
-For more information, see \href{http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html}{Add or Remove Availability Zones}
+For more information, see \href{https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html}{Add or Remove Availability Zones}
 in the \emph{Classic Load Balancers Guide}.
 }
 \section{Request syntax}{

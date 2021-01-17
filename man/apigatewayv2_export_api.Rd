@@ -13,7 +13,7 @@ apigatewayv2_export_api(ApiId, ExportVersion, IncludeExtensions,
 \item{ExportVersion}{The version of the API Gateway export algorithm. API Gateway uses the
 latest version by default. Currently, the only supported version is 1.0.}
 
-\item{IncludeExtensions}{Specifies whether to include \href{https://docs.aws.amazon.com//apigateway/latest/developerguide/api-gateway-swagger-extensions.html}{API Gateway extensions}
+\item{IncludeExtensions}{Specifies whether to include \href{https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-swagger-extensions.html}{API Gateway extensions}
 in the exported API definition. API Gateway extensions are included by
 default.}
 
@@ -23,8 +23,8 @@ and YAML.}
 \item{Specification}{[required] The version of the API specification to use. OAS30, for OpenAPI 3.0, is
 the only supported value.}
 
-\item{StageName}{The name of the API stage to export. If you don\'t specify this
-property, a representation of the latest API configuration is exported.}
+\item{StageName}{The name of the API stage to export. If you don't specify this property,
+a representation of the latest API configuration is exported.}
 }
 \description{
 Export api

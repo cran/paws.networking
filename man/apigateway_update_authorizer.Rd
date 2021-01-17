@@ -15,12 +15,10 @@ apigateway_update_authorizer(restApiId, authorizerId, patchOperations)
 in the order specified in this list.}
 }
 \description{
-Updates an existing Authorizer resource.
-}
-\details{
-::: \{.seeAlso\}
-\href{https://docs.aws.amazon.com/cli/latest/reference/apigateway/update-authorizer.html}{AWS CLI}
-:::
+Updates an existing Authorizer resource.<div class="seeAlso">
+
+
+\href{https://docs.aws.amazon.com/cli/latest/reference/apigateway/update-authorizer.html}{AWS CLI}</div>
 }
 \section{Request syntax}{
 \preformatted{svc$update_authorizer(

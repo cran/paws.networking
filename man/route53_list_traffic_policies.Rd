@@ -8,7 +8,7 @@ is associated with the current AWS account}
 route53_list_traffic_policies(TrafficPolicyIdMarker, MaxItems)
 }
 \arguments{
-\item{TrafficPolicyIdMarker}{(Conditional) For your first request to \code{ListTrafficPolicies}, don\'t
+\item{TrafficPolicyIdMarker}{(Conditional) For your first request to \code{ListTrafficPolicies}, don't
 include the \code{TrafficPolicyIdMarker} parameter.
 
 If you have more traffic policies than the value of \code{MaxItems},
@@ -29,6 +29,10 @@ request.}
 Gets information about the latest version for every traffic policy that
 is associated with the current AWS account. Policies are listed in the
 order that they were created in.
+
+For information about how of deleting a traffic policy affects the
+response from \code{ListTrafficPolicies}, see
+\href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_DeleteTrafficPolicy.html}{DeleteTrafficPolicy}.
 }
 \section{Request syntax}{
 \preformatted{svc$list_traffic_policies(

@@ -17,13 +17,13 @@ the health status for.
 If you omit \code{Instances}, AWS Cloud Map returns the health status for all
 the instances that are associated with the specified service.
 
-To get the IDs for the instances that you\'ve registered by using a
+To get the IDs for the instances that you've registered by using a
 specified service, submit a
 \href{https://docs.aws.amazon.com/cloud-map/latest/api/API_ListInstances.html}{ListInstances}
 request.}
 
 \item{MaxResults}{The maximum number of instances that you want AWS Cloud Map to return in
-the response to a \code{GetInstancesHealthStatus} request. If you don\'t
+the response to a \code{GetInstancesHealthStatus} request. If you don't
 specify a value for \code{MaxResults}, AWS Cloud Map returns up to 100
 instances.}
 
@@ -37,8 +37,7 @@ response in the next request.}
 \description{
 Gets the current health status (\code{Healthy}, \code{Unhealthy}, or \code{Unknown}) of
 one or more instances that are associated with a specified service.
-}
-\details{
+
 There is a brief delay between when you register an instance and when
 the health status for the instance is available.
 }

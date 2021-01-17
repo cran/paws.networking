@@ -11,7 +11,7 @@ globalaccelerator_provision_byoip_cidr(Cidr, CidrAuthorizationContext)
 \arguments{
 \item{Cidr}{[required] The public IPv4 address range, in CIDR notation. The most specific IP
 prefix that you can specify is /24. The address range cannot overlap
-with another address range that you\'ve brought to this or another
+with another address range that you've brought to this or another
 Region.}
 
 \item{CidrAuthorizationContext}{[required] A signed document that proves that you are authorized to bring the
@@ -22,11 +22,7 @@ Provisions an IP address range to use with your AWS resources through
 bring your own IP addresses (BYOIP) and creates a corresponding address
 pool. After the address range is provisioned, it is ready to be
 advertised using
-\href{https://docs.aws.amazon.com/global-accelerator/latest/api/AdvertiseByoipCidr.html}{AdvertiseByoipCidr}.
-}
-\details{
-To see an AWS CLI example of provisioning an address range for BYOIP,
-scroll down to \strong{Example}.
+\href{https://docs.aws.amazon.com/global-accelerator/latest/api/}{AdvertiseByoipCidr}.
 
 For more information, see \href{https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html}{Bring Your Own IP Addresses (BYOIP)}
 in the \emph{AWS Global Accelerator Developer Guide}.

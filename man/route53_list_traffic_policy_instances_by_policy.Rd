@@ -65,10 +65,9 @@ return if you submit another request.}
 \description{
 Gets information about the traffic policy instances that you created by
 using a specify traffic policy version.
-}
-\details{
+
 After you submit a \code{CreateTrafficPolicyInstance} or an
-\code{UpdateTrafficPolicyInstance} request, there\'s a brief delay while
+\code{UpdateTrafficPolicyInstance} request, there's a brief delay while
 Amazon Route 53 creates the resource record sets that are specified in
 the traffic policy definition. For more information, see the \code{State}
 response element.
@@ -83,7 +82,7 @@ list them in groups of up to 100.
   TrafficPolicyVersion = 123,
   HostedZoneIdMarker = "string",
   TrafficPolicyInstanceNameMarker = "string",
-  TrafficPolicyInstanceTypeMarker = "SOA"|"A"|"TXT"|"NS"|"CNAME"|"MX"|"NAPTR"|"PTR"|"SRV"|"SPF"|"AAAA"|"CAA",
+  TrafficPolicyInstanceTypeMarker = "SOA"|"A"|"TXT"|"NS"|"CNAME"|"MX"|"NAPTR"|"PTR"|"SRV"|"SPF"|"AAAA"|"CAA"|"DS",
   MaxItems = "string"
 )
 }

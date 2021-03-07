@@ -8,11 +8,13 @@ one or more specified namespaces}
 servicediscovery_list_services(NextToken, MaxResults, Filters)
 }
 \arguments{
-\item{NextToken}{For the first \code{ListServices} request, omit this value.
+\item{NextToken}{For the first \code{\link[=servicediscovery_list_services]{list_services}} request,
+omit this value.
 
-If the response contains \code{NextToken}, submit another \code{ListServices}
-request to get the next group of results. Specify the value of
-\code{NextToken} from the previous response in the next request.
+If the response contains \code{NextToken}, submit another
+\code{\link[=servicediscovery_list_services]{list_services}} request to get the
+next group of results. Specify the value of \code{NextToken} from the
+previous response in the next request.
 
 AWS Cloud Map gets \code{MaxResults} services and then filters them based on
 the specified criteria. It's possible that no services in the first
@@ -21,14 +23,51 @@ groups of \code{MaxResults} services do contain services that match the
 criteria.}
 
 \item{MaxResults}{The maximum number of services that you want AWS Cloud Map to return in
-the response to a \code{ListServices} request. If you don't specify a value
-for \code{MaxResults}, AWS Cloud Map returns up to 100 services.}
+the response to a \code{\link[=servicediscovery_list_services]{list_services}}
+request. If you don't specify a value for \code{MaxResults}, AWS Cloud Map
+returns up to 100 services.}
 
 \item{Filters}{A complex type that contains specifications for the namespaces that you
 want to list services for.
 
 If you specify more than one filter, an operation must match all filters
-to be returned by \code{ListServices}.}
+to be returned by \code{\link[=servicediscovery_list_services]{list_services}}.}
+}
+\value{
+A list with the following syntax:\preformatted{list(
+  Services = list(
+    list(
+      Id = "string",
+      Arn = "string",
+      Name = "string",
+      Description = "string",
+      InstanceCount = 123,
+      DnsConfig = list(
+        NamespaceId = "string",
+        RoutingPolicy = "MULTIVALUE"|"WEIGHTED",
+        DnsRecords = list(
+          list(
+            Type = "SRV"|"A"|"AAAA"|"CNAME",
+            TTL = 123
+          )
+        )
+      ),
+      HealthCheckConfig = list(
+        Type = "HTTP"|"HTTPS"|"TCP",
+        ResourcePath = "string",
+        FailureThreshold = 123
+      ),
+      HealthCheckCustomConfig = list(
+        FailureThreshold = 123
+      ),
+      CreateDate = as.POSIXct(
+        "2015-01-01"
+      )
+    )
+  ),
+  NextToken = "string"
+)
+}
 }
 \description{
 Lists summary information for all the services that are associated with

@@ -12,22 +12,25 @@ route53_update_health_check(HealthCheckId, HealthCheckVersion,
 }
 \arguments{
 \item{HealthCheckId}{[required] The ID for the health check for which you want detailed information.
-When you created the health check, \code{CreateHealthCheck} returned the ID
-in the response, in the \code{HealthCheckId} element.}
+When you created the health check,
+\code{\link[=route53_create_health_check]{create_health_check}} returned the ID in
+the response, in the \code{HealthCheckId} element.}
 
 \item{HealthCheckVersion}{A sequential counter that Amazon Route 53 sets to \code{1} when you create a
 health check and increments by 1 each time you update settings for the
 health check.
 
-We recommend that you use \code{GetHealthCheck} or \code{ListHealthChecks} to get
-the current value of \code{HealthCheckVersion} for the health check that you
-want to update, and that you include that value in your
-\code{UpdateHealthCheck} request. This prevents Route 53 from overwriting an
-intervening update:
+We recommend that you use \code{\link[=route53_get_health_check]{get_health_check}}
+or \code{\link[=route53_list_health_checks]{list_health_checks}} to get the current
+value of \code{HealthCheckVersion} for the health check that you want to
+update, and that you include that value in your
+\code{\link[=route53_update_health_check]{update_health_check}} request. This
+prevents Route 53 from overwriting an intervening update:
 \itemize{
-\item If the value in the \code{UpdateHealthCheck} request matches the value of
-\code{HealthCheckVersion} in the health check, Route 53 updates the
-health check with the new settings.
+\item If the value in the
+\code{\link[=route53_update_health_check]{update_health_check}} request matches
+the value of \code{HealthCheckVersion} in the health check, Route 53
+updates the health check with the new settings.
 \item If the value of \code{HealthCheckVersion} in the health check is greater,
 the health check was changed after you got the version number. Route
 53 does not update the health check, and it returns a
@@ -91,7 +94,7 @@ Don't specify a value for \code{Port} when you specify a value for \code{Type} o
 checks. The path can be any value for which your endpoint will return an
 HTTP status code of 2xx or 3xx when the endpoint is healthy, for example
 the file /docs/route53-health-check.html. You can also include query
-string parameters, for example, \verb{/welcome.html?language=jp&amp;login=y}.
+string parameters, for example, \verb{/welcome.html?language=jp&login=y}.
 
 Specify this value only if you want to change it.}
 
@@ -278,6 +281,61 @@ list to the default set of regions.
 \href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_HealthCheckConfig.html#Route53-Type-HealthCheckConfig-ResourcePath}{ResourcePath}
 to null.
 }}
+}
+\value{
+A list with the following syntax:\preformatted{list(
+  HealthCheck = list(
+    Id = "string",
+    CallerReference = "string",
+    LinkedService = list(
+      ServicePrincipal = "string",
+      Description = "string"
+    ),
+    HealthCheckConfig = list(
+      IPAddress = "string",
+      Port = 123,
+      Type = "HTTP"|"HTTPS"|"HTTP_STR_MATCH"|"HTTPS_STR_MATCH"|"TCP"|"CALCULATED"|"CLOUDWATCH_METRIC",
+      ResourcePath = "string",
+      FullyQualifiedDomainName = "string",
+      SearchString = "string",
+      RequestInterval = 123,
+      FailureThreshold = 123,
+      MeasureLatency = TRUE|FALSE,
+      Inverted = TRUE|FALSE,
+      Disabled = TRUE|FALSE,
+      HealthThreshold = 123,
+      ChildHealthChecks = list(
+        "string"
+      ),
+      EnableSNI = TRUE|FALSE,
+      Regions = list(
+        "us-east-1"|"us-west-1"|"us-west-2"|"eu-west-1"|"ap-southeast-1"|"ap-southeast-2"|"ap-northeast-1"|"sa-east-1"
+      ),
+      AlarmIdentifier = list(
+        Region = "us-east-1"|"us-east-2"|"us-west-1"|"us-west-2"|"ca-central-1"|"eu-central-1"|"eu-west-1"|"eu-west-2"|"eu-west-3"|"ap-east-1"|"me-south-1"|"ap-south-1"|"ap-southeast-1"|"ap-southeast-2"|"ap-northeast-1"|"ap-northeast-2"|"ap-northeast-3"|"eu-north-1"|"sa-east-1"|"cn-northwest-1"|"cn-north-1"|"af-south-1"|"eu-south-1"|"us-gov-west-1"|"us-gov-east-1"|"us-iso-east-1"|"us-isob-east-1",
+        Name = "string"
+      ),
+      InsufficientDataHealthStatus = "Healthy"|"Unhealthy"|"LastKnownStatus"
+    ),
+    HealthCheckVersion = 123,
+    CloudWatchAlarmConfiguration = list(
+      EvaluationPeriods = 123,
+      Threshold = 123.0,
+      ComparisonOperator = "GreaterThanOrEqualToThreshold"|"GreaterThanThreshold"|"LessThanThreshold"|"LessThanOrEqualToThreshold",
+      Period = 123,
+      MetricName = "string",
+      Namespace = "string",
+      Statistic = "Average"|"Sum"|"SampleCount"|"Maximum"|"Minimum",
+      Dimensions = list(
+        list(
+          Name = "string",
+          Value = "string"
+        )
+      )
+    )
+  )
+)
+}
 }
 \description{
 Updates an existing health check. Note that some values can't be

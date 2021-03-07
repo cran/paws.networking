@@ -17,8 +17,17 @@ name alongside your company name as the requester of the cross connect.}
 \item{loaContentType}{The standard media type for the LOA-CFA document. The only supported
 value is application/pdf.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  loa = list(
+    loaContent = raw,
+    loaContentType = "application/pdf"
+  )
+)
+}
+}
 \description{
-Deprecated. Use DescribeLoa instead.
+Deprecated. Use \code{\link[=directconnect_describe_loa]{describe_loa}} instead.
 
 Gets the LOA-CFA for the specified interconnect.
 

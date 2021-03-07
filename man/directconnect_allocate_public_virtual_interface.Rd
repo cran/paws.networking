@@ -16,6 +16,56 @@ provisioned.}
 
 \item{newPublicVirtualInterfaceAllocation}{[required] Information about the public virtual interface.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  ownerAccount = "string",
+  virtualInterfaceId = "string",
+  location = "string",
+  connectionId = "string",
+  virtualInterfaceType = "string",
+  virtualInterfaceName = "string",
+  vlan = 123,
+  asn = 123,
+  amazonSideAsn = 123,
+  authKey = "string",
+  amazonAddress = "string",
+  customerAddress = "string",
+  addressFamily = "ipv4"|"ipv6",
+  virtualInterfaceState = "confirming"|"verifying"|"pending"|"available"|"down"|"deleting"|"deleted"|"rejected"|"unknown",
+  customerRouterConfig = "string",
+  mtu = 123,
+  jumboFrameCapable = TRUE|FALSE,
+  virtualGatewayId = "string",
+  directConnectGatewayId = "string",
+  routeFilterPrefixes = list(
+    list(
+      cidr = "string"
+    )
+  ),
+  bgpPeers = list(
+    list(
+      bgpPeerId = "string",
+      asn = 123,
+      authKey = "string",
+      addressFamily = "ipv4"|"ipv6",
+      amazonAddress = "string",
+      customerAddress = "string",
+      bgpPeerState = "verifying"|"pending"|"available"|"deleting"|"deleted",
+      bgpStatus = "up"|"down"|"unknown",
+      awsDeviceV2 = "string"
+    )
+  ),
+  region = "string",
+  awsDeviceV2 = "string",
+  tags = list(
+    list(
+      key = "string",
+      value = "string"
+    )
+  )
+)
+}
+}
 \description{
 Provisions a public virtual interface to be owned by the specified AWS
 account.
@@ -24,9 +74,10 @@ The owner of a connection calls this function to provision a public
 virtual interface to be owned by the specified AWS account.
 
 Virtual interfaces created using this function must be confirmed by the
-owner using ConfirmPublicVirtualInterface. Until this step has been
-completed, the virtual interface is in the \code{confirming} state and is not
-available to handle traffic.
+owner using
+\code{\link[=directconnect_confirm_public_virtual_interface]{confirm_public_virtual_interface}}.
+Until this step has been completed, the virtual interface is in the
+\code{confirming} state and is not available to handle traffic.
 
 When creating an IPv6 public virtual interface, omit the Amazon address
 and customer address. IPv6 addresses are automatically assigned from the

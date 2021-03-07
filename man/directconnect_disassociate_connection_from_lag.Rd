@@ -11,14 +11,43 @@ directconnect_disassociate_connection_from_lag(connectionId, lagId)
 
 \item{lagId}{[required] The ID of the LAG.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  ownerAccount = "string",
+  connectionId = "string",
+  connectionName = "string",
+  connectionState = "ordering"|"requested"|"pending"|"available"|"down"|"deleting"|"deleted"|"rejected"|"unknown",
+  region = "string",
+  location = "string",
+  bandwidth = "string",
+  vlan = 123,
+  partnerName = "string",
+  loaIssueTime = as.POSIXct(
+    "2015-01-01"
+  ),
+  lagId = "string",
+  awsDevice = "string",
+  jumboFrameCapable = TRUE|FALSE,
+  awsDeviceV2 = "string",
+  hasLogicalRedundancy = "unknown"|"yes"|"no",
+  tags = list(
+    list(
+      key = "string",
+      value = "string"
+    )
+  ),
+  providerName = "string"
+)
+}
+}
 \description{
 Disassociates a connection from a link aggregation group (LAG). The
 connection is interrupted and re-established as a standalone connection
 (the connection is not deleted; to delete the connection, use the
-DeleteConnection request). If the LAG has associated virtual interfaces
-or hosted connections, they remain associated with the LAG. A
-disassociated connection owned by an AWS Direct Connect Partner is
-automatically converted to an interconnect.
+\code{\link[=directconnect_delete_connection]{delete_connection}} request). If the
+LAG has associated virtual interfaces or hosted connections, they remain
+associated with the LAG. A disassociated connection owned by an AWS
+Direct Connect Partner is automatically converted to an interconnect.
 
 If disassociating the connection would cause the LAG to fall below its
 setting for minimum number of operational connections, the request

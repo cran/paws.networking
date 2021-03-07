@@ -12,12 +12,25 @@ route53_get_traffic_policy(Id, Version)
 \item{Version}{[required] The version number of the traffic policy that you want to get
 information about.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  TrafficPolicy = list(
+    Id = "string",
+    Version = 123,
+    Name = "string",
+    Type = "SOA"|"A"|"TXT"|"NS"|"CNAME"|"MX"|"NAPTR"|"PTR"|"SRV"|"SPF"|"AAAA"|"CAA"|"DS",
+    Document = "string",
+    Comment = "string"
+  )
+)
+}
+}
 \description{
 Gets information about a specific traffic policy version.
 
 For information about how of deleting a traffic policy affects the
-response from \code{GetTrafficPolicy}, see
-\href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_DeleteTrafficPolicy.html}{DeleteTrafficPolicy}.
+response from \code{\link[=route53_get_traffic_policy]{get_traffic_policy}}, see
+\code{\link[=route53_delete_traffic_policy]{delete_traffic_policy}}.
 }
 \section{Request syntax}{
 \preformatted{svc$get_traffic_policy(

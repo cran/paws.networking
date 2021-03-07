@@ -10,14 +10,29 @@ route53_create_reusable_delegation_set(CallerReference, HostedZoneId)
 }
 \arguments{
 \item{CallerReference}{[required] A unique string that identifies the request, and that allows you to
-retry failed \code{CreateReusableDelegationSet} requests without the risk of
-executing the operation twice. You must use a unique \code{CallerReference}
-string every time you submit a \code{CreateReusableDelegationSet} request.
-\code{CallerReference} can be any unique string, for example a date/time
-stamp.}
+retry failed
+\code{\link[=route53_create_reusable_delegation_set]{create_reusable_delegation_set}}
+requests without the risk of executing the operation twice. You must use
+a unique \code{CallerReference} string every time you submit a
+\code{\link[=route53_create_reusable_delegation_set]{create_reusable_delegation_set}}
+request. \code{CallerReference} can be any unique string, for example a
+date/time stamp.}
 
 \item{HostedZoneId}{If you want to mark the delegation set for an existing hosted zone as
 reusable, the ID for that hosted zone.}
+}
+\value{
+A list with the following syntax:\preformatted{list(
+  DelegationSet = list(
+    Id = "string",
+    CallerReference = "string",
+    NameServers = list(
+      "string"
+    )
+  ),
+  Location = "string"
+)
+}
 }
 \description{
 Creates a delegation set (a group of four name servers) that can be
@@ -26,7 +41,9 @@ account.
 
 You can also create a reusable delegation set that uses the four name
 servers that are associated with an existing hosted zone. Specify the
-hosted zone ID in the \code{CreateReusableDelegationSet} request.
+hosted zone ID in the
+\code{\link[=route53_create_reusable_delegation_set]{create_reusable_delegation_set}}
+request.
 
 You can't associate a reusable delegation set with a private hosted
 zone.

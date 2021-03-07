@@ -26,14 +26,33 @@ record sets in the specified hosted zone.}
 \item{TrafficPolicyVersion}{[required] The version of the traffic policy that you want to use to create
 resource record sets in the specified hosted zone.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  TrafficPolicyInstance = list(
+    Id = "string",
+    HostedZoneId = "string",
+    Name = "string",
+    TTL = 123,
+    State = "string",
+    Message = "string",
+    TrafficPolicyId = "string",
+    TrafficPolicyVersion = 123,
+    TrafficPolicyType = "SOA"|"A"|"TXT"|"NS"|"CNAME"|"MX"|"NAPTR"|"PTR"|"SRV"|"SPF"|"AAAA"|"CAA"|"DS"
+  ),
+  Location = "string"
+)
+}
+}
 \description{
 Creates resource record sets in a specified hosted zone based on the
 settings in a specified traffic policy version. In addition,
-\code{CreateTrafficPolicyInstance} associates the resource record sets with a
-specified domain name (such as example.com) or subdomain name (such as
-www.example.com). Amazon Route 53 responds to DNS queries for the domain
-or subdomain name by using the resource record sets that
-\code{CreateTrafficPolicyInstance} created.
+\code{\link[=route53_create_traffic_policy_instance]{create_traffic_policy_instance}}
+associates the resource record sets with a specified domain name (such
+as example.com) or subdomain name (such as www.example.com). Amazon
+Route 53 responds to DNS queries for the domain or subdomain name by
+using the resource record sets that
+\code{\link[=route53_create_traffic_policy_instance]{create_traffic_policy_instance}}
+created.
 }
 \section{Request syntax}{
 \preformatted{svc$create_traffic_policy_instance(

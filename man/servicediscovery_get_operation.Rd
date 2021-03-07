@@ -10,12 +10,34 @@ servicediscovery_get_operation(OperationId)
 \arguments{
 \item{OperationId}{[required] The ID of the operation that you want to get more information about.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  Operation = list(
+    Id = "string",
+    Type = "CREATE_NAMESPACE"|"DELETE_NAMESPACE"|"UPDATE_SERVICE"|"REGISTER_INSTANCE"|"DEREGISTER_INSTANCE",
+    Status = "SUBMITTED"|"PENDING"|"SUCCESS"|"FAIL",
+    ErrorMessage = "string",
+    ErrorCode = "string",
+    CreateDate = as.POSIXct(
+      "2015-01-01"
+    ),
+    UpdateDate = as.POSIXct(
+      "2015-01-01"
+    ),
+    Targets = list(
+      "string"
+    )
+  )
+)
+}
+}
 \description{
 Gets information about any operation that returns an operation ID in the
-response, such as a \code{CreateService} request.
+response, such as a \code{\link[=servicediscovery_create_service]{create_service}}
+request.
 
 To get a list of operations that match specified criteria, see
-\href{https://docs.aws.amazon.com/cloud-map/latest/api/API_ListOperations.html}{ListOperations}.
+\code{\link[=servicediscovery_list_operations]{list_operations}}.
 }
 \section{Request syntax}{
 \preformatted{svc$get_operation(

@@ -10,6 +10,23 @@ route53resolver_delete_resolver_query_log_config(
 \arguments{
 \item{ResolverQueryLogConfigId}{[required] The ID of the query logging configuration that you want to delete.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  ResolverQueryLogConfig = list(
+    Id = "string",
+    OwnerId = "string",
+    Status = "CREATING"|"CREATED"|"DELETING"|"FAILED",
+    ShareStatus = "NOT_SHARED"|"SHARED_WITH_ME"|"SHARED_BY_ME",
+    AssociationCount = 123,
+    Arn = "string",
+    Name = "string",
+    DestinationArn = "string",
+    CreatorRequestId = "string",
+    CreationTime = "string"
+  )
+)
+}
+}
 \description{
 Deletes a query logging configuration. When you delete a configuration,
 Resolver stops logging DNS queries for all of the Amazon VPCs that are
@@ -19,7 +36,7 @@ accounts have associated VPCs with the shared configuration.
 
 Before you can delete a query logging configuration, you must first
 disassociate all VPCs from the configuration. See
-\href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DisassociateResolverQueryLogConfig.html}{DisassociateResolverQueryLogConfig}.
+\code{\link[=route53resolver_disassociate_resolver_query_log_config]{disassociate_resolver_query_log_config}}.
 
 If you used Resource Access Manager (RAM) to share a query logging
 configuration with other accounts, you must stop sharing the

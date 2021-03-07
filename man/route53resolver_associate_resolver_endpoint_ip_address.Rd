@@ -15,13 +15,35 @@ with.}
 subnet ID. If you specify a subnet ID, Resolver chooses an IP address
 for you from the available IPs in the specified subnet.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  ResolverEndpoint = list(
+    Id = "string",
+    CreatorRequestId = "string",
+    Arn = "string",
+    Name = "string",
+    SecurityGroupIds = list(
+      "string"
+    ),
+    Direction = "INBOUND"|"OUTBOUND",
+    IpAddressCount = 123,
+    HostVPCId = "string",
+    Status = "CREATING"|"OPERATIONAL"|"UPDATING"|"AUTO_RECOVERING"|"ACTION_NEEDED"|"DELETING",
+    StatusMessage = "string",
+    CreationTime = "string",
+    ModificationTime = "string"
+  )
+)
+}
+}
 \description{
 Adds IP addresses to an inbound or an outbound Resolver endpoint. If you
 want to add more than one IP address, submit one
-\code{AssociateResolverEndpointIpAddress} request for each IP address.
+\code{\link[=route53resolver_associate_resolver_endpoint_ip_address]{associate_resolver_endpoint_ip_address}}
+request for each IP address.
 
 To remove an IP address from an endpoint, see
-\href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DisassociateResolverEndpointIpAddress.html}{DisassociateResolverEndpointIpAddress}.
+\code{\link[=route53resolver_disassociate_resolver_endpoint_ip_address]{disassociate_resolver_endpoint_ip_address}}.
 }
 \section{Request syntax}{
 \preformatted{svc$associate_resolver_endpoint_ip_address(

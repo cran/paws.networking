@@ -1,6 +1,6 @@
 Package: paws.networking
 Title: Amazon Web Services Networking & Content Delivery Services
-Version: 0.1.10
+Version: 0.1.11
 Authors@R: 
     c(person(given = "David",
              family = "Kretch",
@@ -45,10 +45,10 @@ Collate: 'apigateway_service.R' 'apigateway_interfaces.R'
         'servicediscovery_service.R' 'servicediscovery_interfaces.R'
         'servicediscovery_operations.R'
 NeedsCompilation: no
-Packaged: 2021-01-17 14:06:27 UTC; david.kretch
+Packaged: 2021-03-07 15:51:57 UTC; david.kretch
 Author: David Kretch [aut, cre],
   Adam Banker [aut],
   Amazon.com, Inc. [cph]
 Maintainer: David Kretch <david.kretch@gmail.com>
 Repository: CRAN
-Date/Publication: 2021-01-17 14:40:02 UTC
+Date/Publication: 2021-03-07 16:20:02 UTC

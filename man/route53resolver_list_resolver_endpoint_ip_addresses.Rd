@@ -11,17 +11,38 @@ route53resolver_list_resolver_endpoint_ip_addresses(ResolverEndpointId,
 \item{ResolverEndpointId}{[required] The ID of the Resolver endpoint that you want to get IP addresses for.}
 
 \item{MaxResults}{The maximum number of IP addresses that you want to return in the
-response to a \code{ListResolverEndpointIpAddresses} request. If you don't
-specify a value for \code{MaxResults}, Resolver returns up to 100 IP
-addresses.}
+response to a
+\code{\link[=route53resolver_list_resolver_endpoint_ip_addresses]{list_resolver_endpoint_ip_addresses}}
+request. If you don't specify a value for \code{MaxResults}, Resolver returns
+up to 100 IP addresses.}
 
-\item{NextToken}{For the first \code{ListResolverEndpointIpAddresses} request, omit this
-value.
+\item{NextToken}{For the first
+\code{\link[=route53resolver_list_resolver_endpoint_ip_addresses]{list_resolver_endpoint_ip_addresses}}
+request, omit this value.
 
 If the specified Resolver endpoint has more than \code{MaxResults} IP
-addresses, you can submit another \code{ListResolverEndpointIpAddresses}
+addresses, you can submit another
+\code{\link[=route53resolver_list_resolver_endpoint_ip_addresses]{list_resolver_endpoint_ip_addresses}}
 request to get the next group of IP addresses. In the next request,
 specify the value of \code{NextToken} from the previous response.}
+}
+\value{
+A list with the following syntax:\preformatted{list(
+  NextToken = "string",
+  MaxResults = 123,
+  IpAddresses = list(
+    list(
+      IpId = "string",
+      SubnetId = "string",
+      Ip = "string",
+      Status = "CREATING"|"FAILED_CREATION"|"ATTACHING"|"ATTACHED"|"REMAP_DETACHING"|"REMAP_ATTACHING"|"DETACHING"|"FAILED_RESOURCE_GONE"|"DELETING"|"DELETE_FAILED_FAS_EXPIRED",
+      StatusMessage = "string",
+      CreationTime = "string",
+      ModificationTime = "string"
+    )
+  )
+)
+}
 }
 \description{
 Gets the IP addresses for a specified Resolver endpoint.

@@ -23,8 +23,39 @@ be provisioned.}
 
 \item{vlan}{[required] The dedicated VLAN provisioned to the connection.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  ownerAccount = "string",
+  connectionId = "string",
+  connectionName = "string",
+  connectionState = "ordering"|"requested"|"pending"|"available"|"down"|"deleting"|"deleted"|"rejected"|"unknown",
+  region = "string",
+  location = "string",
+  bandwidth = "string",
+  vlan = 123,
+  partnerName = "string",
+  loaIssueTime = as.POSIXct(
+    "2015-01-01"
+  ),
+  lagId = "string",
+  awsDevice = "string",
+  jumboFrameCapable = TRUE|FALSE,
+  awsDeviceV2 = "string",
+  hasLogicalRedundancy = "unknown"|"yes"|"no",
+  tags = list(
+    list(
+      key = "string",
+      value = "string"
+    )
+  ),
+  providerName = "string"
+)
+}
+}
 \description{
-Deprecated. Use AllocateHostedConnection instead.
+Deprecated. Use
+\code{\link[=directconnect_allocate_hosted_connection]{allocate_hosted_connection}}
+instead.
 
 Creates a hosted connection on an interconnect.
 

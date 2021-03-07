@@ -12,16 +12,32 @@ globalaccelerator_deprovision_byoip_cidr(Cidr)
 \item{Cidr}{[required] The address range, in CIDR notation. The prefix must be the same prefix
 that you specified when you provisioned the address range.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  ByoipCidr = list(
+    Cidr = "string",
+    State = "PENDING_PROVISIONING"|"READY"|"PENDING_ADVERTISING"|"ADVERTISING"|"PENDING_WITHDRAWING"|"PENDING_DEPROVISIONING"|"DEPROVISIONED"|"FAILED_PROVISION"|"FAILED_ADVERTISING"|"FAILED_WITHDRAW"|"FAILED_DEPROVISION",
+    Events = list(
+      list(
+        Message = "string",
+        Timestamp = as.POSIXct(
+          "2015-01-01"
+        )
+      )
+    )
+  )
+)
+}
+}
 \description{
 Releases the specified address range that you provisioned to use with
 your AWS resources through bring your own IP addresses (BYOIP) and
 deletes the corresponding address pool.
 
 Before you can release an address range, you must stop advertising it by
-using
-\href{https://docs.aws.amazon.com/global-accelerator/latest/api/}{WithdrawByoipCidr}
-and you must not have any accelerators that are using static IP
-addresses allocated from its address range.
+using \code{\link[=globalaccelerator_withdraw_byoip_cidr]{withdraw_byoip_cidr}} and
+you must not have any accelerators that are using static IP addresses
+allocated from its address range.
 
 For more information, see \href{https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html}{Bring Your Own IP Addresses (BYOIP)}
 in the \emph{AWS Global Accelerator Developer Guide}.

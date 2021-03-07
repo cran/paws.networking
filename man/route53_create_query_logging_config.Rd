@@ -14,13 +14,24 @@ queries only for public hosted zones.}
 \item{CloudWatchLogsLogGroupArn}{[required] The Amazon Resource Name (ARN) for the log group that you want to Amazon
 Route 53 to send query logs to. This is the format of the ARN:
 
-arn:aws:logs:\emph{region}:\emph{account-id}:log-group:\emph{log\\_group\\_name}
+arn:aws:logs:\emph{region}:\emph{account-id}:log-group:\emph{log_group_name}
 
 To get the ARN for a log group, you can use the CloudWatch console, the
 \href{https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeLogGroups.html}{DescribeLogGroups}
 API action, the
 \href{https://docs.aws.amazon.com/cli/latest/reference/logs/describe-log-groups.html}{describe-log-groups}
 command, or the applicable command in one of the AWS SDKs.}
+}
+\value{
+A list with the following syntax:\preformatted{list(
+  QueryLoggingConfig = list(
+    Id = "string",
+    HostedZoneId = "string",
+    CloudWatchLogsLogGroupArn = "string"
+  ),
+  Location = "string"
+)
+}
 }
 \description{
 Creates a configuration for DNS query logging. After you create a query
@@ -53,7 +64,7 @@ the hosted zone that you want to configure query logging for.
 \item When you create log groups for query logging, we recommend that
 you use a consistent prefix, for example:
 
-\verb{/aws/route53/<i>hosted zone name</i> }
+\verb{/aws/route53/hosted zone name }
 
 In the next step, you'll create a resource policy, which
 controls access to one or more log groups and the associated AWS
@@ -93,7 +104,7 @@ for that edge location.
 
 The name of each log stream is in the following format:
 
-\verb{<i>hosted zone ID</i>/<i>edge location code</i>}
+\verb{hosted zone ID/edge location code}
 
 The edge location code is a three-letter code and an arbitrarily
 assigned number, for example, DFW3. The three-letter code typically
@@ -134,7 +145,7 @@ For information about charges for query logs, see \href{https://aws.amazon.com/c
 
 If you want Route 53 to stop sending query logs to CloudWatch Logs,
 delete the query logging configuration. For more information, see
-\href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_DeleteQueryLoggingConfig.html}{DeleteQueryLoggingConfig}.
+\code{\link[=route53_delete_query_logging_config]{delete_query_logging_config}}.
 }
 }
 \section{Request syntax}{

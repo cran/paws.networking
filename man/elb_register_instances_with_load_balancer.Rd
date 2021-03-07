@@ -11,6 +11,16 @@ elb_register_instances_with_load_balancer(LoadBalancerName, Instances)
 
 \item{Instances}{[required] The IDs of the instances.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  Instances = list(
+    list(
+      InstanceId = "string"
+    )
+  )
+)
+}
+}
 \description{
 Adds the specified instances to the specified load balancer.
 
@@ -23,7 +33,8 @@ EC2-Classic instances with the load balancer in the VPC.
 Note that \code{RegisterInstanceWithLoadBalancer} completes when the request
 has been registered. Instance registration takes a little time to
 complete. To check the state of the registered instances, use
-DescribeLoadBalancers or DescribeInstanceHealth.
+\code{\link[=elb_describe_load_balancers]{describe_load_balancers}} or
+\code{\link[=elb_describe_instance_health]{describe_instance_health}}.
 
 After the instance is registered, it starts receiving traffic and
 requests from the load balancer. Any instance that is not in one of the
@@ -33,7 +44,7 @@ balancer later, any instances registered with the load balancer move to
 the \code{InService} state.
 
 To deregister instances from a load balancer, use
-DeregisterInstancesFromLoadBalancer.
+\code{\link[=elb_deregister_instances_from_load_balancer]{deregister_instances_from_load_balancer}}.
 
 For more information, see \href{https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html}{Register or De-Register EC2 Instances}
 in the \emph{Classic Load Balancers Guide}.

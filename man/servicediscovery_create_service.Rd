@@ -3,13 +3,7 @@
 \name{servicediscovery_create_service}
 \alias{servicediscovery_create_service}
 \title{Creates a service, which defines the configuration for the following
-entities: - For public and private DNS namespaces, one of the following
-combinations of DNS records in Amazon Route 53: - A - AAAA - A and AAAA
-\itemize{
-\item SRV - CNAME - Optionally, a health check After you create the service,
-you can submit a RegisterInstance request, and AWS Cloud Map uses the
-values in the configuration to create the specified entities
-}}
+entities:}
 \usage{
 servicediscovery_create_service(Name, NamespaceId, CreatorRequestId,
   Description, DnsConfig, HealthCheckConfig, HealthCheckCustomConfig,
@@ -23,8 +17,8 @@ instance, and if you're using a system that requires a specific \code{SRV}
 format, such as \href{http://www.haproxy.org/}{HAProxy}, specify the
 following for \code{Name}:
 \itemize{
-\item Start the name with an underscore (\\_), such as \verb{_exampleservice}
-\item End the name with \emph{.\\_protocol}, such as \code{._tcp}
+\item Start the name with an underscore (_), such as \verb{_exampleservice}
+\item End the name with \emph{._protocol}, such as \code{._tcp}
 }
 
 When you register an instance, AWS Cloud Map creates an \code{SRV} record and
@@ -36,9 +30,10 @@ namespace name, for example:
 \item{NamespaceId}{The ID of the namespace that you want to use to create the service.}
 
 \item{CreatorRequestId}{A unique string that identifies the request and that allows failed
-\code{CreateService} requests to be retried without the risk of executing the
-operation twice. \code{CreatorRequestId} can be any unique string, for
-example, a date/time stamp.}
+\code{\link[=servicediscovery_create_service]{create_service}} requests to be
+retried without the risk of executing the operation twice.
+\code{CreatorRequestId} can be any unique string, for example, a date/time
+stamp.}
 
 \item{Description}{A description for the service.}
 
@@ -70,6 +65,41 @@ optional value, both of which you define. Tag keys can have a maximum
 character length of 128 characters, and tag values can have a maximum
 length of 256 characters.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  Service = list(
+    Id = "string",
+    Arn = "string",
+    Name = "string",
+    NamespaceId = "string",
+    Description = "string",
+    InstanceCount = 123,
+    DnsConfig = list(
+      NamespaceId = "string",
+      RoutingPolicy = "MULTIVALUE"|"WEIGHTED",
+      DnsRecords = list(
+        list(
+          Type = "SRV"|"A"|"AAAA"|"CNAME",
+          TTL = 123
+        )
+      )
+    ),
+    HealthCheckConfig = list(
+      Type = "HTTP"|"HTTPS"|"TCP",
+      ResourcePath = "string",
+      FailureThreshold = 123
+    ),
+    HealthCheckCustomConfig = list(
+      FailureThreshold = 123
+    ),
+    CreateDate = as.POSIXct(
+      "2015-01-01"
+    ),
+    CreatorRequestId = "string"
+  )
+)
+}
+}
 \description{
 Creates a service, which defines the configuration for the following
 entities:
@@ -87,9 +117,9 @@ combinations of DNS records in Amazon Route 53:
 }
 
 After you create the service, you can submit a
-\href{https://docs.aws.amazon.com/cloud-map/latest/api/API_RegisterInstance.html}{RegisterInstance}
-request, and AWS Cloud Map uses the values in the configuration to
-create the specified entities.
+\code{\link[=servicediscovery_register_instance]{register_instance}} request, and
+AWS Cloud Map uses the values in the configuration to create the
+specified entities.
 
 For the current quota on the number of instances that you can register
 using the same namespace and using the same service, see \href{https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html}{AWS Cloud Map Limits}

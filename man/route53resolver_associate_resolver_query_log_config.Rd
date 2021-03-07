@@ -16,18 +16,33 @@ to log queries for.
 
 The VPCs and the query logging configuration must be in the same Region.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  ResolverQueryLogConfigAssociation = list(
+    Id = "string",
+    ResolverQueryLogConfigId = "string",
+    ResourceId = "string",
+    Status = "CREATING"|"ACTIVE"|"ACTION_NEEDED"|"DELETING"|"FAILED",
+    Error = "NONE"|"DESTINATION_NOT_FOUND"|"ACCESS_DENIED"|"INTERNAL_SERVICE_ERROR",
+    ErrorMessage = "string",
+    CreationTime = "string"
+  )
+)
+}
+}
 \description{
 Associates an Amazon VPC with a specified query logging configuration.
 Route 53 Resolver logs DNS queries that originate in all of the Amazon
 VPCs that are associated with a specified query logging configuration.
 To associate more than one VPC with a configuration, submit one
-\code{AssociateResolverQueryLogConfig} request for each VPC.
+\code{\link[=route53resolver_associate_resolver_query_log_config]{associate_resolver_query_log_config}}
+request for each VPC.
 
 The VPCs that you associate with a query logging configuration must be
 in the same Region as the configuration.
 
 To remove a VPC from a query logging configuration, see
-\href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DisassociateResolverQueryLogConfig.html}{DisassociateResolverQueryLogConfig}.
+\code{\link[=route53resolver_disassociate_resolver_query_log_config]{disassociate_resolver_query_log_config}}.
 }
 \section{Request syntax}{
 \preformatted{svc$associate_resolver_query_log_config(

@@ -9,6 +9,19 @@ route53_delete_hosted_zone(Id)
 \arguments{
 \item{Id}{[required] The ID of the hosted zone you want to delete.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  ChangeInfo = list(
+    Id = "string",
+    Status = "PENDING"|"INSYNC",
+    SubmittedAt = as.POSIXct(
+      "2015-01-01"
+    ),
+    Comment = "string"
+  )
+)
+}
+}
 \description{
 Deletes a hosted zone.
 
@@ -50,15 +63,16 @@ hosted zone. If you try to delete a hosted zone that contains other
 resource record sets, the request fails, and Route 53 returns a
 \code{HostedZoneNotEmpty} error. For information about deleting records from
 your hosted zone, see
-\href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_ChangeResourceRecordSets.html}{ChangeResourceRecordSets}.
+\code{\link[=route53_change_resource_record_sets]{change_resource_record_sets}}.
 
 To verify that the hosted zone has been deleted, do one of the
 following:
 \itemize{
-\item Use the \code{GetHostedZone} action to request information about the
-hosted zone.
-\item Use the \code{ListHostedZones} action to get a list of the hosted zones
-associated with the current AWS account.
+\item Use the \code{\link[=route53_get_hosted_zone]{get_hosted_zone}} action to
+request information about the hosted zone.
+\item Use the \code{\link[=route53_list_hosted_zones]{list_hosted_zones}} action to
+get a list of the hosted zones associated with the current AWS
+account.
 }
 }
 \section{Request syntax}{

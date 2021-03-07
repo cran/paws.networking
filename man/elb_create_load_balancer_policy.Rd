@@ -15,9 +15,12 @@ elb_create_load_balancer_policy(LoadBalancerName, PolicyName,
 unique within the set of policies for this load balancer.}
 
 \item{PolicyTypeName}{[required] The name of the base policy type. To get the list of policy types, use
-DescribeLoadBalancerPolicyTypes.}
+\code{\link[=elb_describe_load_balancer_policy_types]{describe_load_balancer_policy_types}}.}
 
 \item{PolicyAttributes}{The policy attributes.}
+}
+\value{
+An empty list.
 }
 \description{
 Creates a policy with the specified attributes for the specified load
@@ -64,7 +67,7 @@ svc$create_load_balancer_policy(
   PolicyAttributes = list(
     list(
       AttributeName = "PublicKey",
-      AttributeValue = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwAYUjnfyEyXr1pxjhFWBpMlg..."
+      AttributeValue = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwAYUjnf..."
     )
   ),
   PolicyName = "my-PublicKey-policy",

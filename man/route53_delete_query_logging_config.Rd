@@ -9,6 +9,9 @@ route53_delete_query_logging_config(Id)
 \arguments{
 \item{Id}{[required] The ID of the configuration that you want to delete.}
 }
+\value{
+An empty list.
+}
 \description{
 Deletes a configuration for DNS query logging. If you delete a
 configuration, Amazon Route 53 stops sending query logs to CloudWatch
@@ -16,7 +19,7 @@ Logs. Route 53 doesn't delete any logs that are already in CloudWatch
 Logs.
 
 For more information about DNS query logs, see
-\href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateQueryLoggingConfig.html}{CreateQueryLoggingConfig}.
+\code{\link[=route53_create_query_logging_config]{create_query_logging_config}}.
 }
 \section{Request syntax}{
 \preformatted{svc$delete_query_logging_config(

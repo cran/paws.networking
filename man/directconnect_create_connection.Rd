@@ -22,6 +22,35 @@ directconnect_create_connection(location, bandwidth, connectionName,
 \item{providerName}{The name of the service provider associated with the requested
 connection.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  ownerAccount = "string",
+  connectionId = "string",
+  connectionName = "string",
+  connectionState = "ordering"|"requested"|"pending"|"available"|"down"|"deleting"|"deleted"|"rejected"|"unknown",
+  region = "string",
+  location = "string",
+  bandwidth = "string",
+  vlan = 123,
+  partnerName = "string",
+  loaIssueTime = as.POSIXct(
+    "2015-01-01"
+  ),
+  lagId = "string",
+  awsDevice = "string",
+  jumboFrameCapable = TRUE|FALSE,
+  awsDeviceV2 = "string",
+  hasLogicalRedundancy = "unknown"|"yes"|"no",
+  tags = list(
+    list(
+      key = "string",
+      value = "string"
+    )
+  ),
+  providerName = "string"
+)
+}
+}
 \description{
 Creates a connection between a customer network and a specific AWS
 Direct Connect location.
@@ -31,7 +60,8 @@ location over a standard Ethernet fiber-optic cable. One end of the
 cable is connected to your router, the other to an AWS Direct Connect
 router.
 
-To find the locations for your Region, use DescribeLocations.
+To find the locations for your Region, use
+\code{\link[=directconnect_describe_locations]{describe_locations}}.
 
 You can automatically add the new connection to a link aggregation group
 (LAG) by specifying a LAG ID in the request. This ensures that the new

@@ -10,7 +10,7 @@ route53_list_health_checks(Marker, MaxItems)
 \arguments{
 \item{Marker}{If the value of \code{IsTruncated} in the previous response was \code{true}, you
 have more health checks. To get another group, submit another
-\code{ListHealthChecks} request.
+\code{\link[=route53_list_health_checks]{list_health_checks}} request.
 
 For the value of \code{marker}, specify the value of \code{NextMarker} from the
 previous response, which is the ID of the first health check that Amazon
@@ -19,10 +19,72 @@ Route 53 will return if you submit another request.
 If the value of \code{IsTruncated} in the previous response was \code{false},
 there are no more health checks to get.}
 
-\item{MaxItems}{The maximum number of health checks that you want \code{ListHealthChecks} to
-return in response to the current request. Amazon Route 53 returns a
-maximum of 100 items. If you set \code{MaxItems} to a value greater than 100,
-Route 53 returns only the first 100 health checks.}
+\item{MaxItems}{The maximum number of health checks that you want
+\code{\link[=route53_list_health_checks]{list_health_checks}} to return in response
+to the current request. Amazon Route 53 returns a maximum of 100 items.
+If you set \code{MaxItems} to a value greater than 100, Route 53 returns only
+the first 100 health checks.}
+}
+\value{
+A list with the following syntax:\preformatted{list(
+  HealthChecks = list(
+    list(
+      Id = "string",
+      CallerReference = "string",
+      LinkedService = list(
+        ServicePrincipal = "string",
+        Description = "string"
+      ),
+      HealthCheckConfig = list(
+        IPAddress = "string",
+        Port = 123,
+        Type = "HTTP"|"HTTPS"|"HTTP_STR_MATCH"|"HTTPS_STR_MATCH"|"TCP"|"CALCULATED"|"CLOUDWATCH_METRIC",
+        ResourcePath = "string",
+        FullyQualifiedDomainName = "string",
+        SearchString = "string",
+        RequestInterval = 123,
+        FailureThreshold = 123,
+        MeasureLatency = TRUE|FALSE,
+        Inverted = TRUE|FALSE,
+        Disabled = TRUE|FALSE,
+        HealthThreshold = 123,
+        ChildHealthChecks = list(
+          "string"
+        ),
+        EnableSNI = TRUE|FALSE,
+        Regions = list(
+          "us-east-1"|"us-west-1"|"us-west-2"|"eu-west-1"|"ap-southeast-1"|"ap-southeast-2"|"ap-northeast-1"|"sa-east-1"
+        ),
+        AlarmIdentifier = list(
+          Region = "us-east-1"|"us-east-2"|"us-west-1"|"us-west-2"|"ca-central-1"|"eu-central-1"|"eu-west-1"|"eu-west-2"|"eu-west-3"|"ap-east-1"|"me-south-1"|"ap-south-1"|"ap-southeast-1"|"ap-southeast-2"|"ap-northeast-1"|"ap-northeast-2"|"ap-northeast-3"|"eu-north-1"|"sa-east-1"|"cn-northwest-1"|"cn-north-1"|"af-south-1"|"eu-south-1"|"us-gov-west-1"|"us-gov-east-1"|"us-iso-east-1"|"us-isob-east-1",
+          Name = "string"
+        ),
+        InsufficientDataHealthStatus = "Healthy"|"Unhealthy"|"LastKnownStatus"
+      ),
+      HealthCheckVersion = 123,
+      CloudWatchAlarmConfiguration = list(
+        EvaluationPeriods = 123,
+        Threshold = 123.0,
+        ComparisonOperator = "GreaterThanOrEqualToThreshold"|"GreaterThanThreshold"|"LessThanThreshold"|"LessThanOrEqualToThreshold",
+        Period = 123,
+        MetricName = "string",
+        Namespace = "string",
+        Statistic = "Average"|"Sum"|"SampleCount"|"Maximum"|"Minimum",
+        Dimensions = list(
+          list(
+            Name = "string",
+            Value = "string"
+          )
+        )
+      )
+    )
+  ),
+  Marker = "string",
+  IsTruncated = TRUE|FALSE,
+  NextMarker = "string",
+  MaxItems = "string"
+)
+}
 }
 \description{
 Retrieve a list of the health checks that are associated with the

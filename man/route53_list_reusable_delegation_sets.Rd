@@ -10,7 +10,8 @@ route53_list_reusable_delegation_sets(Marker, MaxItems)
 \arguments{
 \item{Marker}{If the value of \code{IsTruncated} in the previous response was \code{true}, you
 have more reusable delegation sets. To get another group, submit another
-\code{ListReusableDelegationSets} request.
+\code{\link[=route53_list_reusable_delegation_sets]{list_reusable_delegation_sets}}
+request.
 
 For the value of \code{marker}, specify the value of \code{NextMarker} from the
 previous response, which is the ID of the first reusable delegation set
@@ -22,6 +23,24 @@ there are no more reusable delegation sets to get.}
 \item{MaxItems}{The number of reusable delegation sets that you want Amazon Route 53 to
 return in the response to this request. If you specify a value greater
 than 100, Route 53 returns only the first 100 reusable delegation sets.}
+}
+\value{
+A list with the following syntax:\preformatted{list(
+  DelegationSets = list(
+    list(
+      Id = "string",
+      CallerReference = "string",
+      NameServers = list(
+        "string"
+      )
+    )
+  ),
+  Marker = "string",
+  IsTruncated = TRUE|FALSE,
+  NextMarker = "string",
+  MaxItems = "string"
+)
+}
 }
 \description{
 Retrieves a list of the reusable delegation sets that are associated

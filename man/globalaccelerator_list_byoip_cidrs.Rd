@@ -15,9 +15,29 @@ value.}
 
 \item{NextToken}{The token for the next page of results.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  ByoipCidrs = list(
+    list(
+      Cidr = "string",
+      State = "PENDING_PROVISIONING"|"READY"|"PENDING_ADVERTISING"|"ADVERTISING"|"PENDING_WITHDRAWING"|"PENDING_DEPROVISIONING"|"DEPROVISIONED"|"FAILED_PROVISION"|"FAILED_ADVERTISING"|"FAILED_WITHDRAW"|"FAILED_DEPROVISION",
+      Events = list(
+        list(
+          Message = "string",
+          Timestamp = as.POSIXct(
+            "2015-01-01"
+          )
+        )
+      )
+    )
+  ),
+  NextToken = "string"
+)
+}
+}
 \description{
 Lists the IP address ranges that were specified in calls to
-\href{https://docs.aws.amazon.com/global-accelerator/latest/api/}{ProvisionByoipCidr},
+\code{\link[=globalaccelerator_provision_byoip_cidr]{provision_byoip_cidr}},
 including the current state and a history of state changes.
 }
 \section{Request syntax}{

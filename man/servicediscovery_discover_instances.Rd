@@ -15,11 +15,13 @@ instance.}
 instance.}
 
 \item{MaxResults}{The maximum number of instances that you want AWS Cloud Map to return in
-the response to a \code{DiscoverInstances} request. If you don't specify a
-value for \code{MaxResults}, AWS Cloud Map returns up to 100 instances.}
+the response to a
+\code{\link[=servicediscovery_discover_instances]{discover_instances}} request. If
+you don't specify a value for \code{MaxResults}, AWS Cloud Map returns up to
+100 instances.}
 
 \item{QueryParameters}{Filters to scope the results based on custom attributes for the
-instance. For example, \verb{\\\{version=v1, az=1a\\\}}. Only instances that match
+instance. For example, \verb{\{version=v1, az=1a\}}. Only instances that match
 all the specified key-value pairs will be returned.}
 
 \item{OptionalParameters}{Opportunistic filters to scope the results based on custom attributes.
@@ -30,11 +32,27 @@ filters specified in the \code{QueryParameters} parameter are returned.}
 
 \item{HealthStatus}{The health status of the instances that you want to discover.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  Instances = list(
+    list(
+      InstanceId = "string",
+      NamespaceName = "string",
+      ServiceName = "string",
+      HealthStatus = "HEALTHY"|"UNHEALTHY"|"UNKNOWN",
+      Attributes = list(
+        "string"
+      )
+    )
+  )
+)
+}
+}
 \description{
 Discovers registered instances for a specified namespace and service.
-You can use \code{DiscoverInstances} to discover instances for any type of
-namespace. For public and private DNS namespaces, you can also use DNS
-queries to discover instances.
+You can use \code{\link[=servicediscovery_discover_instances]{discover_instances}}
+to discover instances for any type of namespace. For public and private
+DNS namespaces, you can also use DNS queries to discover instances.
 }
 \section{Request syntax}{
 \preformatted{svc$discover_instances(

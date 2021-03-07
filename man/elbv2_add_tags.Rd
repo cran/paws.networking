@@ -11,13 +11,17 @@ elbv2_add_tags(ResourceArns, Tags)
 
 \item{Tags}{[required] The tags.}
 }
+\value{
+An empty list.
+}
 \description{
 Adds the specified tags to the specified Elastic Load Balancing
 resource. You can tag your Application Load Balancers, Network Load
 Balancers, Gateway Load Balancers, target groups, listeners, and rules.
 
 Each tag consists of a key and an optional value. If a resource already
-has a tag with the same key, \code{AddTags} updates its value.
+has a tag with the same key, \code{\link[=elbv2_add_tags]{add_tags}} updates its
+value.
 }
 \section{Request syntax}{
 \preformatted{svc$add_tags(
@@ -39,7 +43,7 @@ has a tag with the same key, \code{AddTags} updates its value.
 # This example adds the specified tags to the specified load balancer.
 svc$add_tags(
   ResourceArns = list(
-    "arn:aws:elasticloadbalancing:us-west-2:123456789012:loadbalancer/app/my-load-balancer/5..."
+    "arn:aws:elasticloadbalancing:us-west-2:123456789012:loadbalancer/app/m..."
   ),
   Tags = list(
     list(

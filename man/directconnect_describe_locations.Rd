@@ -6,9 +6,28 @@
 \usage{
 directconnect_describe_locations()
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  locations = list(
+    list(
+      locationCode = "string",
+      locationName = "string",
+      region = "string",
+      availablePortSpeeds = list(
+        "string"
+      ),
+      availableProviders = list(
+        "string"
+      )
+    )
+  )
+)
+}
+}
 \description{
 Lists the AWS Direct Connect locations in the current AWS Region. These
-are the locations that can be selected when calling CreateConnection or
-CreateInterconnect.
+are the locations that can be selected when calling
+\code{\link[=directconnect_create_connection]{create_connection}} or
+\code{\link[=directconnect_create_interconnect]{create_interconnect}}.
 }
 \keyword{internal}

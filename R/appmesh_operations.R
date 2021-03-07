@@ -39,6 +39,72 @@ NULL
 #' the virtual gateway is in a shared mesh, then you must be the owner of
 #' the virtual gateway resource.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   gatewayRoute = list(
+#'     gatewayRouteName = "string",
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       grpcRoute = list(
+#'         action = list(
+#'           target = list(
+#'             virtualService = list(
+#'               virtualServiceName = "string"
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           serviceName = "string"
+#'         )
+#'       ),
+#'       http2Route = list(
+#'         action = list(
+#'           target = list(
+#'             virtualService = list(
+#'               virtualServiceName = "string"
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           prefix = "string"
+#'         )
+#'       ),
+#'       httpRoute = list(
+#'         action = list(
+#'           target = list(
+#'             virtualService = list(
+#'               virtualServiceName = "string"
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           prefix = "string"
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualGatewayName = "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$create_gateway_route(
@@ -142,6 +208,37 @@ appmesh_create_gateway_route <- function(clientToken = NULL, gatewayRouteName, m
 #' character length of 128 characters, and tag values can have a maximum
 #' length of 256 characters.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   mesh = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       egressFilter = list(
+#'         type = "ALLOW_ALL"|"DROP_ALL"
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     )
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$create_mesh(
@@ -215,6 +312,217 @@ appmesh_create_mesh <- function(clientToken = NULL, meshName, spec = NULL, tags 
 #' @param virtualRouterName &#91;required&#93; The name of the virtual router in which to create the route. If the
 #' virtual router is in a shared mesh, then you must be the owner of the
 #' virtual router resource.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   route = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     routeName = "string",
+#'     spec = list(
+#'       grpcRoute = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           metadata = list(
+#'             list(
+#'               invert = TRUE|FALSE,
+#'               match = list(
+#'                 exact = "string",
+#'                 prefix = "string",
+#'                 range = list(
+#'                   end = 123,
+#'                   start = 123
+#'                 ),
+#'                 regex = "string",
+#'                 suffix = "string"
+#'               ),
+#'               name = "string"
+#'             )
+#'           ),
+#'           methodName = "string",
+#'           serviceName = "string"
+#'         ),
+#'         retryPolicy = list(
+#'           grpcRetryEvents = list(
+#'             "cancelled"|"deadline-exceeded"|"internal"|"resource-exhausted"|"unavailable"
+#'           ),
+#'           httpRetryEvents = list(
+#'             "string"
+#'           ),
+#'           maxRetries = 123,
+#'           perRetryTimeout = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           tcpRetryEvents = list(
+#'             "connection-error"
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           perRequest = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       ),
+#'       http2Route = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           headers = list(
+#'             list(
+#'               invert = TRUE|FALSE,
+#'               match = list(
+#'                 exact = "string",
+#'                 prefix = "string",
+#'                 range = list(
+#'                   end = 123,
+#'                   start = 123
+#'                 ),
+#'                 regex = "string",
+#'                 suffix = "string"
+#'               ),
+#'               name = "string"
+#'             )
+#'           ),
+#'           method = "GET"|"HEAD"|"POST"|"PUT"|"DELETE"|"CONNECT"|"OPTIONS"|"TRACE"|"PATCH",
+#'           prefix = "string",
+#'           scheme = "http"|"https"
+#'         ),
+#'         retryPolicy = list(
+#'           httpRetryEvents = list(
+#'             "string"
+#'           ),
+#'           maxRetries = 123,
+#'           perRetryTimeout = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           tcpRetryEvents = list(
+#'             "connection-error"
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           perRequest = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       ),
+#'       httpRoute = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           headers = list(
+#'             list(
+#'               invert = TRUE|FALSE,
+#'               match = list(
+#'                 exact = "string",
+#'                 prefix = "string",
+#'                 range = list(
+#'                   end = 123,
+#'                   start = 123
+#'                 ),
+#'                 regex = "string",
+#'                 suffix = "string"
+#'               ),
+#'               name = "string"
+#'             )
+#'           ),
+#'           method = "GET"|"HEAD"|"POST"|"PUT"|"DELETE"|"CONNECT"|"OPTIONS"|"TRACE"|"PATCH",
+#'           prefix = "string",
+#'           scheme = "http"|"https"
+#'         ),
+#'         retryPolicy = list(
+#'           httpRetryEvents = list(
+#'             "string"
+#'           ),
+#'           maxRetries = 123,
+#'           perRetryTimeout = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           tcpRetryEvents = list(
+#'             "connection-error"
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           perRequest = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       ),
+#'       priority = 123,
+#'       tcpRoute = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualRouterName = "string"
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -472,6 +780,105 @@ appmesh_create_route <- function(clientToken = NULL, meshName, meshOwner = NULL,
 #' length of 256 characters.
 #' @param virtualGatewayName &#91;required&#93; The name to use for the virtual gateway.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualGateway = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       backendDefaults = list(
+#'         clientPolicy = list(
+#'           tls = list(
+#'             enforce = TRUE|FALSE,
+#'             ports = list(
+#'               123
+#'             ),
+#'             validation = list(
+#'               trust = list(
+#'                 acm = list(
+#'                   certificateAuthorityArns = list(
+#'                     "string"
+#'                   )
+#'                 ),
+#'                 file = list(
+#'                   certificateChain = "string"
+#'                 )
+#'               )
+#'             )
+#'           )
+#'         )
+#'       ),
+#'       listeners = list(
+#'         list(
+#'           connectionPool = list(
+#'             grpc = list(
+#'               maxRequests = 123
+#'             ),
+#'             http = list(
+#'               maxConnections = 123,
+#'               maxPendingRequests = 123
+#'             ),
+#'             http2 = list(
+#'               maxRequests = 123
+#'             )
+#'           ),
+#'           healthCheck = list(
+#'             healthyThreshold = 123,
+#'             intervalMillis = 123,
+#'             path = "string",
+#'             port = 123,
+#'             protocol = "http"|"http2"|"grpc",
+#'             timeoutMillis = 123,
+#'             unhealthyThreshold = 123
+#'           ),
+#'           portMapping = list(
+#'             port = 123,
+#'             protocol = "http"|"http2"|"grpc"
+#'           ),
+#'           tls = list(
+#'             certificate = list(
+#'               acm = list(
+#'                 certificateArn = "string"
+#'               ),
+#'               file = list(
+#'                 certificateChain = "string",
+#'                 privateKey = "string"
+#'               )
+#'             ),
+#'             mode = "STRICT"|"PERMISSIVE"|"DISABLED"
+#'           )
+#'         )
+#'       ),
+#'       logging = list(
+#'         accessLog = list(
+#'           file = list(
+#'             path = "string"
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualGatewayName = "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$create_virtual_gateway(
@@ -638,6 +1045,200 @@ appmesh_create_virtual_gateway <- function(clientToken = NULL, meshName, meshOwn
 #' character length of 128 characters, and tag values can have a maximum
 #' length of 256 characters.
 #' @param virtualNodeName &#91;required&#93; The name to use for the virtual node.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualNode = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       backendDefaults = list(
+#'         clientPolicy = list(
+#'           tls = list(
+#'             enforce = TRUE|FALSE,
+#'             ports = list(
+#'               123
+#'             ),
+#'             validation = list(
+#'               trust = list(
+#'                 acm = list(
+#'                   certificateAuthorityArns = list(
+#'                     "string"
+#'                   )
+#'                 ),
+#'                 file = list(
+#'                   certificateChain = "string"
+#'                 )
+#'               )
+#'             )
+#'           )
+#'         )
+#'       ),
+#'       backends = list(
+#'         list(
+#'           virtualService = list(
+#'             clientPolicy = list(
+#'               tls = list(
+#'                 enforce = TRUE|FALSE,
+#'                 ports = list(
+#'                   123
+#'                 ),
+#'                 validation = list(
+#'                   trust = list(
+#'                     acm = list(
+#'                       certificateAuthorityArns = list(
+#'                         "string"
+#'                       )
+#'                     ),
+#'                     file = list(
+#'                       certificateChain = "string"
+#'                     )
+#'                   )
+#'                 )
+#'               )
+#'             ),
+#'             virtualServiceName = "string"
+#'           )
+#'         )
+#'       ),
+#'       listeners = list(
+#'         list(
+#'           connectionPool = list(
+#'             grpc = list(
+#'               maxRequests = 123
+#'             ),
+#'             http = list(
+#'               maxConnections = 123,
+#'               maxPendingRequests = 123
+#'             ),
+#'             http2 = list(
+#'               maxRequests = 123
+#'             ),
+#'             tcp = list(
+#'               maxConnections = 123
+#'             )
+#'           ),
+#'           healthCheck = list(
+#'             healthyThreshold = 123,
+#'             intervalMillis = 123,
+#'             path = "string",
+#'             port = 123,
+#'             protocol = "http"|"tcp"|"http2"|"grpc",
+#'             timeoutMillis = 123,
+#'             unhealthyThreshold = 123
+#'           ),
+#'           outlierDetection = list(
+#'             baseEjectionDuration = list(
+#'               unit = "s"|"ms",
+#'               value = 123
+#'             ),
+#'             interval = list(
+#'               unit = "s"|"ms",
+#'               value = 123
+#'             ),
+#'             maxEjectionPercent = 123,
+#'             maxServerErrors = 123
+#'           ),
+#'           portMapping = list(
+#'             port = 123,
+#'             protocol = "http"|"tcp"|"http2"|"grpc"
+#'           ),
+#'           timeout = list(
+#'             grpc = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               ),
+#'               perRequest = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             ),
+#'             http = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               ),
+#'               perRequest = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             ),
+#'             http2 = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               ),
+#'               perRequest = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             ),
+#'             tcp = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             )
+#'           ),
+#'           tls = list(
+#'             certificate = list(
+#'               acm = list(
+#'                 certificateArn = "string"
+#'               ),
+#'               file = list(
+#'                 certificateChain = "string",
+#'                 privateKey = "string"
+#'               )
+#'             ),
+#'             mode = "STRICT"|"PERMISSIVE"|"DISABLED"
+#'           )
+#'         )
+#'       ),
+#'       logging = list(
+#'         accessLog = list(
+#'           file = list(
+#'             path = "string"
+#'           )
+#'         )
+#'       ),
+#'       serviceDiscovery = list(
+#'         awsCloudMap = list(
+#'           attributes = list(
+#'             list(
+#'               key = "string",
+#'               value = "string"
+#'             )
+#'           ),
+#'           namespaceName = "string",
+#'           serviceName = "string"
+#'         ),
+#'         dns = list(
+#'           hostname = "string"
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualNodeName = "string"
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -878,6 +1479,43 @@ appmesh_create_virtual_node <- function(clientToken = NULL, meshName, meshOwner 
 #' length of 256 characters.
 #' @param virtualRouterName &#91;required&#93; The name to use for the virtual router.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualRouter = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       listeners = list(
+#'         list(
+#'           portMapping = list(
+#'             port = 123,
+#'             protocol = "http"|"tcp"|"http2"|"grpc"
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualRouterName = "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$create_virtual_router(
@@ -960,6 +1598,43 @@ appmesh_create_virtual_router <- function(clientToken = NULL, meshName, meshOwne
 #' length of 256 characters.
 #' @param virtualServiceName &#91;required&#93; The name to use for the virtual service.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualService = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       provider = list(
+#'         virtualNode = list(
+#'           virtualNodeName = "string"
+#'         ),
+#'         virtualRouter = list(
+#'           virtualRouterName = "string"
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualServiceName = "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$create_virtual_service(
@@ -1024,6 +1699,72 @@ appmesh_create_virtual_service <- function(clientToken = NULL, meshName, meshOwn
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param virtualGatewayName &#91;required&#93; The name of the virtual gateway to delete the route from.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   gatewayRoute = list(
+#'     gatewayRouteName = "string",
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       grpcRoute = list(
+#'         action = list(
+#'           target = list(
+#'             virtualService = list(
+#'               virtualServiceName = "string"
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           serviceName = "string"
+#'         )
+#'       ),
+#'       http2Route = list(
+#'         action = list(
+#'           target = list(
+#'             virtualService = list(
+#'               virtualServiceName = "string"
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           prefix = "string"
+#'         )
+#'       ),
+#'       httpRoute = list(
+#'         action = list(
+#'           target = list(
+#'             virtualService = list(
+#'               virtualServiceName = "string"
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           prefix = "string"
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualGatewayName = "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$delete_gateway_route(
@@ -1068,6 +1809,37 @@ appmesh_delete_gateway_route <- function(gatewayRouteName, meshName, meshOwner =
 #'
 #' @param meshName &#91;required&#93; The name of the service mesh to delete.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   mesh = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       egressFilter = list(
+#'         type = "ALLOW_ALL"|"DROP_ALL"
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     )
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$delete_mesh(
@@ -1111,6 +1883,217 @@ appmesh_delete_mesh <- function(meshName) {
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param routeName &#91;required&#93; The name of the route to delete.
 #' @param virtualRouterName &#91;required&#93; The name of the virtual router to delete the route in.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   route = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     routeName = "string",
+#'     spec = list(
+#'       grpcRoute = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           metadata = list(
+#'             list(
+#'               invert = TRUE|FALSE,
+#'               match = list(
+#'                 exact = "string",
+#'                 prefix = "string",
+#'                 range = list(
+#'                   end = 123,
+#'                   start = 123
+#'                 ),
+#'                 regex = "string",
+#'                 suffix = "string"
+#'               ),
+#'               name = "string"
+#'             )
+#'           ),
+#'           methodName = "string",
+#'           serviceName = "string"
+#'         ),
+#'         retryPolicy = list(
+#'           grpcRetryEvents = list(
+#'             "cancelled"|"deadline-exceeded"|"internal"|"resource-exhausted"|"unavailable"
+#'           ),
+#'           httpRetryEvents = list(
+#'             "string"
+#'           ),
+#'           maxRetries = 123,
+#'           perRetryTimeout = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           tcpRetryEvents = list(
+#'             "connection-error"
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           perRequest = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       ),
+#'       http2Route = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           headers = list(
+#'             list(
+#'               invert = TRUE|FALSE,
+#'               match = list(
+#'                 exact = "string",
+#'                 prefix = "string",
+#'                 range = list(
+#'                   end = 123,
+#'                   start = 123
+#'                 ),
+#'                 regex = "string",
+#'                 suffix = "string"
+#'               ),
+#'               name = "string"
+#'             )
+#'           ),
+#'           method = "GET"|"HEAD"|"POST"|"PUT"|"DELETE"|"CONNECT"|"OPTIONS"|"TRACE"|"PATCH",
+#'           prefix = "string",
+#'           scheme = "http"|"https"
+#'         ),
+#'         retryPolicy = list(
+#'           httpRetryEvents = list(
+#'             "string"
+#'           ),
+#'           maxRetries = 123,
+#'           perRetryTimeout = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           tcpRetryEvents = list(
+#'             "connection-error"
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           perRequest = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       ),
+#'       httpRoute = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           headers = list(
+#'             list(
+#'               invert = TRUE|FALSE,
+#'               match = list(
+#'                 exact = "string",
+#'                 prefix = "string",
+#'                 range = list(
+#'                   end = 123,
+#'                   start = 123
+#'                 ),
+#'                 regex = "string",
+#'                 suffix = "string"
+#'               ),
+#'               name = "string"
+#'             )
+#'           ),
+#'           method = "GET"|"HEAD"|"POST"|"PUT"|"DELETE"|"CONNECT"|"OPTIONS"|"TRACE"|"PATCH",
+#'           prefix = "string",
+#'           scheme = "http"|"https"
+#'         ),
+#'         retryPolicy = list(
+#'           httpRetryEvents = list(
+#'             "string"
+#'           ),
+#'           maxRetries = 123,
+#'           perRetryTimeout = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           tcpRetryEvents = list(
+#'             "connection-error"
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           perRequest = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       ),
+#'       priority = 123,
+#'       tcpRoute = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualRouterName = "string"
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1158,6 +2141,105 @@ appmesh_delete_route <- function(meshName, meshOwner = NULL, routeName, virtualR
 #' shared
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param virtualGatewayName &#91;required&#93; The name of the virtual gateway to delete.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualGateway = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       backendDefaults = list(
+#'         clientPolicy = list(
+#'           tls = list(
+#'             enforce = TRUE|FALSE,
+#'             ports = list(
+#'               123
+#'             ),
+#'             validation = list(
+#'               trust = list(
+#'                 acm = list(
+#'                   certificateAuthorityArns = list(
+#'                     "string"
+#'                   )
+#'                 ),
+#'                 file = list(
+#'                   certificateChain = "string"
+#'                 )
+#'               )
+#'             )
+#'           )
+#'         )
+#'       ),
+#'       listeners = list(
+#'         list(
+#'           connectionPool = list(
+#'             grpc = list(
+#'               maxRequests = 123
+#'             ),
+#'             http = list(
+#'               maxConnections = 123,
+#'               maxPendingRequests = 123
+#'             ),
+#'             http2 = list(
+#'               maxRequests = 123
+#'             )
+#'           ),
+#'           healthCheck = list(
+#'             healthyThreshold = 123,
+#'             intervalMillis = 123,
+#'             path = "string",
+#'             port = 123,
+#'             protocol = "http"|"http2"|"grpc",
+#'             timeoutMillis = 123,
+#'             unhealthyThreshold = 123
+#'           ),
+#'           portMapping = list(
+#'             port = 123,
+#'             protocol = "http"|"http2"|"grpc"
+#'           ),
+#'           tls = list(
+#'             certificate = list(
+#'               acm = list(
+#'                 certificateArn = "string"
+#'               ),
+#'               file = list(
+#'                 certificateChain = "string",
+#'                 privateKey = "string"
+#'               )
+#'             ),
+#'             mode = "STRICT"|"PERMISSIVE"|"DISABLED"
+#'           )
+#'         )
+#'       ),
+#'       logging = list(
+#'         accessLog = list(
+#'           file = list(
+#'             path = "string"
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualGatewayName = "string"
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1207,6 +2289,200 @@ appmesh_delete_virtual_gateway <- function(meshName, meshOwner = NULL, virtualGa
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param virtualNodeName &#91;required&#93; The name of the virtual node to delete.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualNode = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       backendDefaults = list(
+#'         clientPolicy = list(
+#'           tls = list(
+#'             enforce = TRUE|FALSE,
+#'             ports = list(
+#'               123
+#'             ),
+#'             validation = list(
+#'               trust = list(
+#'                 acm = list(
+#'                   certificateAuthorityArns = list(
+#'                     "string"
+#'                   )
+#'                 ),
+#'                 file = list(
+#'                   certificateChain = "string"
+#'                 )
+#'               )
+#'             )
+#'           )
+#'         )
+#'       ),
+#'       backends = list(
+#'         list(
+#'           virtualService = list(
+#'             clientPolicy = list(
+#'               tls = list(
+#'                 enforce = TRUE|FALSE,
+#'                 ports = list(
+#'                   123
+#'                 ),
+#'                 validation = list(
+#'                   trust = list(
+#'                     acm = list(
+#'                       certificateAuthorityArns = list(
+#'                         "string"
+#'                       )
+#'                     ),
+#'                     file = list(
+#'                       certificateChain = "string"
+#'                     )
+#'                   )
+#'                 )
+#'               )
+#'             ),
+#'             virtualServiceName = "string"
+#'           )
+#'         )
+#'       ),
+#'       listeners = list(
+#'         list(
+#'           connectionPool = list(
+#'             grpc = list(
+#'               maxRequests = 123
+#'             ),
+#'             http = list(
+#'               maxConnections = 123,
+#'               maxPendingRequests = 123
+#'             ),
+#'             http2 = list(
+#'               maxRequests = 123
+#'             ),
+#'             tcp = list(
+#'               maxConnections = 123
+#'             )
+#'           ),
+#'           healthCheck = list(
+#'             healthyThreshold = 123,
+#'             intervalMillis = 123,
+#'             path = "string",
+#'             port = 123,
+#'             protocol = "http"|"tcp"|"http2"|"grpc",
+#'             timeoutMillis = 123,
+#'             unhealthyThreshold = 123
+#'           ),
+#'           outlierDetection = list(
+#'             baseEjectionDuration = list(
+#'               unit = "s"|"ms",
+#'               value = 123
+#'             ),
+#'             interval = list(
+#'               unit = "s"|"ms",
+#'               value = 123
+#'             ),
+#'             maxEjectionPercent = 123,
+#'             maxServerErrors = 123
+#'           ),
+#'           portMapping = list(
+#'             port = 123,
+#'             protocol = "http"|"tcp"|"http2"|"grpc"
+#'           ),
+#'           timeout = list(
+#'             grpc = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               ),
+#'               perRequest = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             ),
+#'             http = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               ),
+#'               perRequest = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             ),
+#'             http2 = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               ),
+#'               perRequest = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             ),
+#'             tcp = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             )
+#'           ),
+#'           tls = list(
+#'             certificate = list(
+#'               acm = list(
+#'                 certificateArn = "string"
+#'               ),
+#'               file = list(
+#'                 certificateChain = "string",
+#'                 privateKey = "string"
+#'               )
+#'             ),
+#'             mode = "STRICT"|"PERMISSIVE"|"DISABLED"
+#'           )
+#'         )
+#'       ),
+#'       logging = list(
+#'         accessLog = list(
+#'           file = list(
+#'             path = "string"
+#'           )
+#'         )
+#'       ),
+#'       serviceDiscovery = list(
+#'         awsCloudMap = list(
+#'           attributes = list(
+#'             list(
+#'               key = "string",
+#'               value = "string"
+#'             )
+#'           ),
+#'           namespaceName = "string",
+#'           serviceName = "string"
+#'         ),
+#'         dns = list(
+#'           hostname = "string"
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualNodeName = "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$delete_virtual_node(
@@ -1255,6 +2531,43 @@ appmesh_delete_virtual_node <- function(meshName, meshOwner = NULL, virtualNodeN
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param virtualRouterName &#91;required&#93; The name of the virtual router to delete.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualRouter = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       listeners = list(
+#'         list(
+#'           portMapping = list(
+#'             port = 123,
+#'             protocol = "http"|"tcp"|"http2"|"grpc"
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualRouterName = "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$delete_virtual_router(
@@ -1299,6 +2612,43 @@ appmesh_delete_virtual_router <- function(meshName, meshOwner = NULL, virtualRou
 #' shared
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param virtualServiceName &#91;required&#93; The name of the virtual service to delete.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualService = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       provider = list(
+#'         virtualNode = list(
+#'           virtualNodeName = "string"
+#'         ),
+#'         virtualRouter = list(
+#'           virtualRouterName = "string"
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualServiceName = "string"
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1348,6 +2698,72 @@ appmesh_delete_virtual_service <- function(meshName, meshOwner = NULL, virtualSe
 #' @param virtualGatewayName &#91;required&#93; The name of the virtual gateway that the gateway route is associated
 #' with.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   gatewayRoute = list(
+#'     gatewayRouteName = "string",
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       grpcRoute = list(
+#'         action = list(
+#'           target = list(
+#'             virtualService = list(
+#'               virtualServiceName = "string"
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           serviceName = "string"
+#'         )
+#'       ),
+#'       http2Route = list(
+#'         action = list(
+#'           target = list(
+#'             virtualService = list(
+#'               virtualServiceName = "string"
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           prefix = "string"
+#'         )
+#'       ),
+#'       httpRoute = list(
+#'         action = list(
+#'           target = list(
+#'             virtualService = list(
+#'               virtualServiceName = "string"
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           prefix = "string"
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualGatewayName = "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$describe_gateway_route(
@@ -1392,6 +2808,37 @@ appmesh_describe_gateway_route <- function(gatewayRouteName, meshName, meshOwner
 #' your account. For more information about mesh sharing, see [Working with
 #' shared
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   mesh = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       egressFilter = list(
+#'         type = "ALLOW_ALL"|"DROP_ALL"
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1438,6 +2885,217 @@ appmesh_describe_mesh <- function(meshName, meshOwner = NULL) {
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param routeName &#91;required&#93; The name of the route to describe.
 #' @param virtualRouterName &#91;required&#93; The name of the virtual router that the route is associated with.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   route = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     routeName = "string",
+#'     spec = list(
+#'       grpcRoute = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           metadata = list(
+#'             list(
+#'               invert = TRUE|FALSE,
+#'               match = list(
+#'                 exact = "string",
+#'                 prefix = "string",
+#'                 range = list(
+#'                   end = 123,
+#'                   start = 123
+#'                 ),
+#'                 regex = "string",
+#'                 suffix = "string"
+#'               ),
+#'               name = "string"
+#'             )
+#'           ),
+#'           methodName = "string",
+#'           serviceName = "string"
+#'         ),
+#'         retryPolicy = list(
+#'           grpcRetryEvents = list(
+#'             "cancelled"|"deadline-exceeded"|"internal"|"resource-exhausted"|"unavailable"
+#'           ),
+#'           httpRetryEvents = list(
+#'             "string"
+#'           ),
+#'           maxRetries = 123,
+#'           perRetryTimeout = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           tcpRetryEvents = list(
+#'             "connection-error"
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           perRequest = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       ),
+#'       http2Route = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           headers = list(
+#'             list(
+#'               invert = TRUE|FALSE,
+#'               match = list(
+#'                 exact = "string",
+#'                 prefix = "string",
+#'                 range = list(
+#'                   end = 123,
+#'                   start = 123
+#'                 ),
+#'                 regex = "string",
+#'                 suffix = "string"
+#'               ),
+#'               name = "string"
+#'             )
+#'           ),
+#'           method = "GET"|"HEAD"|"POST"|"PUT"|"DELETE"|"CONNECT"|"OPTIONS"|"TRACE"|"PATCH",
+#'           prefix = "string",
+#'           scheme = "http"|"https"
+#'         ),
+#'         retryPolicy = list(
+#'           httpRetryEvents = list(
+#'             "string"
+#'           ),
+#'           maxRetries = 123,
+#'           perRetryTimeout = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           tcpRetryEvents = list(
+#'             "connection-error"
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           perRequest = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       ),
+#'       httpRoute = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           headers = list(
+#'             list(
+#'               invert = TRUE|FALSE,
+#'               match = list(
+#'                 exact = "string",
+#'                 prefix = "string",
+#'                 range = list(
+#'                   end = 123,
+#'                   start = 123
+#'                 ),
+#'                 regex = "string",
+#'                 suffix = "string"
+#'               ),
+#'               name = "string"
+#'             )
+#'           ),
+#'           method = "GET"|"HEAD"|"POST"|"PUT"|"DELETE"|"CONNECT"|"OPTIONS"|"TRACE"|"PATCH",
+#'           prefix = "string",
+#'           scheme = "http"|"https"
+#'         ),
+#'         retryPolicy = list(
+#'           httpRetryEvents = list(
+#'             "string"
+#'           ),
+#'           maxRetries = 123,
+#'           perRetryTimeout = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           tcpRetryEvents = list(
+#'             "connection-error"
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           perRequest = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       ),
+#'       priority = 123,
+#'       tcpRoute = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualRouterName = "string"
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1486,6 +3144,105 @@ appmesh_describe_route <- function(meshName, meshOwner = NULL, routeName, virtua
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param virtualGatewayName &#91;required&#93; The name of the virtual gateway to describe.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualGateway = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       backendDefaults = list(
+#'         clientPolicy = list(
+#'           tls = list(
+#'             enforce = TRUE|FALSE,
+#'             ports = list(
+#'               123
+#'             ),
+#'             validation = list(
+#'               trust = list(
+#'                 acm = list(
+#'                   certificateAuthorityArns = list(
+#'                     "string"
+#'                   )
+#'                 ),
+#'                 file = list(
+#'                   certificateChain = "string"
+#'                 )
+#'               )
+#'             )
+#'           )
+#'         )
+#'       ),
+#'       listeners = list(
+#'         list(
+#'           connectionPool = list(
+#'             grpc = list(
+#'               maxRequests = 123
+#'             ),
+#'             http = list(
+#'               maxConnections = 123,
+#'               maxPendingRequests = 123
+#'             ),
+#'             http2 = list(
+#'               maxRequests = 123
+#'             )
+#'           ),
+#'           healthCheck = list(
+#'             healthyThreshold = 123,
+#'             intervalMillis = 123,
+#'             path = "string",
+#'             port = 123,
+#'             protocol = "http"|"http2"|"grpc",
+#'             timeoutMillis = 123,
+#'             unhealthyThreshold = 123
+#'           ),
+#'           portMapping = list(
+#'             port = 123,
+#'             protocol = "http"|"http2"|"grpc"
+#'           ),
+#'           tls = list(
+#'             certificate = list(
+#'               acm = list(
+#'                 certificateArn = "string"
+#'               ),
+#'               file = list(
+#'                 certificateChain = "string",
+#'                 privateKey = "string"
+#'               )
+#'             ),
+#'             mode = "STRICT"|"PERMISSIVE"|"DISABLED"
+#'           )
+#'         )
+#'       ),
+#'       logging = list(
+#'         accessLog = list(
+#'           file = list(
+#'             path = "string"
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualGatewayName = "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$describe_virtual_gateway(
@@ -1531,6 +3288,200 @@ appmesh_describe_virtual_gateway <- function(meshName, meshOwner = NULL, virtual
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param virtualNodeName &#91;required&#93; The name of the virtual node to describe.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualNode = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       backendDefaults = list(
+#'         clientPolicy = list(
+#'           tls = list(
+#'             enforce = TRUE|FALSE,
+#'             ports = list(
+#'               123
+#'             ),
+#'             validation = list(
+#'               trust = list(
+#'                 acm = list(
+#'                   certificateAuthorityArns = list(
+#'                     "string"
+#'                   )
+#'                 ),
+#'                 file = list(
+#'                   certificateChain = "string"
+#'                 )
+#'               )
+#'             )
+#'           )
+#'         )
+#'       ),
+#'       backends = list(
+#'         list(
+#'           virtualService = list(
+#'             clientPolicy = list(
+#'               tls = list(
+#'                 enforce = TRUE|FALSE,
+#'                 ports = list(
+#'                   123
+#'                 ),
+#'                 validation = list(
+#'                   trust = list(
+#'                     acm = list(
+#'                       certificateAuthorityArns = list(
+#'                         "string"
+#'                       )
+#'                     ),
+#'                     file = list(
+#'                       certificateChain = "string"
+#'                     )
+#'                   )
+#'                 )
+#'               )
+#'             ),
+#'             virtualServiceName = "string"
+#'           )
+#'         )
+#'       ),
+#'       listeners = list(
+#'         list(
+#'           connectionPool = list(
+#'             grpc = list(
+#'               maxRequests = 123
+#'             ),
+#'             http = list(
+#'               maxConnections = 123,
+#'               maxPendingRequests = 123
+#'             ),
+#'             http2 = list(
+#'               maxRequests = 123
+#'             ),
+#'             tcp = list(
+#'               maxConnections = 123
+#'             )
+#'           ),
+#'           healthCheck = list(
+#'             healthyThreshold = 123,
+#'             intervalMillis = 123,
+#'             path = "string",
+#'             port = 123,
+#'             protocol = "http"|"tcp"|"http2"|"grpc",
+#'             timeoutMillis = 123,
+#'             unhealthyThreshold = 123
+#'           ),
+#'           outlierDetection = list(
+#'             baseEjectionDuration = list(
+#'               unit = "s"|"ms",
+#'               value = 123
+#'             ),
+#'             interval = list(
+#'               unit = "s"|"ms",
+#'               value = 123
+#'             ),
+#'             maxEjectionPercent = 123,
+#'             maxServerErrors = 123
+#'           ),
+#'           portMapping = list(
+#'             port = 123,
+#'             protocol = "http"|"tcp"|"http2"|"grpc"
+#'           ),
+#'           timeout = list(
+#'             grpc = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               ),
+#'               perRequest = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             ),
+#'             http = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               ),
+#'               perRequest = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             ),
+#'             http2 = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               ),
+#'               perRequest = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             ),
+#'             tcp = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             )
+#'           ),
+#'           tls = list(
+#'             certificate = list(
+#'               acm = list(
+#'                 certificateArn = "string"
+#'               ),
+#'               file = list(
+#'                 certificateChain = "string",
+#'                 privateKey = "string"
+#'               )
+#'             ),
+#'             mode = "STRICT"|"PERMISSIVE"|"DISABLED"
+#'           )
+#'         )
+#'       ),
+#'       logging = list(
+#'         accessLog = list(
+#'           file = list(
+#'             path = "string"
+#'           )
+#'         )
+#'       ),
+#'       serviceDiscovery = list(
+#'         awsCloudMap = list(
+#'           attributes = list(
+#'             list(
+#'               key = "string",
+#'               value = "string"
+#'             )
+#'           ),
+#'           namespaceName = "string",
+#'           serviceName = "string"
+#'         ),
+#'         dns = list(
+#'           hostname = "string"
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualNodeName = "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$describe_virtual_node(
@@ -1575,6 +3526,43 @@ appmesh_describe_virtual_node <- function(meshName, meshOwner = NULL, virtualNod
 #' shared
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param virtualRouterName &#91;required&#93; The name of the virtual router to describe.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualRouter = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       listeners = list(
+#'         list(
+#'           portMapping = list(
+#'             port = 123,
+#'             protocol = "http"|"tcp"|"http2"|"grpc"
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualRouterName = "string"
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1622,6 +3610,43 @@ appmesh_describe_virtual_router <- function(meshName, meshOwner = NULL, virtualR
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param virtualServiceName &#91;required&#93; The name of the virtual service to describe.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualService = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       provider = list(
+#'         virtualNode = list(
+#'           virtualNodeName = "string"
+#'         ),
+#'         virtualRouter = list(
+#'           virtualRouterName = "string"
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualServiceName = "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$describe_virtual_service(
@@ -1662,14 +3687,17 @@ appmesh_describe_virtual_service <- function(meshName, meshOwner = NULL, virtual
 #' appmesh_list_gateway_routes(limit, meshName, meshOwner, nextToken,
 #'   virtualGatewayName)
 #'
-#' @param limit The maximum number of results returned by `ListGatewayRoutes` in
-#' paginated output. When you use this parameter, `ListGatewayRoutes`
-#' returns only `limit` results in a single page along with a `nextToken`
-#' response element. You can see the remaining results of the initial
-#' request by sending another `ListGatewayRoutes` request with the returned
-#' `nextToken` value. This value can be between 1 and 100. If you don't use
-#' this parameter, `ListGatewayRoutes` returns up to 100 results and a
-#' `nextToken` value if applicable.
+#' @param limit The maximum number of results returned by
+#' [`list_gateway_routes`][appmesh_list_gateway_routes] in paginated
+#' output. When you use this parameter,
+#' [`list_gateway_routes`][appmesh_list_gateway_routes] returns only
+#' `limit` results in a single page along with a `nextToken` response
+#' element. You can see the remaining results of the initial request by
+#' sending another [`list_gateway_routes`][appmesh_list_gateway_routes]
+#' request with the returned `nextToken` value. This value can be between 1
+#' and 100. If you don't use this parameter,
+#' [`list_gateway_routes`][appmesh_list_gateway_routes] returns up to 100
+#' results and a `nextToken` value if applicable.
 #' @param meshName &#91;required&#93; The name of the service mesh to list gateway routes in.
 #' @param meshOwner The AWS IAM account ID of the service mesh owner. If the account ID is
 #' not your own, then it's the ID of the account that shared the mesh with
@@ -1677,10 +3705,36 @@ appmesh_describe_virtual_service <- function(meshName, meshOwner = NULL, virtual
 #' shared
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param nextToken The `nextToken` value returned from a previous paginated
-#' `ListGatewayRoutes` request where `limit` was used and the results
-#' exceeded the value of that parameter. Pagination continues from the end
-#' of the previous results that returned the `nextToken` value.
+#' [`list_gateway_routes`][appmesh_list_gateway_routes] request where
+#' `limit` was used and the results exceeded the value of that parameter.
+#' Pagination continues from the end of the previous results that returned
+#' the `nextToken` value.
 #' @param virtualGatewayName &#91;required&#93; The name of the virtual gateway to list gateway routes in.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   gatewayRoutes = list(
+#'     list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       gatewayRouteName = "string",
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshName = "string",
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       version = 123,
+#'       virtualGatewayName = "string"
+#'     )
+#'   ),
+#'   nextToken = "string"
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1721,21 +3775,47 @@ appmesh_list_gateway_routes <- function(limit = NULL, meshName, meshOwner = NULL
 #' @usage
 #' appmesh_list_meshes(limit, nextToken)
 #'
-#' @param limit The maximum number of results returned by `ListMeshes` in paginated
-#' output. When you use this parameter, `ListMeshes` returns only `limit`
-#' results in a single page along with a `nextToken` response element. You
-#' can see the remaining results of the initial request by sending another
-#' `ListMeshes` request with the returned `nextToken` value. This value can
-#' be between 1 and 100. If you don't use this parameter, `ListMeshes`
-#' returns up to 100 results and a `nextToken` value if applicable.
-#' @param nextToken The `nextToken` value returned from a previous paginated `ListMeshes`
-#' request where `limit` was used and the results exceeded the value of
-#' that parameter. Pagination continues from the end of the previous
-#' results that returned the `nextToken` value.
+#' @param limit The maximum number of results returned by
+#' [`list_meshes`][appmesh_list_meshes] in paginated output. When you use
+#' this parameter, [`list_meshes`][appmesh_list_meshes] returns only
+#' `limit` results in a single page along with a `nextToken` response
+#' element. You can see the remaining results of the initial request by
+#' sending another [`list_meshes`][appmesh_list_meshes] request with the
+#' returned `nextToken` value. This value can be between 1 and 100. If you
+#' don't use this parameter, [`list_meshes`][appmesh_list_meshes] returns
+#' up to 100 results and a `nextToken` value if applicable.
+#' @param nextToken The `nextToken` value returned from a previous paginated
+#' [`list_meshes`][appmesh_list_meshes] request where `limit` was used and
+#' the results exceeded the value of that parameter. Pagination continues
+#' from the end of the previous results that returned the `nextToken`
+#' value.
 #' 
 #' This token should be treated as an opaque identifier that is used only
 #' to retrieve the next items in a list and not for other programmatic
 #' purposes.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   meshes = list(
+#'     list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshName = "string",
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       version = 123
+#'     )
+#'   ),
+#'   nextToken = "string"
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1774,24 +3854,52 @@ appmesh_list_meshes <- function(limit = NULL, nextToken = NULL) {
 #' appmesh_list_routes(limit, meshName, meshOwner, nextToken,
 #'   virtualRouterName)
 #'
-#' @param limit The maximum number of results returned by `ListRoutes` in paginated
-#' output. When you use this parameter, `ListRoutes` returns only `limit`
-#' results in a single page along with a `nextToken` response element. You
-#' can see the remaining results of the initial request by sending another
-#' `ListRoutes` request with the returned `nextToken` value. This value can
-#' be between 1 and 100. If you don't use this parameter, `ListRoutes`
-#' returns up to 100 results and a `nextToken` value if applicable.
+#' @param limit The maximum number of results returned by
+#' [`list_routes`][appmesh_list_routes] in paginated output. When you use
+#' this parameter, [`list_routes`][appmesh_list_routes] returns only
+#' `limit` results in a single page along with a `nextToken` response
+#' element. You can see the remaining results of the initial request by
+#' sending another [`list_routes`][appmesh_list_routes] request with the
+#' returned `nextToken` value. This value can be between 1 and 100. If you
+#' don't use this parameter, [`list_routes`][appmesh_list_routes] returns
+#' up to 100 results and a `nextToken` value if applicable.
 #' @param meshName &#91;required&#93; The name of the service mesh to list routes in.
 #' @param meshOwner The AWS IAM account ID of the service mesh owner. If the account ID is
 #' not your own, then it's the ID of the account that shared the mesh with
 #' your account. For more information about mesh sharing, see [Working with
 #' shared
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
-#' @param nextToken The `nextToken` value returned from a previous paginated `ListRoutes`
-#' request where `limit` was used and the results exceeded the value of
-#' that parameter. Pagination continues from the end of the previous
-#' results that returned the `nextToken` value.
+#' @param nextToken The `nextToken` value returned from a previous paginated
+#' [`list_routes`][appmesh_list_routes] request where `limit` was used and
+#' the results exceeded the value of that parameter. Pagination continues
+#' from the end of the previous results that returned the `nextToken`
+#' value.
 #' @param virtualRouterName &#91;required&#93; The name of the virtual router to list routes in.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   nextToken = "string",
+#'   routes = list(
+#'     list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshName = "string",
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       routeName = "string",
+#'       version = 123,
+#'       virtualRouterName = "string"
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1832,20 +3940,39 @@ appmesh_list_routes <- function(limit = NULL, meshName, meshOwner = NULL, nextTo
 #' @usage
 #' appmesh_list_tags_for_resource(limit, nextToken, resourceArn)
 #'
-#' @param limit The maximum number of tag results returned by `ListTagsForResource` in
-#' paginated output. When this parameter is used, `ListTagsForResource`
-#' returns only `limit` results in a single page along with a `nextToken`
-#' response element. You can see the remaining results of the initial
-#' request by sending another `ListTagsForResource` request with the
-#' returned `nextToken` value. This value can be between 1 and 100. If you
-#' don't use this parameter, `ListTagsForResource` returns up to 100
-#' results and a `nextToken` value if applicable.
+#' @param limit The maximum number of tag results returned by
+#' [`list_tags_for_resource`][appmesh_list_tags_for_resource] in paginated
+#' output. When this parameter is used,
+#' [`list_tags_for_resource`][appmesh_list_tags_for_resource] returns only
+#' `limit` results in a single page along with a `nextToken` response
+#' element. You can see the remaining results of the initial request by
+#' sending another
+#' [`list_tags_for_resource`][appmesh_list_tags_for_resource] request with
+#' the returned `nextToken` value. This value can be between 1 and 100. If
+#' you don't use this parameter,
+#' [`list_tags_for_resource`][appmesh_list_tags_for_resource] returns up to
+#' 100 results and a `nextToken` value if applicable.
 #' @param nextToken The `nextToken` value returned from a previous paginated
-#' `ListTagsForResource` request where `limit` was used and the results
-#' exceeded the value of that parameter. Pagination continues from the end
-#' of the previous results that returned the `nextToken` value.
+#' [`list_tags_for_resource`][appmesh_list_tags_for_resource] request where
+#' `limit` was used and the results exceeded the value of that parameter.
+#' Pagination continues from the end of the previous results that returned
+#' the `nextToken` value.
 #' @param resourceArn &#91;required&#93; The Amazon Resource Name (ARN) that identifies the resource to list the
 #' tags for.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   nextToken = "string",
+#'   tags = list(
+#'     list(
+#'       key = "string",
+#'       value = "string"
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1884,14 +4011,17 @@ appmesh_list_tags_for_resource <- function(limit = NULL, nextToken = NULL, resou
 #' @usage
 #' appmesh_list_virtual_gateways(limit, meshName, meshOwner, nextToken)
 #'
-#' @param limit The maximum number of results returned by `ListVirtualGateways` in
-#' paginated output. When you use this parameter, `ListVirtualGateways`
-#' returns only `limit` results in a single page along with a `nextToken`
-#' response element. You can see the remaining results of the initial
-#' request by sending another `ListVirtualGateways` request with the
-#' returned `nextToken` value. This value can be between 1 and 100. If you
-#' don't use this parameter, `ListVirtualGateways` returns up to 100
-#' results and a `nextToken` value if applicable.
+#' @param limit The maximum number of results returned by
+#' [`list_virtual_gateways`][appmesh_list_virtual_gateways] in paginated
+#' output. When you use this parameter,
+#' [`list_virtual_gateways`][appmesh_list_virtual_gateways] returns only
+#' `limit` results in a single page along with a `nextToken` response
+#' element. You can see the remaining results of the initial request by
+#' sending another [`list_virtual_gateways`][appmesh_list_virtual_gateways]
+#' request with the returned `nextToken` value. This value can be between 1
+#' and 100. If you don't use this parameter,
+#' [`list_virtual_gateways`][appmesh_list_virtual_gateways] returns up to
+#' 100 results and a `nextToken` value if applicable.
 #' @param meshName &#91;required&#93; The name of the service mesh to list virtual gateways in.
 #' @param meshOwner The AWS IAM account ID of the service mesh owner. If the account ID is
 #' not your own, then it's the ID of the account that shared the mesh with
@@ -1899,9 +4029,34 @@ appmesh_list_tags_for_resource <- function(limit = NULL, nextToken = NULL, resou
 #' shared
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param nextToken The `nextToken` value returned from a previous paginated
-#' `ListVirtualGateways` request where `limit` was used and the results
-#' exceeded the value of that parameter. Pagination continues from the end
-#' of the previous results that returned the `nextToken` value.
+#' [`list_virtual_gateways`][appmesh_list_virtual_gateways] request where
+#' `limit` was used and the results exceeded the value of that parameter.
+#' Pagination continues from the end of the previous results that returned
+#' the `nextToken` value.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   nextToken = "string",
+#'   virtualGateways = list(
+#'     list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshName = "string",
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       version = 123,
+#'       virtualGatewayName = "string"
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1941,14 +4096,17 @@ appmesh_list_virtual_gateways <- function(limit = NULL, meshName, meshOwner = NU
 #' @usage
 #' appmesh_list_virtual_nodes(limit, meshName, meshOwner, nextToken)
 #'
-#' @param limit The maximum number of results returned by `ListVirtualNodes` in
-#' paginated output. When you use this parameter, `ListVirtualNodes`
-#' returns only `limit` results in a single page along with a `nextToken`
-#' response element. You can see the remaining results of the initial
-#' request by sending another `ListVirtualNodes` request with the returned
-#' `nextToken` value. This value can be between 1 and 100. If you don't use
-#' this parameter, `ListVirtualNodes` returns up to 100 results and a
-#' `nextToken` value if applicable.
+#' @param limit The maximum number of results returned by
+#' [`list_virtual_nodes`][appmesh_list_virtual_nodes] in paginated output.
+#' When you use this parameter,
+#' [`list_virtual_nodes`][appmesh_list_virtual_nodes] returns only `limit`
+#' results in a single page along with a `nextToken` response element. You
+#' can see the remaining results of the initial request by sending another
+#' [`list_virtual_nodes`][appmesh_list_virtual_nodes] request with the
+#' returned `nextToken` value. This value can be between 1 and 100. If you
+#' don't use this parameter,
+#' [`list_virtual_nodes`][appmesh_list_virtual_nodes] returns up to 100
+#' results and a `nextToken` value if applicable.
 #' @param meshName &#91;required&#93; The name of the service mesh to list virtual nodes in.
 #' @param meshOwner The AWS IAM account ID of the service mesh owner. If the account ID is
 #' not your own, then it's the ID of the account that shared the mesh with
@@ -1956,9 +4114,34 @@ appmesh_list_virtual_gateways <- function(limit = NULL, meshName, meshOwner = NU
 #' shared
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param nextToken The `nextToken` value returned from a previous paginated
-#' `ListVirtualNodes` request where `limit` was used and the results
-#' exceeded the value of that parameter. Pagination continues from the end
-#' of the previous results that returned the `nextToken` value.
+#' [`list_virtual_nodes`][appmesh_list_virtual_nodes] request where `limit`
+#' was used and the results exceeded the value of that parameter.
+#' Pagination continues from the end of the previous results that returned
+#' the `nextToken` value.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   nextToken = "string",
+#'   virtualNodes = list(
+#'     list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshName = "string",
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       version = 123,
+#'       virtualNodeName = "string"
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1998,14 +4181,17 @@ appmesh_list_virtual_nodes <- function(limit = NULL, meshName, meshOwner = NULL,
 #' @usage
 #' appmesh_list_virtual_routers(limit, meshName, meshOwner, nextToken)
 #'
-#' @param limit The maximum number of results returned by `ListVirtualRouters` in
-#' paginated output. When you use this parameter, `ListVirtualRouters`
-#' returns only `limit` results in a single page along with a `nextToken`
-#' response element. You can see the remaining results of the initial
-#' request by sending another `ListVirtualRouters` request with the
-#' returned `nextToken` value. This value can be between 1 and 100. If you
-#' don't use this parameter, `ListVirtualRouters` returns up to 100 results
-#' and a `nextToken` value if applicable.
+#' @param limit The maximum number of results returned by
+#' [`list_virtual_routers`][appmesh_list_virtual_routers] in paginated
+#' output. When you use this parameter,
+#' [`list_virtual_routers`][appmesh_list_virtual_routers] returns only
+#' `limit` results in a single page along with a `nextToken` response
+#' element. You can see the remaining results of the initial request by
+#' sending another [`list_virtual_routers`][appmesh_list_virtual_routers]
+#' request with the returned `nextToken` value. This value can be between 1
+#' and 100. If you don't use this parameter,
+#' [`list_virtual_routers`][appmesh_list_virtual_routers] returns up to 100
+#' results and a `nextToken` value if applicable.
 #' @param meshName &#91;required&#93; The name of the service mesh to list virtual routers in.
 #' @param meshOwner The AWS IAM account ID of the service mesh owner. If the account ID is
 #' not your own, then it's the ID of the account that shared the mesh with
@@ -2013,9 +4199,34 @@ appmesh_list_virtual_nodes <- function(limit = NULL, meshName, meshOwner = NULL,
 #' shared
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param nextToken The `nextToken` value returned from a previous paginated
-#' `ListVirtualRouters` request where `limit` was used and the results
-#' exceeded the value of that parameter. Pagination continues from the end
-#' of the previous results that returned the `nextToken` value.
+#' [`list_virtual_routers`][appmesh_list_virtual_routers] request where
+#' `limit` was used and the results exceeded the value of that parameter.
+#' Pagination continues from the end of the previous results that returned
+#' the `nextToken` value.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   nextToken = "string",
+#'   virtualRouters = list(
+#'     list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshName = "string",
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       version = 123,
+#'       virtualRouterName = "string"
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -2055,14 +4266,17 @@ appmesh_list_virtual_routers <- function(limit = NULL, meshName, meshOwner = NUL
 #' @usage
 #' appmesh_list_virtual_services(limit, meshName, meshOwner, nextToken)
 #'
-#' @param limit The maximum number of results returned by `ListVirtualServices` in
-#' paginated output. When you use this parameter, `ListVirtualServices`
-#' returns only `limit` results in a single page along with a `nextToken`
-#' response element. You can see the remaining results of the initial
-#' request by sending another `ListVirtualServices` request with the
-#' returned `nextToken` value. This value can be between 1 and 100. If you
-#' don't use this parameter, `ListVirtualServices` returns up to 100
-#' results and a `nextToken` value if applicable.
+#' @param limit The maximum number of results returned by
+#' [`list_virtual_services`][appmesh_list_virtual_services] in paginated
+#' output. When you use this parameter,
+#' [`list_virtual_services`][appmesh_list_virtual_services] returns only
+#' `limit` results in a single page along with a `nextToken` response
+#' element. You can see the remaining results of the initial request by
+#' sending another [`list_virtual_services`][appmesh_list_virtual_services]
+#' request with the returned `nextToken` value. This value can be between 1
+#' and 100. If you don't use this parameter,
+#' [`list_virtual_services`][appmesh_list_virtual_services] returns up to
+#' 100 results and a `nextToken` value if applicable.
 #' @param meshName &#91;required&#93; The name of the service mesh to list virtual services in.
 #' @param meshOwner The AWS IAM account ID of the service mesh owner. If the account ID is
 #' not your own, then it's the ID of the account that shared the mesh with
@@ -2070,9 +4284,34 @@ appmesh_list_virtual_routers <- function(limit = NULL, meshName, meshOwner = NUL
 #' shared
 #' meshes](https://docs.aws.amazon.com/app-mesh/latest/userguide/sharing.html).
 #' @param nextToken The `nextToken` value returned from a previous paginated
-#' `ListVirtualServices` request where `limit` was used and the results
-#' exceeded the value of that parameter. Pagination continues from the end
-#' of the previous results that returned the `nextToken` value.
+#' [`list_virtual_services`][appmesh_list_virtual_services] request where
+#' `limit` was used and the results exceeded the value of that parameter.
+#' Pagination continues from the end of the previous results that returned
+#' the `nextToken` value.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   nextToken = "string",
+#'   virtualServices = list(
+#'     list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshName = "string",
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       version = 123,
+#'       virtualServiceName = "string"
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -2121,6 +4360,9 @@ appmesh_list_virtual_services <- function(limit = NULL, meshName, meshOwner = NU
 #' Tag keys can have a maximum character length of 128 characters, and tag
 #' values can have a maximum length of 256 characters.
 #'
+#' @return
+#' An empty list.
+#'
 #' @section Request syntax:
 #' ```
 #' svc$tag_resource(
@@ -2164,6 +4406,9 @@ appmesh_tag_resource <- function(resourceArn, tags) {
 #'
 #' @param resourceArn &#91;required&#93; The Amazon Resource Name (ARN) of the resource to delete tags from.
 #' @param tagKeys &#91;required&#93; The keys of the tags to be removed.
+#'
+#' @return
+#' An empty list.
 #'
 #' @section Request syntax:
 #' ```
@@ -2220,6 +4465,72 @@ appmesh_untag_resource <- function(resourceArn, tagKeys) {
 #' existing data.
 #' @param virtualGatewayName &#91;required&#93; The name of the virtual gateway that the gateway route is associated
 #' with.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   gatewayRoute = list(
+#'     gatewayRouteName = "string",
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       grpcRoute = list(
+#'         action = list(
+#'           target = list(
+#'             virtualService = list(
+#'               virtualServiceName = "string"
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           serviceName = "string"
+#'         )
+#'       ),
+#'       http2Route = list(
+#'         action = list(
+#'           target = list(
+#'             virtualService = list(
+#'               virtualServiceName = "string"
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           prefix = "string"
+#'         )
+#'       ),
+#'       httpRoute = list(
+#'         action = list(
+#'           target = list(
+#'             virtualService = list(
+#'               virtualServiceName = "string"
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           prefix = "string"
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualGatewayName = "string"
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -2304,6 +4615,37 @@ appmesh_update_gateway_route <- function(clientToken = NULL, gatewayRouteName, m
 #' @param meshName &#91;required&#93; The name of the service mesh to update.
 #' @param spec The service mesh specification to apply.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   mesh = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       egressFilter = list(
+#'         type = "ALLOW_ALL"|"DROP_ALL"
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     )
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$update_mesh(
@@ -2360,6 +4702,217 @@ appmesh_update_mesh <- function(clientToken = NULL, meshName, spec = NULL) {
 #' @param routeName &#91;required&#93; The name of the route to update.
 #' @param spec &#91;required&#93; The new route specification to apply. This overwrites the existing data.
 #' @param virtualRouterName &#91;required&#93; The name of the virtual router that the route is associated with.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   route = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     routeName = "string",
+#'     spec = list(
+#'       grpcRoute = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           metadata = list(
+#'             list(
+#'               invert = TRUE|FALSE,
+#'               match = list(
+#'                 exact = "string",
+#'                 prefix = "string",
+#'                 range = list(
+#'                   end = 123,
+#'                   start = 123
+#'                 ),
+#'                 regex = "string",
+#'                 suffix = "string"
+#'               ),
+#'               name = "string"
+#'             )
+#'           ),
+#'           methodName = "string",
+#'           serviceName = "string"
+#'         ),
+#'         retryPolicy = list(
+#'           grpcRetryEvents = list(
+#'             "cancelled"|"deadline-exceeded"|"internal"|"resource-exhausted"|"unavailable"
+#'           ),
+#'           httpRetryEvents = list(
+#'             "string"
+#'           ),
+#'           maxRetries = 123,
+#'           perRetryTimeout = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           tcpRetryEvents = list(
+#'             "connection-error"
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           perRequest = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       ),
+#'       http2Route = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           headers = list(
+#'             list(
+#'               invert = TRUE|FALSE,
+#'               match = list(
+#'                 exact = "string",
+#'                 prefix = "string",
+#'                 range = list(
+#'                   end = 123,
+#'                   start = 123
+#'                 ),
+#'                 regex = "string",
+#'                 suffix = "string"
+#'               ),
+#'               name = "string"
+#'             )
+#'           ),
+#'           method = "GET"|"HEAD"|"POST"|"PUT"|"DELETE"|"CONNECT"|"OPTIONS"|"TRACE"|"PATCH",
+#'           prefix = "string",
+#'           scheme = "http"|"https"
+#'         ),
+#'         retryPolicy = list(
+#'           httpRetryEvents = list(
+#'             "string"
+#'           ),
+#'           maxRetries = 123,
+#'           perRetryTimeout = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           tcpRetryEvents = list(
+#'             "connection-error"
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           perRequest = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       ),
+#'       httpRoute = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         match = list(
+#'           headers = list(
+#'             list(
+#'               invert = TRUE|FALSE,
+#'               match = list(
+#'                 exact = "string",
+#'                 prefix = "string",
+#'                 range = list(
+#'                   end = 123,
+#'                   start = 123
+#'                 ),
+#'                 regex = "string",
+#'                 suffix = "string"
+#'               ),
+#'               name = "string"
+#'             )
+#'           ),
+#'           method = "GET"|"HEAD"|"POST"|"PUT"|"DELETE"|"CONNECT"|"OPTIONS"|"TRACE"|"PATCH",
+#'           prefix = "string",
+#'           scheme = "http"|"https"
+#'         ),
+#'         retryPolicy = list(
+#'           httpRetryEvents = list(
+#'             "string"
+#'           ),
+#'           maxRetries = 123,
+#'           perRetryTimeout = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           tcpRetryEvents = list(
+#'             "connection-error"
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           ),
+#'           perRequest = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       ),
+#'       priority = 123,
+#'       tcpRoute = list(
+#'         action = list(
+#'           weightedTargets = list(
+#'             list(
+#'               virtualNode = "string",
+#'               weight = 123
+#'             )
+#'           )
+#'         ),
+#'         timeout = list(
+#'           idle = list(
+#'             unit = "s"|"ms",
+#'             value = 123
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualRouterName = "string"
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -2597,6 +5150,105 @@ appmesh_update_route <- function(clientToken = NULL, meshName, meshOwner = NULL,
 #' existing data.
 #' @param virtualGatewayName &#91;required&#93; The name of the virtual gateway to update.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualGateway = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       backendDefaults = list(
+#'         clientPolicy = list(
+#'           tls = list(
+#'             enforce = TRUE|FALSE,
+#'             ports = list(
+#'               123
+#'             ),
+#'             validation = list(
+#'               trust = list(
+#'                 acm = list(
+#'                   certificateAuthorityArns = list(
+#'                     "string"
+#'                   )
+#'                 ),
+#'                 file = list(
+#'                   certificateChain = "string"
+#'                 )
+#'               )
+#'             )
+#'           )
+#'         )
+#'       ),
+#'       listeners = list(
+#'         list(
+#'           connectionPool = list(
+#'             grpc = list(
+#'               maxRequests = 123
+#'             ),
+#'             http = list(
+#'               maxConnections = 123,
+#'               maxPendingRequests = 123
+#'             ),
+#'             http2 = list(
+#'               maxRequests = 123
+#'             )
+#'           ),
+#'           healthCheck = list(
+#'             healthyThreshold = 123,
+#'             intervalMillis = 123,
+#'             path = "string",
+#'             port = 123,
+#'             protocol = "http"|"http2"|"grpc",
+#'             timeoutMillis = 123,
+#'             unhealthyThreshold = 123
+#'           ),
+#'           portMapping = list(
+#'             port = 123,
+#'             protocol = "http"|"http2"|"grpc"
+#'           ),
+#'           tls = list(
+#'             certificate = list(
+#'               acm = list(
+#'                 certificateArn = "string"
+#'               ),
+#'               file = list(
+#'                 certificateChain = "string",
+#'                 privateKey = "string"
+#'               )
+#'             ),
+#'             mode = "STRICT"|"PERMISSIVE"|"DISABLED"
+#'           )
+#'         )
+#'       ),
+#'       logging = list(
+#'         accessLog = list(
+#'           file = list(
+#'             path = "string"
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualGatewayName = "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$update_virtual_gateway(
@@ -2720,6 +5372,200 @@ appmesh_update_virtual_gateway <- function(clientToken = NULL, meshName, meshOwn
 #' @param spec &#91;required&#93; The new virtual node specification to apply. This overwrites the
 #' existing data.
 #' @param virtualNodeName &#91;required&#93; The name of the virtual node to update.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualNode = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       backendDefaults = list(
+#'         clientPolicy = list(
+#'           tls = list(
+#'             enforce = TRUE|FALSE,
+#'             ports = list(
+#'               123
+#'             ),
+#'             validation = list(
+#'               trust = list(
+#'                 acm = list(
+#'                   certificateAuthorityArns = list(
+#'                     "string"
+#'                   )
+#'                 ),
+#'                 file = list(
+#'                   certificateChain = "string"
+#'                 )
+#'               )
+#'             )
+#'           )
+#'         )
+#'       ),
+#'       backends = list(
+#'         list(
+#'           virtualService = list(
+#'             clientPolicy = list(
+#'               tls = list(
+#'                 enforce = TRUE|FALSE,
+#'                 ports = list(
+#'                   123
+#'                 ),
+#'                 validation = list(
+#'                   trust = list(
+#'                     acm = list(
+#'                       certificateAuthorityArns = list(
+#'                         "string"
+#'                       )
+#'                     ),
+#'                     file = list(
+#'                       certificateChain = "string"
+#'                     )
+#'                   )
+#'                 )
+#'               )
+#'             ),
+#'             virtualServiceName = "string"
+#'           )
+#'         )
+#'       ),
+#'       listeners = list(
+#'         list(
+#'           connectionPool = list(
+#'             grpc = list(
+#'               maxRequests = 123
+#'             ),
+#'             http = list(
+#'               maxConnections = 123,
+#'               maxPendingRequests = 123
+#'             ),
+#'             http2 = list(
+#'               maxRequests = 123
+#'             ),
+#'             tcp = list(
+#'               maxConnections = 123
+#'             )
+#'           ),
+#'           healthCheck = list(
+#'             healthyThreshold = 123,
+#'             intervalMillis = 123,
+#'             path = "string",
+#'             port = 123,
+#'             protocol = "http"|"tcp"|"http2"|"grpc",
+#'             timeoutMillis = 123,
+#'             unhealthyThreshold = 123
+#'           ),
+#'           outlierDetection = list(
+#'             baseEjectionDuration = list(
+#'               unit = "s"|"ms",
+#'               value = 123
+#'             ),
+#'             interval = list(
+#'               unit = "s"|"ms",
+#'               value = 123
+#'             ),
+#'             maxEjectionPercent = 123,
+#'             maxServerErrors = 123
+#'           ),
+#'           portMapping = list(
+#'             port = 123,
+#'             protocol = "http"|"tcp"|"http2"|"grpc"
+#'           ),
+#'           timeout = list(
+#'             grpc = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               ),
+#'               perRequest = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             ),
+#'             http = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               ),
+#'               perRequest = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             ),
+#'             http2 = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               ),
+#'               perRequest = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             ),
+#'             tcp = list(
+#'               idle = list(
+#'                 unit = "s"|"ms",
+#'                 value = 123
+#'               )
+#'             )
+#'           ),
+#'           tls = list(
+#'             certificate = list(
+#'               acm = list(
+#'                 certificateArn = "string"
+#'               ),
+#'               file = list(
+#'                 certificateChain = "string",
+#'                 privateKey = "string"
+#'               )
+#'             ),
+#'             mode = "STRICT"|"PERMISSIVE"|"DISABLED"
+#'           )
+#'         )
+#'       ),
+#'       logging = list(
+#'         accessLog = list(
+#'           file = list(
+#'             path = "string"
+#'           )
+#'         )
+#'       ),
+#'       serviceDiscovery = list(
+#'         awsCloudMap = list(
+#'           attributes = list(
+#'             list(
+#'               key = "string",
+#'               value = "string"
+#'             )
+#'           ),
+#'           namespaceName = "string",
+#'           serviceName = "string"
+#'         ),
+#'         dns = list(
+#'           hostname = "string"
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualNodeName = "string"
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -2940,6 +5786,43 @@ appmesh_update_virtual_node <- function(clientToken = NULL, meshName, meshOwner 
 #' existing data.
 #' @param virtualRouterName &#91;required&#93; The name of the virtual router to update.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualRouter = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       listeners = list(
+#'         list(
+#'           portMapping = list(
+#'             port = 123,
+#'             protocol = "http"|"tcp"|"http2"|"grpc"
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualRouterName = "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$update_virtual_router(
@@ -3001,6 +5884,43 @@ appmesh_update_virtual_router <- function(clientToken = NULL, meshName, meshOwne
 #' @param spec &#91;required&#93; The new virtual service specification to apply. This overwrites the
 #' existing data.
 #' @param virtualServiceName &#91;required&#93; The name of the virtual service to update.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   virtualService = list(
+#'     meshName = "string",
+#'     metadata = list(
+#'       arn = "string",
+#'       createdAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       lastUpdatedAt = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       meshOwner = "string",
+#'       resourceOwner = "string",
+#'       uid = "string",
+#'       version = 123
+#'     ),
+#'     spec = list(
+#'       provider = list(
+#'         virtualNode = list(
+#'           virtualNodeName = "string"
+#'         ),
+#'         virtualRouter = list(
+#'           virtualRouterName = "string"
+#'         )
+#'       )
+#'     ),
+#'     status = list(
+#'       status = "ACTIVE"|"INACTIVE"|"DELETED"
+#'     ),
+#'     virtualServiceName = "string"
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```

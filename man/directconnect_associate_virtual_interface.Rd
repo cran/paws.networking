@@ -13,6 +13,56 @@ directconnect_associate_virtual_interface(virtualInterfaceId,
 
 \item{connectionId}{[required] The ID of the LAG or connection.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  ownerAccount = "string",
+  virtualInterfaceId = "string",
+  location = "string",
+  connectionId = "string",
+  virtualInterfaceType = "string",
+  virtualInterfaceName = "string",
+  vlan = 123,
+  asn = 123,
+  amazonSideAsn = 123,
+  authKey = "string",
+  amazonAddress = "string",
+  customerAddress = "string",
+  addressFamily = "ipv4"|"ipv6",
+  virtualInterfaceState = "confirming"|"verifying"|"pending"|"available"|"down"|"deleting"|"deleted"|"rejected"|"unknown",
+  customerRouterConfig = "string",
+  mtu = 123,
+  jumboFrameCapable = TRUE|FALSE,
+  virtualGatewayId = "string",
+  directConnectGatewayId = "string",
+  routeFilterPrefixes = list(
+    list(
+      cidr = "string"
+    )
+  ),
+  bgpPeers = list(
+    list(
+      bgpPeerId = "string",
+      asn = 123,
+      authKey = "string",
+      addressFamily = "ipv4"|"ipv6",
+      amazonAddress = "string",
+      customerAddress = "string",
+      bgpPeerState = "verifying"|"pending"|"available"|"deleting"|"deleted",
+      bgpStatus = "up"|"down"|"unknown",
+      awsDeviceV2 = "string"
+    )
+  ),
+  region = "string",
+  awsDeviceV2 = "string",
+  tags = list(
+    list(
+      key = "string",
+      value = "string"
+    )
+  )
+)
+}
+}
 \description{
 Associates a virtual interface with a specified link aggregation group
 (LAG) or connection. Connectivity to AWS is temporarily interrupted as
@@ -22,7 +72,8 @@ conflicting IP address, the operation fails.
 
 Virtual interfaces associated with a hosted connection cannot be
 associated with a LAG; hosted connections must be migrated along with
-their virtual interfaces using AssociateHostedConnection.
+their virtual interfaces using
+\code{\link[=directconnect_associate_hosted_connection]{associate_hosted_connection}}.
 
 To reassociate a virtual interface to a new connection or LAG, the
 requester must own either the virtual interface itself or the connection

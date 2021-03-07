@@ -9,9 +9,9 @@ NULL
 #' runtime aspects of your deployed APIs. To use it, you must explicitly
 #' set the SDK's endpoint to point to the endpoint of your deployed API.
 #' The endpoint will be of the form
-#' https://\{api-id\}.execute-api.\{region\}.amazonaws.com/\{stage\}, or will be
-#' the endpoint corresponding to your API's custom domain and base path, if
-#' applicable.
+#' https://\{api-id\}.execute-api.\{region\}.amazonaws.com/\{stage\},
+#' or will be the endpoint corresponding to your API's custom domain and
+#' base path, if applicable.
 #'
 #' @param
 #' config
@@ -65,7 +65,7 @@ apigatewaymanagementapi <- function(config = list()) {
 
 .apigatewaymanagementapi$metadata <- list(
   service_name = "apigatewaymanagementapi",
-  endpoints = list("*" = list(endpoint = "apigatewaymanagementapi.{region}.amazonaws.com", global = FALSE), "cn-*" = list(endpoint = "apigatewaymanagementapi.{region}.amazonaws.com.cn", global = FALSE), "us-iso-*" = list(endpoint = "apigatewaymanagementapi.{region}.c2s.ic.gov", global = FALSE), "us-isob-*" = list(endpoint = "apigatewaymanagementapi.{region}.sc2s.sgov.gov", global = FALSE)),
+  endpoints = list("*" = list(endpoint = "execute-api.{region}.amazonaws.com", global = FALSE), "cn-*" = list(endpoint = "execute-api.{region}.amazonaws.com.cn", global = FALSE), "us-iso-*" = list(endpoint = "execute-api.{region}.c2s.ic.gov", global = FALSE), "us-isob-*" = list(endpoint = "execute-api.{region}.sc2s.sgov.gov", global = FALSE)),
   service_id = "ApiGatewayManagementApi",
   api_version = "2018-11-29",
   signing_name = "execute-api",

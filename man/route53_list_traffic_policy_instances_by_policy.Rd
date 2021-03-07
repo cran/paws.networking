@@ -20,7 +20,9 @@ that is specified by \code{TrafficPolicyId}.}
 
 \item{HostedZoneIdMarker}{If the value of \code{IsTruncated} in the previous response was \code{true}, you
 have more traffic policy instances. To get more traffic policy
-instances, submit another \code{ListTrafficPolicyInstancesByPolicy} request.
+instances, submit another
+\code{\link[=route53_list_traffic_policy_instances_by_policy]{list_traffic_policy_instances_by_policy}}
+request.
 
 For the value of \code{hostedzoneid}, specify the value of
 \code{HostedZoneIdMarker} from the previous response, which is the hosted
@@ -32,7 +34,9 @@ there are no more traffic policy instances to get.}
 
 \item{TrafficPolicyInstanceNameMarker}{If the value of \code{IsTruncated} in the previous response was \code{true}, you
 have more traffic policy instances. To get more traffic policy
-instances, submit another \code{ListTrafficPolicyInstancesByPolicy} request.
+instances, submit another
+\code{\link[=route53_list_traffic_policy_instances_by_policy]{list_traffic_policy_instances_by_policy}}
+request.
 
 For the value of \code{trafficpolicyinstancename}, specify the value of
 \code{TrafficPolicyInstanceNameMarker} from the previous response, which is
@@ -44,7 +48,9 @@ there are no more traffic policy instances to get.}
 
 \item{TrafficPolicyInstanceTypeMarker}{If the value of \code{IsTruncated} in the previous response was \code{true}, you
 have more traffic policy instances. To get more traffic policy
-instances, submit another \code{ListTrafficPolicyInstancesByPolicy} request.
+instances, submit another
+\code{\link[=route53_list_traffic_policy_instances_by_policy]{list_traffic_policy_instances_by_policy}}
+request.
 
 For the value of \code{trafficpolicyinstancetype}, specify the value of
 \code{TrafficPolicyInstanceTypeMarker} from the previous response, which is
@@ -62,15 +68,40 @@ is \code{true}, and the values of \code{HostedZoneIdMarker},
 represent the first traffic policy instance that Amazon Route 53 will
 return if you submit another request.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  TrafficPolicyInstances = list(
+    list(
+      Id = "string",
+      HostedZoneId = "string",
+      Name = "string",
+      TTL = 123,
+      State = "string",
+      Message = "string",
+      TrafficPolicyId = "string",
+      TrafficPolicyVersion = 123,
+      TrafficPolicyType = "SOA"|"A"|"TXT"|"NS"|"CNAME"|"MX"|"NAPTR"|"PTR"|"SRV"|"SPF"|"AAAA"|"CAA"|"DS"
+    )
+  ),
+  HostedZoneIdMarker = "string",
+  TrafficPolicyInstanceNameMarker = "string",
+  TrafficPolicyInstanceTypeMarker = "SOA"|"A"|"TXT"|"NS"|"CNAME"|"MX"|"NAPTR"|"PTR"|"SRV"|"SPF"|"AAAA"|"CAA"|"DS",
+  IsTruncated = TRUE|FALSE,
+  MaxItems = "string"
+)
+}
+}
 \description{
 Gets information about the traffic policy instances that you created by
 using a specify traffic policy version.
 
-After you submit a \code{CreateTrafficPolicyInstance} or an
-\code{UpdateTrafficPolicyInstance} request, there's a brief delay while
-Amazon Route 53 creates the resource record sets that are specified in
-the traffic policy definition. For more information, see the \code{State}
-response element.
+After you submit a
+\code{\link[=route53_create_traffic_policy_instance]{create_traffic_policy_instance}}
+or an
+\code{\link[=route53_update_traffic_policy_instance]{update_traffic_policy_instance}}
+request, there's a brief delay while Amazon Route 53 creates the
+resource record sets that are specified in the traffic policy
+definition. For more information, see the \code{State} response element.
 
 Route 53 returns a maximum of 100 items in each response. If you have a
 lot of traffic policy instances, you can use the \code{MaxItems} parameter to

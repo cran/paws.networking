@@ -14,12 +14,20 @@ elb_enable_availability_zones_for_load_balancer(LoadBalancerName,
 \item{AvailabilityZones}{[required] The Availability Zones. These must be in the same region as the load
 balancer.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  AvailabilityZones = list(
+    "string"
+  )
+)
+}
+}
 \description{
 Adds the specified Availability Zones to the set of Availability Zones
 for the specified load balancer in EC2-Classic or a default VPC.
 
 For load balancers in a non-default VPC, use
-AttachLoadBalancerToSubnets.
+\code{\link[=elb_attach_load_balancer_to_subnets]{attach_load_balancer_to_subnets}}.
 
 The load balancer evenly distributes requests across all its registered
 Availability Zones that contain instances. For more information, see

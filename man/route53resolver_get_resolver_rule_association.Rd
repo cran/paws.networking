@@ -11,10 +11,23 @@ route53resolver_get_resolver_rule_association(ResolverRuleAssociationId)
 \item{ResolverRuleAssociationId}{[required] The ID of the Resolver rule association that you want to get information
 about.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  ResolverRuleAssociation = list(
+    Id = "string",
+    ResolverRuleId = "string",
+    Name = "string",
+    VPCId = "string",
+    Status = "CREATING"|"COMPLETE"|"DELETING"|"FAILED"|"OVERRIDDEN",
+    StatusMessage = "string"
+  )
+)
+}
+}
 \description{
 Gets information about an association between a specified Resolver rule
 and a VPC. You associate a Resolver rule and a VPC using
-\href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_AssociateResolverRule.html}{AssociateResolverRule}.
+\code{\link[=route53resolver_associate_resolver_rule]{associate_resolver_rule}}.
 }
 \section{Request syntax}{
 \preformatted{svc$get_resolver_rule_association(

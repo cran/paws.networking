@@ -9,22 +9,53 @@ route53resolver_list_resolver_endpoints(MaxResults, NextToken, Filters)
 }
 \arguments{
 \item{MaxResults}{The maximum number of Resolver endpoints that you want to return in the
-response to a \code{ListResolverEndpoints} request. If you don't specify a
-value for \code{MaxResults}, Resolver returns up to 100 Resolver endpoints.}
+response to a
+\code{\link[=route53resolver_list_resolver_endpoints]{list_resolver_endpoints}}
+request. If you don't specify a value for \code{MaxResults}, Resolver returns
+up to 100 Resolver endpoints.}
 
-\item{NextToken}{For the first \code{ListResolverEndpoints} request, omit this value.
+\item{NextToken}{For the first
+\code{\link[=route53resolver_list_resolver_endpoints]{list_resolver_endpoints}}
+request, omit this value.
 
 If you have more than \code{MaxResults} Resolver endpoints, you can submit
-another \code{ListResolverEndpoints} request to get the next group of
-Resolver endpoints. In the next request, specify the value of
-\code{NextToken} from the previous response.}
+another
+\code{\link[=route53resolver_list_resolver_endpoints]{list_resolver_endpoints}}
+request to get the next group of Resolver endpoints. In the next
+request, specify the value of \code{NextToken} from the previous response.}
 
 \item{Filters}{An optional specification to return a subset of Resolver endpoints, such
 as all inbound Resolver endpoints.
 
-If you submit a second or subsequent \code{ListResolverEndpoints} request and
-specify the \code{NextToken} parameter, you must use the same values for
-\code{Filters}, if any, as in the previous request.}
+If you submit a second or subsequent
+\code{\link[=route53resolver_list_resolver_endpoints]{list_resolver_endpoints}}
+request and specify the \code{NextToken} parameter, you must use the same
+values for \code{Filters}, if any, as in the previous request.}
+}
+\value{
+A list with the following syntax:\preformatted{list(
+  NextToken = "string",
+  MaxResults = 123,
+  ResolverEndpoints = list(
+    list(
+      Id = "string",
+      CreatorRequestId = "string",
+      Arn = "string",
+      Name = "string",
+      SecurityGroupIds = list(
+        "string"
+      ),
+      Direction = "INBOUND"|"OUTBOUND",
+      IpAddressCount = 123,
+      HostVPCId = "string",
+      Status = "CREATING"|"OPERATIONAL"|"UPDATING"|"AUTO_RECOVERING"|"ACTION_NEEDED"|"DELETING",
+      StatusMessage = "string",
+      CreationTime = "string",
+      ModificationTime = "string"
+    )
+  )
+)
+}
 }
 \description{
 Lists all the Resolver endpoints that were created using the current AWS

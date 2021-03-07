@@ -20,6 +20,16 @@ created.}
 
 \item{contentType}{[required] [Required] The content-type for the model.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  id = "string",
+  name = "string",
+  description = "string",
+  schema = "string",
+  contentType = "string"
+)
+}
+}
 \description{
 Adds a new Model resource to an existing RestApi resource.
 }

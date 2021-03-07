@@ -20,6 +20,27 @@ Maximum value: 180 minutes (3 hours).
 
 Default: 180 minutes (3 hours).}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  virtualInterfaceTest = list(
+    testId = "string",
+    virtualInterfaceId = "string",
+    bgpPeers = list(
+      "string"
+    ),
+    status = "string",
+    ownerAccount = "string",
+    testDurationInMinutes = 123,
+    startTime = as.POSIXct(
+      "2015-01-01"
+    ),
+    endTime = as.POSIXct(
+      "2015-01-01"
+    )
+  )
+)
+}
+}
 \description{
 Starts the virtual interface failover test that verifies your
 configuration meets your resiliency requirements by placing the BGP
@@ -30,11 +51,11 @@ You can run the test on public, private, transit, and hosted virtual
 interfaces.
 
 You can use
-\href{https://docs.aws.amazon.com/directconnect/latest/APIReference/API_ListVirtualInterfaceTestHistory.html}{ListVirtualInterfaceTestHistory}
+\code{\link[=directconnect_list_virtual_interface_test_history]{list_virtual_interface_test_history}}
 to view the virtual interface test history.
 
 If you need to stop the test before the test interval completes, use
-\href{https://docs.aws.amazon.com/directconnect/latest/APIReference/API_StopBgpFailoverTest.html}{StopBgpFailoverTest}.
+\code{\link[=directconnect_stop_bgp_failover_test]{stop_bgp_failover_test}}.
 }
 \section{Request syntax}{
 \preformatted{svc$start_bgp_failover_test(

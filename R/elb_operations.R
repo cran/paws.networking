@@ -10,8 +10,8 @@ NULL
 #' balancer can have a maximum of 10 tags.
 #' 
 #' Each tag consists of a key and an optional value. If a tag with the same
-#' key is already associated with the load balancer, `AddTags` updates its
-#' value.
+#' key is already associated with the load balancer,
+#' [`add_tags`][elb_add_tags] updates its value.
 #' 
 #' For more information, see [Tag Your Classic Load
 #' Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html)
@@ -22,6 +22,9 @@ NULL
 #'
 #' @param LoadBalancerNames &#91;required&#93; The name of the load balancer. You can specify one load balancer only.
 #' @param Tags &#91;required&#93; The tags.
+#'
+#' @return
+#' An empty list.
 #'
 #' @section Request syntax:
 #' ```
@@ -98,6 +101,16 @@ elb_add_tags <- function(LoadBalancerNames, Tags) {
 #' @param SecurityGroups &#91;required&#93; The IDs of the security groups to associate with the load balancer. Note
 #' that you cannot specify the name of the security group.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   SecurityGroups = list(
+#'     "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$apply_security_groups_to_load_balancer(
@@ -160,6 +173,16 @@ elb_apply_security_groups_to_load_balancer <- function(LoadBalancerName, Securit
 #' @param Subnets &#91;required&#93; The IDs of the subnets to add. You can add only one subnet per
 #' Availability Zone.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   Subnets = list(
+#'     "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$attach_load_balancer_to_subnets(
@@ -218,6 +241,20 @@ elb_attach_load_balancer_to_subnets <- function(LoadBalancerName, Subnets) {
 #'
 #' @param LoadBalancerName &#91;required&#93; The name of the load balancer.
 #' @param HealthCheck &#91;required&#93; The configuration information.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   HealthCheck = list(
+#'     Target = "string",
+#'     Interval = 123,
+#'     Timeout = 123,
+#'     UnhealthyThreshold = 123,
+#'     HealthyThreshold = 123
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -278,11 +315,12 @@ elb_configure_health_check <- function(LoadBalancerName, HealthCheck) {
 #' only with HTTP/HTTPS listeners.
 #' 
 #' This policy is similar to the policy created by
-#' CreateLBCookieStickinessPolicy, except that the lifetime of the special
-#' Elastic Load Balancing cookie, `AWSELB`, follows the lifetime of the
-#' application-generated cookie specified in the policy configuration. The
-#' load balancer only inserts a new stickiness cookie when the application
-#' response includes a new application cookie.
+#' [`create_lb_cookie_stickiness_policy`][elb_create_lb_cookie_stickiness_policy],
+#' except that the lifetime of the special Elastic Load Balancing cookie,
+#' `AWSELB`, follows the lifetime of the application-generated cookie
+#' specified in the policy configuration. The load balancer only inserts a
+#' new stickiness cookie when the application response includes a new
+#' application cookie.
 #' 
 #' If the application cookie is explicitly removed or expires, the session
 #' stops being sticky until a new application cookie is issued.
@@ -300,6 +338,9 @@ elb_configure_health_check <- function(LoadBalancerName, HealthCheck) {
 #' alphanumeric characters and dashes (-). This name must be unique within
 #' the set of policies for this load balancer.
 #' @param CookieName &#91;required&#93; The name of the application cookie used for stickiness.
+#'
+#' @return
+#' An empty list.
 #'
 #' @section Request syntax:
 #' ```
@@ -380,6 +421,9 @@ elb_create_app_cookie_stickiness_policy <- function(LoadBalancerName, PolicyName
 #' which indicates that the sticky session should last for the duration of
 #' the browser session.
 #'
+#' @return
+#' An empty list.
+#'
 #' @section Request syntax:
 #' ```
 #' svc$create_lb_cookie_stickiness_policy(
@@ -427,12 +471,15 @@ elb_create_lb_cookie_stickiness_policy <- function(LoadBalancerName, PolicyName,
 #' 
 #' You can add listeners, security groups, subnets, and tags when you
 #' create your load balancer, or you can add them later using
-#' CreateLoadBalancerListeners, ApplySecurityGroupsToLoadBalancer,
-#' AttachLoadBalancerToSubnets, and AddTags.
+#' [`create_load_balancer_listeners`][elb_create_load_balancer_listeners],
+#' [`apply_security_groups_to_load_balancer`][elb_apply_security_groups_to_load_balancer],
+#' [`attach_load_balancer_to_subnets`][elb_attach_load_balancer_to_subnets],
+#' and [`add_tags`][elb_add_tags].
 #' 
-#' To describe your current load balancers, see DescribeLoadBalancers. When
-#' you are finished with a load balancer, you can delete it using
-#' DeleteLoadBalancer.
+#' To describe your current load balancers, see
+#' [`describe_load_balancers`][elb_describe_load_balancers]. When you are
+#' finished with a load balancer, you can delete it using
+#' [`delete_load_balancer`][elb_delete_load_balancer].
 #' 
 #' You can create up to 20 load balancers per region per account. You can
 #' request an increase for the number of load balancers for your account.
@@ -461,7 +508,8 @@ elb_create_lb_cookie_stickiness_policy <- function(LoadBalancerName, PolicyName,
 #' You must specify at least one Availability Zone.
 #' 
 #' You can add more Availability Zones after you create the load balancer
-#' using EnableAvailabilityZonesForLoadBalancer.
+#' using
+#' [`enable_availability_zones_for_load_balancer`][elb_enable_availability_zones_for_load_balancer].
 #' @param Subnets The IDs of the subnets in your VPC to attach to the load balancer.
 #' Specify one subnet per Availability Zone specified in
 #' `AvailabilityZones`.
@@ -483,6 +531,14 @@ elb_create_lb_cookie_stickiness_policy <- function(LoadBalancerName, PolicyName,
 #' Classic Load
 #' Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html)
 #' in the *Classic Load Balancers Guide*.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   DNSName = "string"
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -664,6 +720,9 @@ elb_create_load_balancer <- function(LoadBalancerName, Listeners, AvailabilityZo
 #' @param LoadBalancerName &#91;required&#93; The name of the load balancer.
 #' @param Listeners &#91;required&#93; The listeners.
 #'
+#' @return
+#' An empty list.
+#'
 #' @section Request syntax:
 #' ```
 #' svc$create_load_balancer_listeners(
@@ -751,8 +810,11 @@ elb_create_load_balancer_listeners <- function(LoadBalancerName, Listeners) {
 #' @param PolicyName &#91;required&#93; The name of the load balancer policy to be created. This name must be
 #' unique within the set of policies for this load balancer.
 #' @param PolicyTypeName &#91;required&#93; The name of the base policy type. To get the list of policy types, use
-#' DescribeLoadBalancerPolicyTypes.
+#' [`describe_load_balancer_policy_types`][elb_describe_load_balancer_policy_types].
 #' @param PolicyAttributes The policy attributes.
+#'
+#' @return
+#' An empty list.
 #'
 #' @section Request syntax:
 #' ```
@@ -791,7 +853,7 @@ elb_create_load_balancer_listeners <- function(LoadBalancerName, Listeners) {
 #'   PolicyAttributes = list(
 #'     list(
 #'       AttributeName = "PublicKey",
-#'       AttributeValue = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwAYUjnfyEyXr1pxjhFWBpMlg..."
+#'       AttributeValue = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwAYUjnf..."
 #'     )
 #'   ),
 #'   PolicyName = "my-PublicKey-policy",
@@ -845,12 +907,16 @@ elb_create_load_balancer_policy <- function(LoadBalancerName, PolicyName, Policy
 #' no longer delivered to your instances.
 #' 
 #' If the load balancer does not exist or has already been deleted, the
-#' call to `DeleteLoadBalancer` still succeeds.
+#' call to [`delete_load_balancer`][elb_delete_load_balancer] still
+#' succeeds.
 #'
 #' @usage
 #' elb_delete_load_balancer(LoadBalancerName)
 #'
 #' @param LoadBalancerName &#91;required&#93; The name of the load balancer.
+#'
+#' @return
+#' An empty list.
 #'
 #' @section Request syntax:
 #' ```
@@ -897,6 +963,9 @@ elb_delete_load_balancer <- function(LoadBalancerName) {
 #'
 #' @param LoadBalancerName &#91;required&#93; The name of the load balancer.
 #' @param LoadBalancerPorts &#91;required&#93; The client port numbers of the listeners.
+#'
+#' @return
+#' An empty list.
 #'
 #' @section Request syntax:
 #' ```
@@ -952,6 +1021,9 @@ elb_delete_load_balancer_listeners <- function(LoadBalancerName, LoadBalancerPor
 #' @param LoadBalancerName &#91;required&#93; The name of the load balancer.
 #' @param PolicyName &#91;required&#93; The name of the policy.
 #'
+#' @return
+#' An empty list.
+#'
 #' @section Request syntax:
 #' ```
 #' svc$delete_load_balancer_policy(
@@ -997,8 +1069,8 @@ elb_delete_load_balancer_policy <- function(LoadBalancerName, PolicyName) {
 #' After the instance is deregistered, it no longer receives traffic from
 #' the load balancer.
 #' 
-#' You can use DescribeLoadBalancers to verify that the instance is
-#' deregistered from the load balancer.
+#' You can use [`describe_load_balancers`][elb_describe_load_balancers] to
+#' verify that the instance is deregistered from the load balancer.
 #' 
 #' For more information, see [Register or De-Register EC2
 #' Instances](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html)
@@ -1009,6 +1081,18 @@ elb_delete_load_balancer_policy <- function(LoadBalancerName, PolicyName) {
 #'
 #' @param LoadBalancerName &#91;required&#93; The name of the load balancer.
 #' @param Instances &#91;required&#93; The IDs of the instances.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   Instances = list(
+#'     list(
+#'       InstanceId = "string"
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1074,6 +1158,20 @@ elb_deregister_instances_from_load_balancer <- function(LoadBalancerName, Instan
 #' previous call.)
 #' @param PageSize The maximum number of results to return with this call.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   Limits = list(
+#'     list(
+#'       Name = "string",
+#'       Max = "string"
+#'     )
+#'   ),
+#'   NextMarker = "string"
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$describe_account_limits(
@@ -1118,6 +1216,21 @@ elb_describe_account_limits <- function(Marker = NULL, PageSize = NULL) {
 #'
 #' @param LoadBalancerName &#91;required&#93; The name of the load balancer.
 #' @param Instances The IDs of the instances.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   InstanceStates = list(
+#'     list(
+#'       InstanceId = "string",
+#'       State = "string",
+#'       ReasonCode = "string",
+#'       Description = "string"
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1169,6 +1282,37 @@ elb_describe_instance_health <- function(LoadBalancerName, Instances = NULL) {
 #' elb_describe_load_balancer_attributes(LoadBalancerName)
 #'
 #' @param LoadBalancerName &#91;required&#93; The name of the load balancer.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   LoadBalancerAttributes = list(
+#'     CrossZoneLoadBalancing = list(
+#'       Enabled = TRUE|FALSE
+#'     ),
+#'     AccessLog = list(
+#'       Enabled = TRUE|FALSE,
+#'       S3BucketName = "string",
+#'       EmitInterval = 123,
+#'       S3BucketPrefix = "string"
+#'     ),
+#'     ConnectionDraining = list(
+#'       Enabled = TRUE|FALSE,
+#'       Timeout = 123
+#'     ),
+#'     ConnectionSettings = list(
+#'       IdleTimeout = 123
+#'     ),
+#'     AdditionalAttributes = list(
+#'       list(
+#'         Key = "string",
+#'         Value = "string"
+#'       )
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1224,6 +1368,25 @@ elb_describe_load_balancer_attributes <- function(LoadBalancerName) {
 #' @param LoadBalancerName The name of the load balancer.
 #' @param PolicyNames The names of the policies.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   PolicyDescriptions = list(
+#'     list(
+#'       PolicyName = "string",
+#'       PolicyTypeName = "string",
+#'       PolicyAttributeDescriptions = list(
+#'         list(
+#'           AttributeName = "string",
+#'           AttributeValue = "string"
+#'         )
+#'       )
+#'     )
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$describe_load_balancer_policies(
@@ -1278,16 +1441,42 @@ elb_describe_load_balancer_policies <- function(LoadBalancerName = NULL, PolicyN
 #' be used only with layer 4 listeners, and some policies can be used only
 #' with your EC2 instances.
 #' 
-#' You can use CreateLoadBalancerPolicy to create a policy configuration
-#' for any of these policy types. Then, depending on the policy type, use
-#' either SetLoadBalancerPoliciesOfListener or
-#' SetLoadBalancerPoliciesForBackendServer to set the policy.
+#' You can use
+#' [`create_load_balancer_policy`][elb_create_load_balancer_policy] to
+#' create a policy configuration for any of these policy types. Then,
+#' depending on the policy type, use either
+#' [`set_load_balancer_policies_of_listener`][elb_set_load_balancer_policies_of_listener]
+#' or
+#' [`set_load_balancer_policies_for_backend_server`][elb_set_load_balancer_policies_for_backend_server]
+#' to set the policy.
 #'
 #' @usage
 #' elb_describe_load_balancer_policy_types(PolicyTypeNames)
 #'
 #' @param PolicyTypeNames The names of the policy types. If no names are specified, describes all
 #' policy types defined by Elastic Load Balancing.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   PolicyTypeDescriptions = list(
+#'     list(
+#'       PolicyTypeName = "string",
+#'       Description = "string",
+#'       PolicyAttributeTypeDescriptions = list(
+#'         list(
+#'           AttributeName = "string",
+#'           AttributeType = "string",
+#'           Description = "string",
+#'           DefaultValue = "string",
+#'           Cardinality = "string"
+#'         )
+#'       )
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1343,6 +1532,91 @@ elb_describe_load_balancer_policy_types <- function(PolicyTypeNames = NULL) {
 #' @param PageSize The maximum number of results to return with this call (a number from 1
 #' to 400). The default is 400.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   LoadBalancerDescriptions = list(
+#'     list(
+#'       LoadBalancerName = "string",
+#'       DNSName = "string",
+#'       CanonicalHostedZoneName = "string",
+#'       CanonicalHostedZoneNameID = "string",
+#'       ListenerDescriptions = list(
+#'         list(
+#'           Listener = list(
+#'             Protocol = "string",
+#'             LoadBalancerPort = 123,
+#'             InstanceProtocol = "string",
+#'             InstancePort = 123,
+#'             SSLCertificateId = "string"
+#'           ),
+#'           PolicyNames = list(
+#'             "string"
+#'           )
+#'         )
+#'       ),
+#'       Policies = list(
+#'         AppCookieStickinessPolicies = list(
+#'           list(
+#'             PolicyName = "string",
+#'             CookieName = "string"
+#'           )
+#'         ),
+#'         LBCookieStickinessPolicies = list(
+#'           list(
+#'             PolicyName = "string",
+#'             CookieExpirationPeriod = 123
+#'           )
+#'         ),
+#'         OtherPolicies = list(
+#'           "string"
+#'         )
+#'       ),
+#'       BackendServerDescriptions = list(
+#'         list(
+#'           InstancePort = 123,
+#'           PolicyNames = list(
+#'             "string"
+#'           )
+#'         )
+#'       ),
+#'       AvailabilityZones = list(
+#'         "string"
+#'       ),
+#'       Subnets = list(
+#'         "string"
+#'       ),
+#'       VPCId = "string",
+#'       Instances = list(
+#'         list(
+#'           InstanceId = "string"
+#'         )
+#'       ),
+#'       HealthCheck = list(
+#'         Target = "string",
+#'         Interval = 123,
+#'         Timeout = 123,
+#'         UnhealthyThreshold = 123,
+#'         HealthyThreshold = 123
+#'       ),
+#'       SourceSecurityGroup = list(
+#'         OwnerAlias = "string",
+#'         GroupName = "string"
+#'       ),
+#'       SecurityGroups = list(
+#'         "string"
+#'       ),
+#'       CreatedTime = as.POSIXct(
+#'         "2015-01-01"
+#'       ),
+#'       Scheme = "string"
+#'     )
+#'   ),
+#'   NextMarker = "string"
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$describe_load_balancers(
@@ -1393,6 +1667,24 @@ elb_describe_load_balancers <- function(LoadBalancerNames = NULL, Marker = NULL,
 #' elb_describe_tags(LoadBalancerNames)
 #'
 #' @param LoadBalancerNames &#91;required&#93; The names of the load balancers.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   TagDescriptions = list(
+#'     list(
+#'       LoadBalancerName = "string",
+#'       Tags = list(
+#'         list(
+#'           Key = "string",
+#'           Value = "string"
+#'         )
+#'       )
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1451,6 +1743,16 @@ elb_describe_tags <- function(LoadBalancerNames) {
 #' @param LoadBalancerName &#91;required&#93; The name of the load balancer.
 #' @param Subnets &#91;required&#93; The IDs of the subnets.
 #'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   Subnets = list(
+#'     "string"
+#'   )
+#' )
+#' ```
+#'
 #' @section Request syntax:
 #' ```
 #' svc$detach_load_balancer_from_subnets(
@@ -1501,7 +1803,7 @@ elb_detach_load_balancer_from_subnets <- function(LoadBalancerName, Subnets) {
 #' Zones for the specified load balancer in EC2-Classic or a default VPC.
 #' 
 #' For load balancers in a non-default VPC, use
-#' DetachLoadBalancerFromSubnets.
+#' [`detach_load_balancer_from_subnets`][elb_detach_load_balancer_from_subnets].
 #' 
 #' There must be at least one Availability Zone registered with a load
 #' balancer at all times. After an Availability Zone is removed, all
@@ -1520,6 +1822,16 @@ elb_detach_load_balancer_from_subnets <- function(LoadBalancerName, Subnets) {
 #'
 #' @param LoadBalancerName &#91;required&#93; The name of the load balancer.
 #' @param AvailabilityZones &#91;required&#93; The Availability Zones.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   AvailabilityZones = list(
+#'     "string"
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1571,7 +1883,7 @@ elb_disable_availability_zones_for_load_balancer <- function(LoadBalancerName, A
 #' for the specified load balancer in EC2-Classic or a default VPC.
 #' 
 #' For load balancers in a non-default VPC, use
-#' AttachLoadBalancerToSubnets.
+#' [`attach_load_balancer_to_subnets`][elb_attach_load_balancer_to_subnets].
 #' 
 #' The load balancer evenly distributes requests across all its registered
 #' Availability Zones that contain instances. For more information, see
@@ -1586,6 +1898,16 @@ elb_disable_availability_zones_for_load_balancer <- function(LoadBalancerName, A
 #' @param LoadBalancerName &#91;required&#93; The name of the load balancer.
 #' @param AvailabilityZones &#91;required&#93; The Availability Zones. These must be in the same region as the load
 #' balancer.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   AvailabilityZones = list(
+#'     "string"
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1661,6 +1983,38 @@ elb_enable_availability_zones_for_load_balancer <- function(LoadBalancerName, Av
 #'
 #' @param LoadBalancerName &#91;required&#93; The name of the load balancer.
 #' @param LoadBalancerAttributes &#91;required&#93; The attributes for the load balancer.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   LoadBalancerName = "string",
+#'   LoadBalancerAttributes = list(
+#'     CrossZoneLoadBalancing = list(
+#'       Enabled = TRUE|FALSE
+#'     ),
+#'     AccessLog = list(
+#'       Enabled = TRUE|FALSE,
+#'       S3BucketName = "string",
+#'       EmitInterval = 123,
+#'       S3BucketPrefix = "string"
+#'     ),
+#'     ConnectionDraining = list(
+#'       Enabled = TRUE|FALSE,
+#'       Timeout = 123
+#'     ),
+#'     ConnectionSettings = list(
+#'       IdleTimeout = 123
+#'     ),
+#'     AdditionalAttributes = list(
+#'       list(
+#'         Key = "string",
+#'         Value = "string"
+#'       )
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1753,7 +2107,8 @@ elb_modify_load_balancer_attributes <- function(LoadBalancerName, LoadBalancerAt
 #' Note that `RegisterInstanceWithLoadBalancer` completes when the request
 #' has been registered. Instance registration takes a little time to
 #' complete. To check the state of the registered instances, use
-#' DescribeLoadBalancers or DescribeInstanceHealth.
+#' [`describe_load_balancers`][elb_describe_load_balancers] or
+#' [`describe_instance_health`][elb_describe_instance_health].
 #' 
 #' After the instance is registered, it starts receiving traffic and
 #' requests from the load balancer. Any instance that is not in one of the
@@ -1763,7 +2118,7 @@ elb_modify_load_balancer_attributes <- function(LoadBalancerName, LoadBalancerAt
 #' the `InService` state.
 #' 
 #' To deregister instances from a load balancer, use
-#' DeregisterInstancesFromLoadBalancer.
+#' [`deregister_instances_from_load_balancer`][elb_deregister_instances_from_load_balancer].
 #' 
 #' For more information, see [Register or De-Register EC2
 #' Instances](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html)
@@ -1774,6 +2129,18 @@ elb_modify_load_balancer_attributes <- function(LoadBalancerName, LoadBalancerAt
 #'
 #' @param LoadBalancerName &#91;required&#93; The name of the load balancer.
 #' @param Instances &#91;required&#93; The IDs of the instances.
+#'
+#' @return
+#' A list with the following syntax:
+#' ```
+#' list(
+#'   Instances = list(
+#'     list(
+#'       InstanceId = "string"
+#'     )
+#'   )
+#' )
+#' ```
 #'
 #' @section Request syntax:
 #' ```
@@ -1832,6 +2199,9 @@ elb_register_instances_with_load_balancer <- function(LoadBalancerName, Instance
 #' @param LoadBalancerNames &#91;required&#93; The name of the load balancer. You can specify a maximum of one load
 #' balancer name.
 #' @param Tags &#91;required&#93; The list of tag keys to remove.
+#'
+#' @return
+#' An empty list.
 #'
 #' @section Request syntax:
 #' ```
@@ -1903,6 +2273,9 @@ elb_remove_tags <- function(LoadBalancerNames, Tags) {
 #' @param LoadBalancerPort &#91;required&#93; The port that uses the specified SSL certificate.
 #' @param SSLCertificateId &#91;required&#93; The Amazon Resource Name (ARN) of the SSL certificate.
 #'
+#' @return
+#' An empty list.
+#'
 #' @section Request syntax:
 #' ```
 #' svc$set_load_balancer_listener_ssl_certificate(
@@ -1953,12 +2326,14 @@ elb_set_load_balancer_listener_ssl_certificate <- function(LoadBalancerName, Loa
 #' the instance ports; this policy type is composed of multiple public key
 #' policies.
 #' 
-#' Each time you use `SetLoadBalancerPoliciesForBackendServer` to enable
-#' the policies, use the `PolicyNames` parameter to list the policies that
-#' you want to enable.
+#' Each time you use
+#' [`set_load_balancer_policies_for_backend_server`][elb_set_load_balancer_policies_for_backend_server]
+#' to enable the policies, use the `PolicyNames` parameter to list the
+#' policies that you want to enable.
 #' 
-#' You can use DescribeLoadBalancers or DescribeLoadBalancerPolicies to
-#' verify that the policy is associated with the EC2 instance.
+#' You can use [`describe_load_balancers`][elb_describe_load_balancers] or
+#' [`describe_load_balancer_policies`][elb_describe_load_balancer_policies]
+#' to verify that the policy is associated with the EC2 instance.
 #' 
 #' For more information about enabling back-end instance authentication,
 #' see [Configure Back-end Instance
@@ -1976,6 +2351,9 @@ elb_set_load_balancer_listener_ssl_certificate <- function(LoadBalancerName, Loa
 #' @param InstancePort &#91;required&#93; The port number associated with the EC2 instance.
 #' @param PolicyNames &#91;required&#93; The names of the policies. If the list is empty, then all current
 #' polices are removed from the EC2 instance.
+#'
+#' @return
+#' An empty list.
 #'
 #' @section Request syntax:
 #' ```
@@ -2029,7 +2407,7 @@ elb_set_load_balancer_policies_for_backend_server <- function(LoadBalancerName, 
 #' port with the specified set of policies.
 #' 
 #' To enable back-end server authentication, use
-#' SetLoadBalancerPoliciesForBackendServer.
+#' [`set_load_balancer_policies_for_backend_server`][elb_set_load_balancer_policies_for_backend_server].
 #' 
 #' For more information about setting policies, see [Update the SSL
 #' Negotiation
@@ -2049,6 +2427,9 @@ elb_set_load_balancer_policies_for_backend_server <- function(LoadBalancerName, 
 #' @param PolicyNames &#91;required&#93; The names of the policies. This list must include all policies to be
 #' enabled. If you omit a policy that is currently enabled, it is disabled.
 #' If the list is empty, all current policies are disabled.
+#'
+#' @return
+#' An empty list.
 #'
 #' @section Request syntax:
 #' ```

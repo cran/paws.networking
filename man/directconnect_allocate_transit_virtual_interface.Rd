@@ -16,6 +16,58 @@ provisioned.}
 
 \item{newTransitVirtualInterfaceAllocation}{[required] Information about the transit virtual interface.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  virtualInterface = list(
+    ownerAccount = "string",
+    virtualInterfaceId = "string",
+    location = "string",
+    connectionId = "string",
+    virtualInterfaceType = "string",
+    virtualInterfaceName = "string",
+    vlan = 123,
+    asn = 123,
+    amazonSideAsn = 123,
+    authKey = "string",
+    amazonAddress = "string",
+    customerAddress = "string",
+    addressFamily = "ipv4"|"ipv6",
+    virtualInterfaceState = "confirming"|"verifying"|"pending"|"available"|"down"|"deleting"|"deleted"|"rejected"|"unknown",
+    customerRouterConfig = "string",
+    mtu = 123,
+    jumboFrameCapable = TRUE|FALSE,
+    virtualGatewayId = "string",
+    directConnectGatewayId = "string",
+    routeFilterPrefixes = list(
+      list(
+        cidr = "string"
+      )
+    ),
+    bgpPeers = list(
+      list(
+        bgpPeerId = "string",
+        asn = 123,
+        authKey = "string",
+        addressFamily = "ipv4"|"ipv6",
+        amazonAddress = "string",
+        customerAddress = "string",
+        bgpPeerState = "verifying"|"pending"|"available"|"deleting"|"deleted",
+        bgpStatus = "up"|"down"|"unknown",
+        awsDeviceV2 = "string"
+      )
+    ),
+    region = "string",
+    awsDeviceV2 = "string",
+    tags = list(
+      list(
+        key = "string",
+        value = "string"
+      )
+    )
+  )
+)
+}
+}
 \description{
 Provisions a transit virtual interface to be owned by the specified AWS
 account. Use this type of interface to connect a transit gateway to your
@@ -25,9 +77,10 @@ The owner of a connection provisions a transit virtual interface to be
 owned by the specified AWS account.
 
 After you create a transit virtual interface, it must be confirmed by
-the owner using ConfirmTransitVirtualInterface. Until this step has been
-completed, the transit virtual interface is in the \code{requested} state and
-is not available to handle traffic.
+the owner using
+\code{\link[=directconnect_confirm_transit_virtual_interface]{confirm_transit_virtual_interface}}.
+Until this step has been completed, the transit virtual interface is in
+the \code{requested} state and is not available to handle traffic.
 }
 \section{Request syntax}{
 \preformatted{svc$allocate_transit_virtual_interface(

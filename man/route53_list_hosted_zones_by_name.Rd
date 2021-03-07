@@ -7,24 +7,28 @@
 route53_list_hosted_zones_by_name(DNSName, HostedZoneId, MaxItems)
 }
 \arguments{
-\item{DNSName}{(Optional) For your first request to \code{ListHostedZonesByName}, include
-the \code{dnsname} parameter only if you want to specify the name of the
-first hosted zone in the response. If you don't include the \code{dnsname}
-parameter, Amazon Route 53 returns all of the hosted zones that were
-created by the current AWS account, in ASCII order. For subsequent
-requests, include both \code{dnsname} and \code{hostedzoneid} parameters. For
-\code{dnsname}, specify the value of \code{NextDNSName} from the previous
-response.}
+\item{DNSName}{(Optional) For your first request to
+\code{\link[=route53_list_hosted_zones_by_name]{list_hosted_zones_by_name}},
+include the \code{dnsname} parameter only if you want to specify the name of
+the first hosted zone in the response. If you don't include the
+\code{dnsname} parameter, Amazon Route 53 returns all of the hosted zones
+that were created by the current AWS account, in ASCII order. For
+subsequent requests, include both \code{dnsname} and \code{hostedzoneid}
+parameters. For \code{dnsname}, specify the value of \code{NextDNSName} from the
+previous response.}
 
-\item{HostedZoneId}{(Optional) For your first request to \code{ListHostedZonesByName}, do not
+\item{HostedZoneId}{(Optional) For your first request to
+\code{\link[=route53_list_hosted_zones_by_name]{list_hosted_zones_by_name}}, do not
 include the \code{hostedzoneid} parameter.
 
 If you have more hosted zones than the value of \code{maxitems},
-\code{ListHostedZonesByName} returns only the first \code{maxitems} hosted zones.
-To get the next group of \code{maxitems} hosted zones, submit another request
-to \code{ListHostedZonesByName} and include both \code{dnsname} and \code{hostedzoneid}
-parameters. For the value of \code{hostedzoneid}, specify the value of the
-\code{NextHostedZoneId} element from the previous response.}
+\code{\link[=route53_list_hosted_zones_by_name]{list_hosted_zones_by_name}} returns
+only the first \code{maxitems} hosted zones. To get the next group of
+\code{maxitems} hosted zones, submit another request to
+\code{\link[=route53_list_hosted_zones_by_name]{list_hosted_zones_by_name}} and
+include both \code{dnsname} and \code{hostedzoneid} parameters. For the value of
+\code{hostedzoneid}, specify the value of the \code{NextHostedZoneId} element from
+the previous response.}
 
 \item{MaxItems}{The maximum number of hosted zones to be included in the response body
 for this request. If you have more than \code{maxitems} hosted zones, then
@@ -32,13 +36,40 @@ the value of the \code{IsTruncated} element in the response is true, and the
 values of \code{NextDNSName} and \code{NextHostedZoneId} specify the first hosted
 zone in the next group of \code{maxitems} hosted zones.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  HostedZones = list(
+    list(
+      Id = "string",
+      Name = "string",
+      CallerReference = "string",
+      Config = list(
+        Comment = "string",
+        PrivateZone = TRUE|FALSE
+      ),
+      ResourceRecordSetCount = 123,
+      LinkedService = list(
+        ServicePrincipal = "string",
+        Description = "string"
+      )
+    )
+  ),
+  DNSName = "string",
+  HostedZoneId = "string",
+  IsTruncated = TRUE|FALSE,
+  NextDNSName = "string",
+  NextHostedZoneId = "string",
+  MaxItems = "string"
+)
+}
+}
 \description{
 Retrieves a list of your hosted zones in lexicographic order. The
 response includes a \code{HostedZones} child element for each hosted zone
 created by the current AWS account.
 
-\code{ListHostedZonesByName} sorts hosted zones by name with the labels
-reversed. For example:
+\code{\link[=route53_list_hosted_zones_by_name]{list_hosted_zones_by_name}} sorts
+hosted zones by name with the labels reversed. For example:
 
 \code{com.example.www.}
 
@@ -46,13 +77,15 @@ Note the trailing dot, which can change the sort order in some
 circumstances.
 
 If the domain name includes escape characters or Punycode,
-\code{ListHostedZonesByName} alphabetizes the domain name using the escaped
-or Punycoded value, which is the format that Amazon Route 53 saves in
-its database. For example, to create a hosted zone for exämple.com, you
-specify ex\\344mple.com for the domain name. \code{ListHostedZonesByName}
+\code{\link[=route53_list_hosted_zones_by_name]{list_hosted_zones_by_name}}
+alphabetizes the domain name using the escaped or Punycoded value, which
+is the format that Amazon Route 53 saves in its database. For example,
+to create a hosted zone for exämple.com, you specify ex\\344mple.com for
+the domain name.
+\code{\link[=route53_list_hosted_zones_by_name]{list_hosted_zones_by_name}}
 alphabetizes it as:
 
-\verb{com.ex\\\\344mple.}
+\verb{com.ex\\344mple.}
 
 The labels are reversed and alphabetized using the escaped value. For
 more information about valid domain name formats, including
@@ -81,9 +114,9 @@ response.
 contain the domain name and the hosted zone ID of the next hosted
 zone that is associated with the current AWS account. If you want to
 list more hosted zones, make another call to
-\code{ListHostedZonesByName}, and specify the value of \code{NextDNSName} and
-\code{NextHostedZoneId} in the \code{dnsname} and \code{hostedzoneid} parameters,
-respectively.
+\code{\link[=route53_list_hosted_zones_by_name]{list_hosted_zones_by_name}},
+and specify the value of \code{NextDNSName} and \code{NextHostedZoneId} in the
+\code{dnsname} and \code{hostedzoneid} parameters, respectively.
 }
 }
 \section{Request syntax}{

@@ -10,7 +10,7 @@ route53_list_hosted_zones(Marker, MaxItems, DelegationSetId)
 \arguments{
 \item{Marker}{If the value of \code{IsTruncated} in the previous response was \code{true}, you
 have more hosted zones. To get more hosted zones, submit another
-\code{ListHostedZones} request.
+\code{\link[=route53_list_hosted_zones]{list_hosted_zones}} request.
 
 For the value of \code{marker}, specify the value of \code{NextMarker} from the
 previous response, which is the ID of the first hosted zone that Amazon
@@ -28,6 +28,31 @@ of \code{IsTruncated} in the response is \code{true}, and the value of
 \item{DelegationSetId}{If you're using reusable delegation sets and you want to list all of the
 hosted zones that are associated with a reusable delegation set, specify
 the ID of that reusable delegation set.}
+}
+\value{
+A list with the following syntax:\preformatted{list(
+  HostedZones = list(
+    list(
+      Id = "string",
+      Name = "string",
+      CallerReference = "string",
+      Config = list(
+        Comment = "string",
+        PrivateZone = TRUE|FALSE
+      ),
+      ResourceRecordSetCount = 123,
+      LinkedService = list(
+        ServicePrincipal = "string",
+        Description = "string"
+      )
+    )
+  ),
+  Marker = "string",
+  IsTruncated = TRUE|FALSE,
+  NextMarker = "string",
+  MaxItems = "string"
+)
+}
 }
 \description{
 Retrieves a list of the public and private hosted zones that are

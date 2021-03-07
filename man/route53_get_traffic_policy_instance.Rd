@@ -10,14 +10,32 @@ route53_get_traffic_policy_instance(Id)
 \item{Id}{[required] The ID of the traffic policy instance that you want to get information
 about.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  TrafficPolicyInstance = list(
+    Id = "string",
+    HostedZoneId = "string",
+    Name = "string",
+    TTL = 123,
+    State = "string",
+    Message = "string",
+    TrafficPolicyId = "string",
+    TrafficPolicyVersion = 123,
+    TrafficPolicyType = "SOA"|"A"|"TXT"|"NS"|"CNAME"|"MX"|"NAPTR"|"PTR"|"SRV"|"SPF"|"AAAA"|"CAA"|"DS"
+  )
+)
+}
+}
 \description{
 Gets information about a specified traffic policy instance.
 
-After you submit a \code{CreateTrafficPolicyInstance} or an
-\code{UpdateTrafficPolicyInstance} request, there's a brief delay while
-Amazon Route 53 creates the resource record sets that are specified in
-the traffic policy definition. For more information, see the \code{State}
-response element.
+After you submit a
+\code{\link[=route53_create_traffic_policy_instance]{create_traffic_policy_instance}}
+or an
+\code{\link[=route53_update_traffic_policy_instance]{update_traffic_policy_instance}}
+request, there's a brief delay while Amazon Route 53 creates the
+resource record sets that are specified in the traffic policy
+definition. For more information, see the \code{State} response element.
 
 In the Route 53 console, traffic policy instances are known as policy
 records.

@@ -8,34 +8,91 @@ route53_create_health_check(CallerReference, HealthCheckConfig)
 }
 \arguments{
 \item{CallerReference}{[required] A unique string that identifies the request and that allows you to retry
-a failed \code{CreateHealthCheck} request without the risk of creating two
-identical health checks:
+a failed \code{\link[=route53_create_health_check]{create_health_check}} request
+without the risk of creating two identical health checks:
 \itemize{
-\item If you send a \code{CreateHealthCheck} request with the same
-\code{CallerReference} and settings as a previous request, and if the
-health check doesn't exist, Amazon Route 53 creates the health
-check. If the health check does exist, Route 53 returns the settings
-for the existing health check.
-\item If you send a \code{CreateHealthCheck} request with the same
-\code{CallerReference} as a deleted health check, regardless of the
-settings, Route 53 returns a \code{HealthCheckAlreadyExists} error.
-\item If you send a \code{CreateHealthCheck} request with the same
-\code{CallerReference} as an existing health check but with different
-settings, Route 53 returns a \code{HealthCheckAlreadyExists} error.
-\item If you send a \code{CreateHealthCheck} request with a unique
-\code{CallerReference} but settings identical to an existing health
-check, Route 53 creates the health check.
+\item If you send a \code{\link[=route53_create_health_check]{create_health_check}}
+request with the same \code{CallerReference} and settings as a previous
+request, and if the health check doesn't exist, Amazon Route 53
+creates the health check. If the health check does exist, Route 53
+returns the settings for the existing health check.
+\item If you send a \code{\link[=route53_create_health_check]{create_health_check}}
+request with the same \code{CallerReference} as a deleted health check,
+regardless of the settings, Route 53 returns a
+\code{HealthCheckAlreadyExists} error.
+\item If you send a \code{\link[=route53_create_health_check]{create_health_check}}
+request with the same \code{CallerReference} as an existing health check
+but with different settings, Route 53 returns a
+\code{HealthCheckAlreadyExists} error.
+\item If you send a \code{\link[=route53_create_health_check]{create_health_check}}
+request with a unique \code{CallerReference} but settings identical to an
+existing health check, Route 53 creates the health check.
 }}
 
 \item{HealthCheckConfig}{[required] A complex type that contains settings for a new health check.}
+}
+\value{
+A list with the following syntax:\preformatted{list(
+  HealthCheck = list(
+    Id = "string",
+    CallerReference = "string",
+    LinkedService = list(
+      ServicePrincipal = "string",
+      Description = "string"
+    ),
+    HealthCheckConfig = list(
+      IPAddress = "string",
+      Port = 123,
+      Type = "HTTP"|"HTTPS"|"HTTP_STR_MATCH"|"HTTPS_STR_MATCH"|"TCP"|"CALCULATED"|"CLOUDWATCH_METRIC",
+      ResourcePath = "string",
+      FullyQualifiedDomainName = "string",
+      SearchString = "string",
+      RequestInterval = 123,
+      FailureThreshold = 123,
+      MeasureLatency = TRUE|FALSE,
+      Inverted = TRUE|FALSE,
+      Disabled = TRUE|FALSE,
+      HealthThreshold = 123,
+      ChildHealthChecks = list(
+        "string"
+      ),
+      EnableSNI = TRUE|FALSE,
+      Regions = list(
+        "us-east-1"|"us-west-1"|"us-west-2"|"eu-west-1"|"ap-southeast-1"|"ap-southeast-2"|"ap-northeast-1"|"sa-east-1"
+      ),
+      AlarmIdentifier = list(
+        Region = "us-east-1"|"us-east-2"|"us-west-1"|"us-west-2"|"ca-central-1"|"eu-central-1"|"eu-west-1"|"eu-west-2"|"eu-west-3"|"ap-east-1"|"me-south-1"|"ap-south-1"|"ap-southeast-1"|"ap-southeast-2"|"ap-northeast-1"|"ap-northeast-2"|"ap-northeast-3"|"eu-north-1"|"sa-east-1"|"cn-northwest-1"|"cn-north-1"|"af-south-1"|"eu-south-1"|"us-gov-west-1"|"us-gov-east-1"|"us-iso-east-1"|"us-isob-east-1",
+        Name = "string"
+      ),
+      InsufficientDataHealthStatus = "Healthy"|"Unhealthy"|"LastKnownStatus"
+    ),
+    HealthCheckVersion = 123,
+    CloudWatchAlarmConfiguration = list(
+      EvaluationPeriods = 123,
+      Threshold = 123.0,
+      ComparisonOperator = "GreaterThanOrEqualToThreshold"|"GreaterThanThreshold"|"LessThanThreshold"|"LessThanOrEqualToThreshold",
+      Period = 123,
+      MetricName = "string",
+      Namespace = "string",
+      Statistic = "Average"|"Sum"|"SampleCount"|"Maximum"|"Minimum",
+      Dimensions = list(
+        list(
+          Name = "string",
+          Value = "string"
+        )
+      )
+    )
+  ),
+  Location = "string"
+)
+}
 }
 \description{
 Creates a new health check.
 
 For information about adding health checks to resource record sets, see
 \href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_ResourceRecordSet.html#Route53-Type-ResourceRecordSet-HealthCheckId}{HealthCheckId}
-in
-\href{https://docs.aws.amazon.com/Route53/latest/APIReference/API_ChangeResourceRecordSets.html}{ChangeResourceRecordSets}.
+in \code{\link[=route53_change_resource_record_sets]{change_resource_record_sets}}.
 
 \strong{ELB Load Balancers}
 

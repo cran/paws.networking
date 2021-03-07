@@ -21,6 +21,32 @@ directconnect_create_interconnect(interconnectName, bandwidth, location,
 
 \item{providerName}{The name of the service provider associated with the interconnect.}
 }
+\value{
+A list with the following syntax:\preformatted{list(
+  interconnectId = "string",
+  interconnectName = "string",
+  interconnectState = "requested"|"pending"|"available"|"down"|"deleting"|"deleted"|"unknown",
+  region = "string",
+  location = "string",
+  bandwidth = "string",
+  loaIssueTime = as.POSIXct(
+    "2015-01-01"
+  ),
+  lagId = "string",
+  awsDevice = "string",
+  jumboFrameCapable = TRUE|FALSE,
+  awsDeviceV2 = "string",
+  hasLogicalRedundancy = "unknown"|"yes"|"no",
+  tags = list(
+    list(
+      key = "string",
+      value = "string"
+    )
+  ),
+  providerName = "string"
+)
+}
+}
 \description{
 Creates an interconnect between an AWS Direct Connect Partner's network
 and a specific AWS Direct Connect location.
@@ -40,7 +66,8 @@ that hosts the specified LAG. If there are no available ports on the
 endpoint, the request fails and no interconnect is created.
 
 For each end customer, the AWS Direct Connect Partner provisions a
-connection on their interconnect by calling AllocateHostedConnection.
+connection on their interconnect by calling
+\code{\link[=directconnect_allocate_hosted_connection]{allocate_hosted_connection}}.
 The end customer can then connect to AWS resources by creating a virtual
 interface on their connection, using the VLAN assigned to them by the
 AWS Direct Connect Partner.

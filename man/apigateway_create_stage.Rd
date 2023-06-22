@@ -32,7 +32,8 @@ characters.}
 
 \item{cacheClusterEnabled}{Whether cache clustering is enabled for the stage.}
 
-\item{cacheClusterSize}{The stage's cache cluster size.}
+\item{cacheClusterSize}{The stage's cache capacity in GB. For more information about choosing a
+cache size, see \href{https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html}{Enabling API caching to enhance responsiveness}.}
 
 \item{variables}{A map that defines the stage variables for the new Stage resource.
 Variable names can have alphanumeric and underscore characters, and the
@@ -51,6 +52,6 @@ start with \verb{aws:}. The tag value can be up to 256 characters.}
 \description{
 Creates a new Stage resource that references a pre-existing Deployment for the API.
 
-See \url{https://paws-r.github.io/docs/apigateway/create_stage.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/apigateway_create_stage/} for full documentation.
 }
 \keyword{internal}

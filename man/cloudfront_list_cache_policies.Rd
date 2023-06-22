@@ -19,7 +19,7 @@ Web Services account.
 \item{Marker}{Use this field when paginating results to indicate where to begin in
 your list of cache policies. The response includes cache policies in the
 list that occur after the marker. To get the next page of the list, set
-this field’s value to the value of \code{NextMarker} from the current page’s
+this field's value to the value of \code{NextMarker} from the current page's
 response.}
 
 \item{MaxItems}{The maximum number of cache policies that you want in the response.}
@@ -27,6 +27,6 @@ response.}
 \description{
 Gets a list of cache policies.
 
-See \url{https://paws-r.github.io/docs/cloudfront/list_cache_policies.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/cloudfront_list_cache_policies/} for full documentation.
 }
 \keyword{internal}

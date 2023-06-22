@@ -49,7 +49,7 @@ in the \emph{Amazon Route 53 Developer Guide}.
 Default: 1}
 
 \item{AutoRenew}{Indicates whether the domain will be automatically renewed (\code{true}) or
-not (\code{false}). Autorenewal only takes effect after the account is
+not (\code{false}). Auto renewal only takes effect after the account is
 charged.
 
 Default: \code{true}}
@@ -105,6 +105,6 @@ Default: \code{true}}
 \description{
 This operation registers a domain. Domains are registered either by Amazon Registrar (for .com, .net, and .org domains) or by our registrar associate, Gandi (for all other domains). For some top-level domains (TLDs), this operation requires extra parameters.
 
-See \url{https://paws-r.github.io/docs/route53domains/register_domain.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/route53domains_register_domain/} for full documentation.
 }
 \keyword{internal}

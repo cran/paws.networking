@@ -2,7 +2,7 @@
 % Please edit documentation in R/cloudfront_operations.R
 \name{cloudfront_update_distribution}
 \alias{cloudfront_update_distribution}
-\title{Updates the configuration for a web distribution}
+\title{Updates the configuration for a CloudFront distribution}
 \usage{
 cloudfront_update_distribution(DistributionConfig, Id, IfMatch = NULL)
 }
@@ -15,8 +15,8 @@ cloudfront_update_distribution(DistributionConfig, Id, IfMatch = NULL)
 distribution's configuration. For example: \code{E2QWRUHAPOMQZL}.}
 }
 \description{
-Updates the configuration for a web distribution.
+Updates the configuration for a CloudFront distribution.
 
-See \url{https://paws-r.github.io/docs/cloudfront/update_distribution.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/cloudfront_update_distribution/} for full documentation.
 }
 \keyword{internal}

@@ -20,7 +20,8 @@ directconnect_create_lag(
 }
 \arguments{
 \item{numberOfConnections}{[required] The number of physical dedicated connections initially provisioned and
-bundled by the LAG.}
+bundled by the LAG. You can have a maximum of four connections when the
+port speed is 1G or 10G, or two when the port speed is 100G.}
 
 \item{location}{[required] The location for the LAG.}
 
@@ -47,6 +48,6 @@ in the \emph{Direct Connect User Guide}.}
 \description{
 Creates a link aggregation group (LAG) with the specified number of bundled physical dedicated connections between the customer network and a specific Direct Connect location. A LAG is a logical interface that uses the Link Aggregation Control Protocol (LACP) to aggregate multiple interfaces, enabling you to treat them as a single interface.
 
-See \url{https://paws-r.github.io/docs/directconnect/create_lag.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/directconnect_create_lag/} for full documentation.
 }
 \keyword{internal}

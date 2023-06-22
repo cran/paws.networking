@@ -8,7 +8,8 @@ route53domains_update_domain_contact(
   DomainName,
   AdminContact = NULL,
   RegistrantContact = NULL,
-  TechContact = NULL
+  TechContact = NULL,
+  Consent = NULL
 )
 }
 \arguments{
@@ -19,10 +20,12 @@ route53domains_update_domain_contact(
 \item{RegistrantContact}{Provides detailed contact information.}
 
 \item{TechContact}{Provides detailed contact information.}
+
+\item{Consent}{Customer's consent for the owner change request.}
 }
 \description{
 This operation updates the contact information for a particular domain. You must specify information for at least one contact: registrant, administrator, or technical.
 
-See \url{https://paws-r.github.io/docs/route53domains/update_domain_contact.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/route53domains_update_domain_contact/} for full documentation.
 }
 \keyword{internal}

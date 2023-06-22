@@ -17,13 +17,13 @@ cloudfront_update_response_headers_policy(
 
 \item{IfMatch}{The version of the response headers policy that you are updating.
 
-The version is returned in the cache policy’s \code{ETag} field in the
+The version is returned in the cache policy's \code{ETag} field in the
 response to
 \code{\link[=cloudfront_get_response_headers_policy_config]{get_response_headers_policy_config}}.}
 }
 \description{
 Updates a response headers policy.
 
-See \url{https://paws-r.github.io/docs/cloudfront/update_response_headers_policy.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/cloudfront_update_response_headers_policy/} for full documentation.
 }
 \keyword{internal}

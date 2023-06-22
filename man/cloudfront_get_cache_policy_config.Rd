@@ -8,7 +8,7 @@ cloudfront_get_cache_policy_config(Id)
 }
 \arguments{
 \item{Id}{[required] The unique identifier for the cache policy. If the cache policy is
-attached to a distribution’s cache behavior, you can get the policy’s
+attached to a distribution's cache behavior, you can get the policy's
 identifier using \code{\link[=cloudfront_list_distributions]{list_distributions}}
 or \code{\link[=cloudfront_get_distribution]{get_distribution}}. If the cache
 policy is not attached to a cache behavior, you can get the identifier
@@ -17,6 +17,6 @@ using \code{\link[=cloudfront_list_cache_policies]{list_cache_policies}}.}
 \description{
 Gets a cache policy configuration.
 
-See \url{https://paws-r.github.io/docs/cloudfront/get_cache_policy_config.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/cloudfront_get_cache_policy_config/} for full documentation.
 }
 \keyword{internal}

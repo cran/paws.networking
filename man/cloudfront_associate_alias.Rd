@@ -8,13 +8,13 @@ with a CloudFront distribution}
 cloudfront_associate_alias(TargetDistributionId, Alias)
 }
 \arguments{
-\item{TargetDistributionId}{[required] The ID of the distribution that you’re associating the alias with.}
+\item{TargetDistributionId}{[required] The ID of the distribution that you're associating the alias with.}
 
 \item{Alias}{[required] The alias (also known as a CNAME) to add to the target distribution.}
 }
 \description{
 Associates an alias (also known as a CNAME or an alternate domain name) with a CloudFront distribution.
 
-See \url{https://paws-r.github.io/docs/cloudfront/associate_alias.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/cloudfront_associate_alias/} for full documentation.
 }
 \keyword{internal}

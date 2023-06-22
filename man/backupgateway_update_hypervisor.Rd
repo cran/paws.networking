@@ -8,6 +8,7 @@ password}
 backupgateway_update_hypervisor(
   Host = NULL,
   HypervisorArn,
+  LogGroupArn = NULL,
   Name = NULL,
   Password = NULL,
   Username = NULL
@@ -19,6 +20,9 @@ a fully-qualified domain name (FQDN).}
 
 \item{HypervisorArn}{[required] The Amazon Resource Name (ARN) of the hypervisor to update.}
 
+\item{LogGroupArn}{The Amazon Resource Name (ARN) of the group of gateways within the
+requested log.}
+
 \item{Name}{The updated name for the hypervisor}
 
 \item{Password}{The updated password for the hypervisor.}
@@ -28,6 +32,6 @@ a fully-qualified domain name (FQDN).}
 \description{
 Updates a hypervisor metadata, including its host, username, and password. Specify which hypervisor to update using the Amazon Resource Name (ARN) of the hypervisor in your request.
 
-See \url{https://paws-r.github.io/docs/backupgateway/update_hypervisor.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/backupgateway_update_hypervisor/} for full documentation.
 }
 \keyword{internal}

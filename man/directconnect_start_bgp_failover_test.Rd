@@ -19,13 +19,13 @@ directconnect_start_bgp_failover_test(
 
 \item{testDurationInMinutes}{The time in minutes that the virtual interface failover test will last.
 
-Maximum value: 180 minutes (3 hours).
+Maximum value: 4,320 minutes (72 hours).
 
 Default: 180 minutes (3 hours).}
 }
 \description{
 Starts the virtual interface failover test that verifies your configuration meets your resiliency requirements by placing the BGP peering session in the DOWN state. You can then send traffic to verify that there are no outages.
 
-See \url{https://paws-r.github.io/docs/directconnect/start_bgp_failover_test.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/directconnect_start_bgp_failover_test/} for full documentation.
 }
 \keyword{internal}

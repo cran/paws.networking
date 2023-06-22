@@ -12,7 +12,7 @@ the identifier, you can use
 \code{\link[=cloudfront_list_cache_policies]{list_cache_policies}}.}
 
 \item{IfMatch}{The version of the cache policy that you are deleting. The version is
-the cache policy’s \code{ETag} value, which you can get using
+the cache policy's \code{ETag} value, which you can get using
 \code{\link[=cloudfront_list_cache_policies]{list_cache_policies}},
 \code{\link[=cloudfront_get_cache_policy]{get_cache_policy}}, or
 \code{\link[=cloudfront_get_cache_policy_config]{get_cache_policy_config}}.}
@@ -20,6 +20,6 @@ the cache policy’s \code{ETag} value, which you can get using
 \description{
 Deletes a cache policy.
 
-See \url{https://paws-r.github.io/docs/cloudfront/delete_cache_policy.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/cloudfront_delete_cache_policy/} for full documentation.
 }
 \keyword{internal}

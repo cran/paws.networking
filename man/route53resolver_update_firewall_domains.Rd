@@ -26,6 +26,8 @@ you are providing.
 
 \item{Domains}{[required] A list of domains to use in the update operation.
 
+There is a limit of 1000 domains per request.
+
 Each domain specification in your domain list must satisfy the following
 requirements:
 \itemize{
@@ -38,6 +40,6 @@ contain the following characters: \code{A-Z}, \code{a-z}, \code{0-9}, \code{-} (
 \description{
 Updates the firewall domain list from an array of domain specifications.
 
-See \url{https://paws-r.github.io/docs/route53resolver/update_firewall_domains.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/route53resolver_update_firewall_domains/} for full documentation.
 }
 \keyword{internal}

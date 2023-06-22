@@ -23,8 +23,8 @@ Web Services account.
 \item{Marker}{Use this field when paginating results to indicate where to begin in
 your list of origin request policies. The response includes origin
 request policies in the list that occur after the marker. To get the
-next page of the list, set this field’s value to the value of
-\code{NextMarker} from the current page’s response.}
+next page of the list, set this field's value to the value of
+\code{NextMarker} from the current page's response.}
 
 \item{MaxItems}{The maximum number of origin request policies that you want in the
 response.}
@@ -32,6 +32,6 @@ response.}
 \description{
 Gets a list of origin request policies.
 
-See \url{https://paws-r.github.io/docs/cloudfront/list_origin_request_policies.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/cloudfront_list_origin_request_policies/} for full documentation.
 }
 \keyword{internal}

@@ -14,7 +14,7 @@ To get the identifier, you can use
 
 \item{IfMatch}{The version of the response headers policy that you are deleting.
 
-The version is the response headers policy’s \code{ETag} value, which you can
+The version is the response headers policy's \code{ETag} value, which you can
 get using
 \code{\link[=cloudfront_list_response_headers_policies]{list_response_headers_policies}},
 \code{\link[=cloudfront_get_response_headers_policy]{get_response_headers_policy}},
@@ -24,6 +24,6 @@ or
 \description{
 Deletes a response headers policy.
 
-See \url{https://paws-r.github.io/docs/cloudfront/delete_response_headers_policy.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/cloudfront_delete_response_headers_policy/} for full documentation.
 }
 \keyword{internal}

@@ -10,7 +10,7 @@ cloudfront_list_key_groups(Marker = NULL, MaxItems = NULL)
 \item{Marker}{Use this field when paginating results to indicate where to begin in
 your list of key groups. The response includes key groups in the list
 that occur after the marker. To get the next page of the list, set this
-field’s value to the value of \code{NextMarker} from the current page’s
+field's value to the value of \code{NextMarker} from the current page's
 response.}
 
 \item{MaxItems}{The maximum number of key groups that you want in the response.}
@@ -18,6 +18,6 @@ response.}
 \description{
 Gets a list of key groups.
 
-See \url{https://paws-r.github.io/docs/cloudfront/list_key_groups.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/cloudfront_list_key_groups/} for full documentation.
 }
 \keyword{internal}

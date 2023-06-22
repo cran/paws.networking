@@ -8,11 +8,11 @@ cloudfront_create_response_headers_policy(ResponseHeadersPolicyConfig)
 }
 \arguments{
 \item{ResponseHeadersPolicyConfig}{[required] Contains metadata about the response headers policy, and a set of
-configurations that specify the response headers.}
+configurations that specify the HTTP headers.}
 }
 \description{
 Creates a response headers policy.
 
-See \url{https://paws-r.github.io/docs/cloudfront/create_response_headers_policy.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/cloudfront_create_response_headers_policy/} for full documentation.
 }
 \keyword{internal}

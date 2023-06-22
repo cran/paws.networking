@@ -8,7 +8,7 @@ NULL
 #' @description
 #' Associates a backup gateway with your server. After you complete the association process, you can back up and restore your VMs through the gateway.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/associate_gateway_to_server.html](https://paws-r.github.io/docs/backupgateway/associate_gateway_to_server.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_associate_gateway_to_server/](https://www.paws-r-sdk.com/docs/backupgateway_associate_gateway_to_server/) for full documentation.
 #'
 #' @param GatewayArn &#91;required&#93; The Amazon Resource Name (ARN) of the gateway. Use the
 #' [`list_gateways`][backupgateway_list_gateways] operation to return a
@@ -41,7 +41,7 @@ backupgateway_associate_gateway_to_server <- function(GatewayArn, ServerArn) {
 #' @description
 #' Creates a backup gateway. After you create a gateway, you can associate it with a server using the [`associate_gateway_to_server`][backupgateway_associate_gateway_to_server] operation.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/create_gateway.html](https://paws-r.github.io/docs/backupgateway/create_gateway.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_create_gateway/](https://www.paws-r-sdk.com/docs/backupgateway_create_gateway/) for full documentation.
 #'
 #' @param ActivationKey &#91;required&#93; The activation key of the created gateway.
 #' @param GatewayDisplayName &#91;required&#93; The display name of the created gateway.
@@ -74,7 +74,7 @@ backupgateway_create_gateway <- function(ActivationKey, GatewayDisplayName, Gate
 #' @description
 #' Deletes a backup gateway.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/delete_gateway.html](https://paws-r.github.io/docs/backupgateway/delete_gateway.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_delete_gateway/](https://www.paws-r-sdk.com/docs/backupgateway_delete_gateway/) for full documentation.
 #'
 #' @param GatewayArn &#91;required&#93; The Amazon Resource Name (ARN) of the gateway to delete.
 #'
@@ -103,7 +103,7 @@ backupgateway_delete_gateway <- function(GatewayArn) {
 #' @description
 #' Deletes a hypervisor.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/delete_hypervisor.html](https://paws-r.github.io/docs/backupgateway/delete_hypervisor.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_delete_hypervisor/](https://www.paws-r-sdk.com/docs/backupgateway_delete_hypervisor/) for full documentation.
 #'
 #' @param HypervisorArn &#91;required&#93; The Amazon Resource Name (ARN) of the hypervisor to delete.
 #'
@@ -132,7 +132,7 @@ backupgateway_delete_hypervisor <- function(HypervisorArn) {
 #' @description
 #' Disassociates a backup gateway from the specified server. After the disassociation process finishes, the gateway can no longer access the virtual machines on the server.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/disassociate_gateway_from_server.html](https://paws-r.github.io/docs/backupgateway/disassociate_gateway_from_server.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_disassociate_gateway_from_server/](https://www.paws-r-sdk.com/docs/backupgateway_disassociate_gateway_from_server/) for full documentation.
 #'
 #' @param GatewayArn &#91;required&#93; The Amazon Resource Name (ARN) of the gateway to disassociate.
 #'
@@ -156,13 +156,45 @@ backupgateway_disassociate_gateway_from_server <- function(GatewayArn) {
 }
 .backupgateway$operations$disassociate_gateway_from_server <- backupgateway_disassociate_gateway_from_server
 
+#' Retrieves the bandwidth rate limit schedule for a specified gateway
+#'
+#' @description
+#' Retrieves the bandwidth rate limit schedule for a specified gateway. By default, gateways do not have bandwidth rate limit schedules, which means no bandwidth rate limiting is in effect. Use this to get a gateway's bandwidth rate limit schedule.
+#'
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_get_bandwidth_rate_limit_schedule/](https://www.paws-r-sdk.com/docs/backupgateway_get_bandwidth_rate_limit_schedule/) for full documentation.
+#'
+#' @param GatewayArn &#91;required&#93; The Amazon Resource Name (ARN) of the gateway. Use the
+#' [`list_gateways`](https://docs.aws.amazon.com/aws-backup/latest/devguide/API_BGW_ListGateways.html)
+#' operation to return a list of gateways for your account and Amazon Web
+#' Services Region.
+#'
+#' @keywords internal
+#'
+#' @rdname backupgateway_get_bandwidth_rate_limit_schedule
+backupgateway_get_bandwidth_rate_limit_schedule <- function(GatewayArn) {
+  op <- new_operation(
+    name = "GetBandwidthRateLimitSchedule",
+    http_method = "POST",
+    http_path = "/",
+    paginator = list()
+  )
+  input <- .backupgateway$get_bandwidth_rate_limit_schedule_input(GatewayArn = GatewayArn)
+  output <- .backupgateway$get_bandwidth_rate_limit_schedule_output()
+  config <- get_config()
+  svc <- .backupgateway$service(config)
+  request <- new_request(svc, op, input, output)
+  response <- send_request(request)
+  return(response)
+}
+.backupgateway$operations$get_bandwidth_rate_limit_schedule <- backupgateway_get_bandwidth_rate_limit_schedule
+
 #' By providing the ARN (Amazon Resource Name), this API returns the
 #' gateway
 #'
 #' @description
 #' By providing the ARN (Amazon Resource Name), this API returns the gateway.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/get_gateway.html](https://paws-r.github.io/docs/backupgateway/get_gateway.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_get_gateway/](https://www.paws-r-sdk.com/docs/backupgateway_get_gateway/) for full documentation.
 #'
 #' @param GatewayArn &#91;required&#93; The Amazon Resource Name (ARN) of the gateway.
 #'
@@ -186,12 +218,101 @@ backupgateway_get_gateway <- function(GatewayArn) {
 }
 .backupgateway$operations$get_gateway <- backupgateway_get_gateway
 
+#' This action requests information about the specified hypervisor to which
+#' the gateway will connect
+#'
+#' @description
+#' This action requests information about the specified hypervisor to which the gateway will connect. A hypervisor is hardware, software, or firmware that creates and manages virtual machines, and allocates resources to them.
+#'
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_get_hypervisor/](https://www.paws-r-sdk.com/docs/backupgateway_get_hypervisor/) for full documentation.
+#'
+#' @param HypervisorArn &#91;required&#93; The Amazon Resource Name (ARN) of the hypervisor.
+#'
+#' @keywords internal
+#'
+#' @rdname backupgateway_get_hypervisor
+backupgateway_get_hypervisor <- function(HypervisorArn) {
+  op <- new_operation(
+    name = "GetHypervisor",
+    http_method = "POST",
+    http_path = "/",
+    paginator = list()
+  )
+  input <- .backupgateway$get_hypervisor_input(HypervisorArn = HypervisorArn)
+  output <- .backupgateway$get_hypervisor_output()
+  config <- get_config()
+  svc <- .backupgateway$service(config)
+  request <- new_request(svc, op, input, output)
+  response <- send_request(request)
+  return(response)
+}
+.backupgateway$operations$get_hypervisor <- backupgateway_get_hypervisor
+
+#' This action retrieves the property mappings for the specified hypervisor
+#'
+#' @description
+#' This action retrieves the property mappings for the specified hypervisor. A hypervisor property mapping displays the relationship of entity properties available from the on-premises hypervisor to the properties available in Amazon Web Services.
+#'
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_get_hypervisor_property_mappings/](https://www.paws-r-sdk.com/docs/backupgateway_get_hypervisor_property_mappings/) for full documentation.
+#'
+#' @param HypervisorArn &#91;required&#93; The Amazon Resource Name (ARN) of the hypervisor.
+#'
+#' @keywords internal
+#'
+#' @rdname backupgateway_get_hypervisor_property_mappings
+backupgateway_get_hypervisor_property_mappings <- function(HypervisorArn) {
+  op <- new_operation(
+    name = "GetHypervisorPropertyMappings",
+    http_method = "POST",
+    http_path = "/",
+    paginator = list()
+  )
+  input <- .backupgateway$get_hypervisor_property_mappings_input(HypervisorArn = HypervisorArn)
+  output <- .backupgateway$get_hypervisor_property_mappings_output()
+  config <- get_config()
+  svc <- .backupgateway$service(config)
+  request <- new_request(svc, op, input, output)
+  response <- send_request(request)
+  return(response)
+}
+.backupgateway$operations$get_hypervisor_property_mappings <- backupgateway_get_hypervisor_property_mappings
+
+#' By providing the ARN (Amazon Resource Name), this API returns the
+#' virtual machine
+#'
+#' @description
+#' By providing the ARN (Amazon Resource Name), this API returns the virtual machine.
+#'
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_get_virtual_machine/](https://www.paws-r-sdk.com/docs/backupgateway_get_virtual_machine/) for full documentation.
+#'
+#' @param ResourceArn &#91;required&#93; The Amazon Resource Name (ARN) of the virtual machine.
+#'
+#' @keywords internal
+#'
+#' @rdname backupgateway_get_virtual_machine
+backupgateway_get_virtual_machine <- function(ResourceArn) {
+  op <- new_operation(
+    name = "GetVirtualMachine",
+    http_method = "POST",
+    http_path = "/",
+    paginator = list()
+  )
+  input <- .backupgateway$get_virtual_machine_input(ResourceArn = ResourceArn)
+  output <- .backupgateway$get_virtual_machine_output()
+  config <- get_config()
+  svc <- .backupgateway$service(config)
+  request <- new_request(svc, op, input, output)
+  response <- send_request(request)
+  return(response)
+}
+.backupgateway$operations$get_virtual_machine <- backupgateway_get_virtual_machine
+
 #' Connect to a hypervisor by importing its configuration
 #'
 #' @description
 #' Connect to a hypervisor by importing its configuration.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/import_hypervisor_configuration.html](https://paws-r.github.io/docs/backupgateway/import_hypervisor_configuration.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_import_hypervisor_configuration/](https://www.paws-r-sdk.com/docs/backupgateway_import_hypervisor_configuration/) for full documentation.
 #'
 #' @param Host &#91;required&#93; The server host of the hypervisor. This can be either an IP address or a
 #' fully-qualified domain name (FQDN).
@@ -227,7 +348,7 @@ backupgateway_import_hypervisor_configuration <- function(Host, KmsKeyArn = NULL
 #' @description
 #' Lists backup gateways owned by an Amazon Web Services account in an Amazon Web Services Region. The returned list is ordered by gateway Amazon Resource Name (ARN).
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/list_gateways.html](https://paws-r.github.io/docs/backupgateway/list_gateways.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_list_gateways/](https://www.paws-r-sdk.com/docs/backupgateway_list_gateways/) for full documentation.
 #'
 #' @param MaxResults The maximum number of gateways to list.
 #' @param NextToken The next item following a partial list of returned resources. For
@@ -260,7 +381,7 @@ backupgateway_list_gateways <- function(MaxResults = NULL, NextToken = NULL) {
 #' @description
 #' Lists your hypervisors.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/list_hypervisors.html](https://paws-r.github.io/docs/backupgateway/list_hypervisors.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_list_hypervisors/](https://www.paws-r-sdk.com/docs/backupgateway_list_hypervisors/) for full documentation.
 #'
 #' @param MaxResults The maximum number of hypervisors to list.
 #' @param NextToken The next item following a partial list of returned resources. For
@@ -294,7 +415,7 @@ backupgateway_list_hypervisors <- function(MaxResults = NULL, NextToken = NULL) 
 #' @description
 #' Lists the tags applied to the resource identified by its Amazon Resource Name (ARN).
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/list_tags_for_resource.html](https://paws-r.github.io/docs/backupgateway/list_tags_for_resource.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_list_tags_for_resource/](https://www.paws-r-sdk.com/docs/backupgateway_list_tags_for_resource/) for full documentation.
 #'
 #' @param ResourceArn &#91;required&#93; The Amazon Resource Name (ARN) of the resource's tags to list.
 #'
@@ -323,8 +444,10 @@ backupgateway_list_tags_for_resource <- function(ResourceArn) {
 #' @description
 #' Lists your virtual machines.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/list_virtual_machines.html](https://paws-r.github.io/docs/backupgateway/list_virtual_machines.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_list_virtual_machines/](https://www.paws-r-sdk.com/docs/backupgateway_list_virtual_machines/) for full documentation.
 #'
+#' @param HypervisorArn The Amazon Resource Name (ARN) of the hypervisor connected to your
+#' virtual machine.
 #' @param MaxResults The maximum number of virtual machines to list.
 #' @param NextToken The next item following a partial list of returned resources. For
 #' example, if a request is made to return `maxResults` number of
@@ -334,14 +457,14 @@ backupgateway_list_tags_for_resource <- function(ResourceArn) {
 #' @keywords internal
 #'
 #' @rdname backupgateway_list_virtual_machines
-backupgateway_list_virtual_machines <- function(MaxResults = NULL, NextToken = NULL) {
+backupgateway_list_virtual_machines <- function(HypervisorArn = NULL, MaxResults = NULL, NextToken = NULL) {
   op <- new_operation(
     name = "ListVirtualMachines",
     http_method = "POST",
     http_path = "/",
     paginator = list()
   )
-  input <- .backupgateway$list_virtual_machines_input(MaxResults = MaxResults, NextToken = NextToken)
+  input <- .backupgateway$list_virtual_machines_input(HypervisorArn = HypervisorArn, MaxResults = MaxResults, NextToken = NextToken)
   output <- .backupgateway$list_virtual_machines_output()
   config <- get_config()
   svc <- .backupgateway$service(config)
@@ -351,12 +474,80 @@ backupgateway_list_virtual_machines <- function(MaxResults = NULL, NextToken = N
 }
 .backupgateway$operations$list_virtual_machines <- backupgateway_list_virtual_machines
 
+#' This action sets the bandwidth rate limit schedule for a specified
+#' gateway
+#'
+#' @description
+#' This action sets the bandwidth rate limit schedule for a specified gateway. By default, gateways do not have a bandwidth rate limit schedule, which means no bandwidth rate limiting is in effect. Use this to initiate a gateway's bandwidth rate limit schedule.
+#'
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_put_bandwidth_rate_limit_schedule/](https://www.paws-r-sdk.com/docs/backupgateway_put_bandwidth_rate_limit_schedule/) for full documentation.
+#'
+#' @param BandwidthRateLimitIntervals &#91;required&#93; An array containing bandwidth rate limit schedule intervals for a
+#' gateway. When no bandwidth rate limit intervals have been scheduled, the
+#' array is empty.
+#' @param GatewayArn &#91;required&#93; The Amazon Resource Name (ARN) of the gateway. Use the
+#' [`list_gateways`](https://docs.aws.amazon.com/aws-backup/latest/devguide/API_BGW_ListGateways.html)
+#' operation to return a list of gateways for your account and Amazon Web
+#' Services Region.
+#'
+#' @keywords internal
+#'
+#' @rdname backupgateway_put_bandwidth_rate_limit_schedule
+backupgateway_put_bandwidth_rate_limit_schedule <- function(BandwidthRateLimitIntervals, GatewayArn) {
+  op <- new_operation(
+    name = "PutBandwidthRateLimitSchedule",
+    http_method = "POST",
+    http_path = "/",
+    paginator = list()
+  )
+  input <- .backupgateway$put_bandwidth_rate_limit_schedule_input(BandwidthRateLimitIntervals = BandwidthRateLimitIntervals, GatewayArn = GatewayArn)
+  output <- .backupgateway$put_bandwidth_rate_limit_schedule_output()
+  config <- get_config()
+  svc <- .backupgateway$service(config)
+  request <- new_request(svc, op, input, output)
+  response <- send_request(request)
+  return(response)
+}
+.backupgateway$operations$put_bandwidth_rate_limit_schedule <- backupgateway_put_bandwidth_rate_limit_schedule
+
+#' This action sets the property mappings for the specified hypervisor
+#'
+#' @description
+#' This action sets the property mappings for the specified hypervisor. A hypervisor property mapping displays the relationship of entity properties available from the on-premises hypervisor to the properties available in Amazon Web Services.
+#'
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_put_hypervisor_property_mappings/](https://www.paws-r-sdk.com/docs/backupgateway_put_hypervisor_property_mappings/) for full documentation.
+#'
+#' @param HypervisorArn &#91;required&#93; The Amazon Resource Name (ARN) of the hypervisor.
+#' @param IamRoleArn &#91;required&#93; The Amazon Resource Name (ARN) of the IAM role.
+#' @param VmwareToAwsTagMappings &#91;required&#93; This action requests the mappings of on-premises VMware tags to the
+#' Amazon Web Services tags.
+#'
+#' @keywords internal
+#'
+#' @rdname backupgateway_put_hypervisor_property_mappings
+backupgateway_put_hypervisor_property_mappings <- function(HypervisorArn, IamRoleArn, VmwareToAwsTagMappings) {
+  op <- new_operation(
+    name = "PutHypervisorPropertyMappings",
+    http_method = "POST",
+    http_path = "/",
+    paginator = list()
+  )
+  input <- .backupgateway$put_hypervisor_property_mappings_input(HypervisorArn = HypervisorArn, IamRoleArn = IamRoleArn, VmwareToAwsTagMappings = VmwareToAwsTagMappings)
+  output <- .backupgateway$put_hypervisor_property_mappings_output()
+  config <- get_config()
+  svc <- .backupgateway$service(config)
+  request <- new_request(svc, op, input, output)
+  response <- send_request(request)
+  return(response)
+}
+.backupgateway$operations$put_hypervisor_property_mappings <- backupgateway_put_hypervisor_property_mappings
+
 #' Set the maintenance start time for a gateway
 #'
 #' @description
 #' Set the maintenance start time for a gateway.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/put_maintenance_start_time.html](https://paws-r.github.io/docs/backupgateway/put_maintenance_start_time.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_put_maintenance_start_time/](https://www.paws-r-sdk.com/docs/backupgateway_put_maintenance_start_time/) for full documentation.
 #'
 #' @param DayOfMonth The day of the month start maintenance on a gateway.
 #' 
@@ -387,12 +578,42 @@ backupgateway_put_maintenance_start_time <- function(DayOfMonth = NULL, DayOfWee
 }
 .backupgateway$operations$put_maintenance_start_time <- backupgateway_put_maintenance_start_time
 
+#' This action sends a request to sync metadata across the specified
+#' virtual machines
+#'
+#' @description
+#' This action sends a request to sync metadata across the specified virtual machines.
+#'
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_start_virtual_machines_metadata_sync/](https://www.paws-r-sdk.com/docs/backupgateway_start_virtual_machines_metadata_sync/) for full documentation.
+#'
+#' @param HypervisorArn &#91;required&#93; The Amazon Resource Name (ARN) of the hypervisor.
+#'
+#' @keywords internal
+#'
+#' @rdname backupgateway_start_virtual_machines_metadata_sync
+backupgateway_start_virtual_machines_metadata_sync <- function(HypervisorArn) {
+  op <- new_operation(
+    name = "StartVirtualMachinesMetadataSync",
+    http_method = "POST",
+    http_path = "/",
+    paginator = list()
+  )
+  input <- .backupgateway$start_virtual_machines_metadata_sync_input(HypervisorArn = HypervisorArn)
+  output <- .backupgateway$start_virtual_machines_metadata_sync_output()
+  config <- get_config()
+  svc <- .backupgateway$service(config)
+  request <- new_request(svc, op, input, output)
+  response <- send_request(request)
+  return(response)
+}
+.backupgateway$operations$start_virtual_machines_metadata_sync <- backupgateway_start_virtual_machines_metadata_sync
+
 #' Tag the resource
 #'
 #' @description
 #' Tag the resource.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/tag_resource.html](https://paws-r.github.io/docs/backupgateway/tag_resource.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_tag_resource/](https://www.paws-r-sdk.com/docs/backupgateway_tag_resource/) for full documentation.
 #'
 #' @param ResourceARN &#91;required&#93; The Amazon Resource Name (ARN) of the resource to tag.
 #' @param Tags &#91;required&#93; A list of tags to assign to the resource.
@@ -423,7 +644,7 @@ backupgateway_tag_resource <- function(ResourceARN, Tags) {
 #' @description
 #' Tests your hypervisor configuration to validate that backup gateway can connect with the hypervisor and its resources.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/test_hypervisor_configuration.html](https://paws-r.github.io/docs/backupgateway/test_hypervisor_configuration.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_test_hypervisor_configuration/](https://www.paws-r-sdk.com/docs/backupgateway_test_hypervisor_configuration/) for full documentation.
 #'
 #' @param GatewayArn &#91;required&#93; The Amazon Resource Name (ARN) of the gateway to the hypervisor to test.
 #' @param Host &#91;required&#93; The server host of the hypervisor. This can be either an IP address or a
@@ -456,7 +677,7 @@ backupgateway_test_hypervisor_configuration <- function(GatewayArn, Host, Passwo
 #' @description
 #' Removes tags from the resource.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/untag_resource.html](https://paws-r.github.io/docs/backupgateway/untag_resource.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_untag_resource/](https://www.paws-r-sdk.com/docs/backupgateway_untag_resource/) for full documentation.
 #'
 #' @param ResourceARN &#91;required&#93; The Amazon Resource Name (ARN) of the resource from which to remove
 #' tags.
@@ -487,7 +708,7 @@ backupgateway_untag_resource <- function(ResourceARN, TagKeys) {
 #' @description
 #' Updates a gateway's name. Specify which gateway to update using the Amazon Resource Name (ARN) of the gateway in your request.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/update_gateway_information.html](https://paws-r.github.io/docs/backupgateway/update_gateway_information.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_update_gateway_information/](https://www.paws-r-sdk.com/docs/backupgateway_update_gateway_information/) for full documentation.
 #'
 #' @param GatewayArn &#91;required&#93; The Amazon Resource Name (ARN) of the gateway to update.
 #' @param GatewayDisplayName The updated display name of the gateway.
@@ -517,7 +738,7 @@ backupgateway_update_gateway_information <- function(GatewayArn, GatewayDisplayN
 #' @description
 #' Updates the gateway virtual machine (VM) software. The request immediately triggers the software update.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/update_gateway_software_now.html](https://paws-r.github.io/docs/backupgateway/update_gateway_software_now.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_update_gateway_software_now/](https://www.paws-r-sdk.com/docs/backupgateway_update_gateway_software_now/) for full documentation.
 #'
 #' @param GatewayArn &#91;required&#93; The Amazon Resource Name (ARN) of the gateway to be updated.
 #'
@@ -547,11 +768,13 @@ backupgateway_update_gateway_software_now <- function(GatewayArn) {
 #' @description
 #' Updates a hypervisor metadata, including its host, username, and password. Specify which hypervisor to update using the Amazon Resource Name (ARN) of the hypervisor in your request.
 #'
-#' See [https://paws-r.github.io/docs/backupgateway/update_hypervisor.html](https://paws-r.github.io/docs/backupgateway/update_hypervisor.html) for full documentation.
+#' See [https://www.paws-r-sdk.com/docs/backupgateway_update_hypervisor/](https://www.paws-r-sdk.com/docs/backupgateway_update_hypervisor/) for full documentation.
 #'
 #' @param Host The updated host of the hypervisor. This can be either an IP address or
 #' a fully-qualified domain name (FQDN).
 #' @param HypervisorArn &#91;required&#93; The Amazon Resource Name (ARN) of the hypervisor to update.
+#' @param LogGroupArn The Amazon Resource Name (ARN) of the group of gateways within the
+#' requested log.
 #' @param Name The updated name for the hypervisor
 #' @param Password The updated password for the hypervisor.
 #' @param Username The updated username for the hypervisor.
@@ -559,14 +782,14 @@ backupgateway_update_gateway_software_now <- function(GatewayArn) {
 #' @keywords internal
 #'
 #' @rdname backupgateway_update_hypervisor
-backupgateway_update_hypervisor <- function(Host = NULL, HypervisorArn, Name = NULL, Password = NULL, Username = NULL) {
+backupgateway_update_hypervisor <- function(Host = NULL, HypervisorArn, LogGroupArn = NULL, Name = NULL, Password = NULL, Username = NULL) {
   op <- new_operation(
     name = "UpdateHypervisor",
     http_method = "POST",
     http_path = "/",
     paginator = list()
   )
-  input <- .backupgateway$update_hypervisor_input(Host = Host, HypervisorArn = HypervisorArn, Name = Name, Password = Password, Username = Username)
+  input <- .backupgateway$update_hypervisor_input(Host = Host, HypervisorArn = HypervisorArn, LogGroupArn = LogGroupArn, Name = Name, Password = Password, Username = Username)
   output <- .backupgateway$update_hypervisor_output()
   config <- get_config()
   svc <- .backupgateway$service(config)

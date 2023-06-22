@@ -26,8 +26,8 @@ from the previous response and specify that value for \code{NextToken} in the
 request.}
 }
 \description{
-Retrieves the Resolver configurations that you have defined. Route 53 Resolver uses the configurations to manage DNS resolution behavior for your VPCs.
+Retrieves the Resolver configurations that you have defined. Route 53 Resolver uses the configurations to manage DNS resolution behavior for your VPCs.
 
-See \url{https://paws-r.github.io/docs/route53resolver/list_resolver_configs.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/route53resolver_list_resolver_configs/} for full documentation.
 }
 \keyword{internal}

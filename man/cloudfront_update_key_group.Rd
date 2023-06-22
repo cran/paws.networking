@@ -12,11 +12,11 @@ cloudfront_update_key_group(KeyGroupConfig, Id, IfMatch = NULL)
 \item{Id}{[required] The identifier of the key group that you are updating.}
 
 \item{IfMatch}{The version of the key group that you are updating. The version is the
-key group’s \code{ETag} value.}
+key group's \code{ETag} value.}
 }
 \description{
 Updates a key group.
 
-See \url{https://paws-r.github.io/docs/cloudfront/update_key_group.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/cloudfront_update_key_group/} for full documentation.
 }
 \keyword{internal}

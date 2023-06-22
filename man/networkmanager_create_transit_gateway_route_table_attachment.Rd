@@ -14,7 +14,9 @@ networkmanager_create_transit_gateway_route_table_attachment(
 \arguments{
 \item{PeeringId}{[required] The ID of the peer for the}
 
-\item{TransitGatewayRouteTableArn}{[required] The ARN of the transit gateway route table for the attachment request.}
+\item{TransitGatewayRouteTableArn}{[required] The ARN of the transit gateway route table for the attachment request.
+For example,
+\code{"TransitGatewayRouteTableArn": "arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456"}.}
 
 \item{Tags}{The list of key-value tags associated with the request.}
 
@@ -23,6 +25,6 @@ networkmanager_create_transit_gateway_route_table_attachment(
 \description{
 Creates a transit gateway route table attachment.
 
-See \url{https://paws-r.github.io/docs/networkmanager/create_transit_gateway_route_table_attachment.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/networkmanager_create_transit_gateway_route_table_attachment/} for full documentation.
 }
 \keyword{internal}

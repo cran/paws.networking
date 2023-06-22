@@ -4,9 +4,16 @@
 \alias{backupgateway_list_virtual_machines}
 \title{Lists your virtual machines}
 \usage{
-backupgateway_list_virtual_machines(MaxResults = NULL, NextToken = NULL)
+backupgateway_list_virtual_machines(
+  HypervisorArn = NULL,
+  MaxResults = NULL,
+  NextToken = NULL
+)
 }
 \arguments{
+\item{HypervisorArn}{The Amazon Resource Name (ARN) of the hypervisor connected to your
+virtual machine.}
+
 \item{MaxResults}{The maximum number of virtual machines to list.}
 
 \item{NextToken}{The next item following a partial list of returned resources. For
@@ -17,6 +24,6 @@ starting at the location pointed to by the next token.}
 \description{
 Lists your virtual machines.
 
-See \url{https://paws-r.github.io/docs/backupgateway/list_virtual_machines.html} for full documentation.
+See \url{https://www.paws-r-sdk.com/docs/backupgateway_list_virtual_machines/} for full documentation.
 }
 \keyword{internal}

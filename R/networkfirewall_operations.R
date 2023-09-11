@@ -349,13 +349,14 @@ networkfirewall_create_rule_group <- function(RuleGroupName, RuleGroup = NULL, R
 #' Network Firewall re-encrypts the traffic before sending it to its
 #' destination.
 #' 
-#' To use a TLS inspection configuration, you add it to a Network Firewall
-#' firewall policy, then you apply the firewall policy to a firewall.
-#' Network Firewall acts as a proxy service to decrypt and inspect inbound
-#' traffic. You can reference a TLS inspection configuration from more than
-#' one firewall policy, and you can use a firewall policy in more than one
-#' firewall. For more information about using TLS inspection
-#' configurations, see [Decrypting SSL/TLS traffic with TLS inspection
+#' To use a TLS inspection configuration, you add it to a new Network
+#' Firewall firewall policy, then you apply the firewall policy to a
+#' firewall. Network Firewall acts as a proxy service to decrypt and
+#' inspect inbound traffic. You can reference a TLS inspection
+#' configuration from more than one firewall policy, and you can use a
+#' firewall policy in more than one firewall. For more information about
+#' using TLS inspection configurations, see [Decrypting SSL/TLS traffic
+#' with TLS inspection
 #' configurations](https://docs.aws.amazon.com/network-firewall/latest/developerguide/)
 #' in the *Network Firewall Developer Guide*.
 #' @param Description A description of the TLS inspection configuration.
@@ -892,7 +893,7 @@ networkfirewall_list_firewall_policies <- function(NextToken = NULL, MaxResults 
     name = "ListFirewallPolicies",
     http_method = "POST",
     http_path = "/",
-    paginator = list()
+    paginator = list(input_token = "NextToken", output_token = "NextToken", limit_key = "MaxResults", result_key = "FirewallPolicies")
   )
   input <- .networkfirewall$list_firewall_policies_input(NextToken = NextToken, MaxResults = MaxResults)
   output <- .networkfirewall$list_firewall_policies_output()
@@ -932,7 +933,7 @@ networkfirewall_list_firewalls <- function(NextToken = NULL, VpcIds = NULL, MaxR
     name = "ListFirewalls",
     http_method = "POST",
     http_path = "/",
-    paginator = list()
+    paginator = list(input_token = "NextToken", output_token = "NextToken", limit_key = "MaxResults", result_key = "Firewalls")
   )
   input <- .networkfirewall$list_firewalls_input(NextToken = NextToken, VpcIds = VpcIds, MaxResults = MaxResults)
   output <- .networkfirewall$list_firewalls_output()
@@ -977,7 +978,7 @@ networkfirewall_list_rule_groups <- function(NextToken = NULL, MaxResults = NULL
     name = "ListRuleGroups",
     http_method = "POST",
     http_path = "/",
-    paginator = list()
+    paginator = list(input_token = "NextToken", output_token = "NextToken", limit_key = "MaxResults", result_key = "RuleGroups")
   )
   input <- .networkfirewall$list_rule_groups_input(NextToken = NextToken, MaxResults = MaxResults, Scope = Scope, ManagedType = ManagedType, Type = Type)
   output <- .networkfirewall$list_rule_groups_output()
@@ -1015,7 +1016,7 @@ networkfirewall_list_tls_inspection_configurations <- function(NextToken = NULL,
     name = "ListTLSInspectionConfigurations",
     http_method = "POST",
     http_path = "/",
-    paginator = list()
+    paginator = list(input_token = "NextToken", output_token = "NextToken", limit_key = "MaxResults", result_key = "TLSInspectionConfigurations")
   )
   input <- .networkfirewall$list_tls_inspection_configurations_input(NextToken = NextToken, MaxResults = MaxResults)
   output <- .networkfirewall$list_tls_inspection_configurations_output()
@@ -1053,7 +1054,7 @@ networkfirewall_list_tags_for_resource <- function(NextToken = NULL, MaxResults 
     name = "ListTagsForResource",
     http_method = "POST",
     http_path = "/",
-    paginator = list()
+    paginator = list(input_token = "NextToken", output_token = "NextToken", limit_key = "MaxResults", result_key = "Tags")
   )
   input <- .networkfirewall$list_tags_for_resource_input(NextToken = NextToken, MaxResults = MaxResults, ResourceArn = ResourceArn)
   output <- .networkfirewall$list_tags_for_resource_output()
@@ -1365,7 +1366,10 @@ networkfirewall_update_firewall_encryption_configuration <- function(UpdateToken
 #' of a firewall policy after you create it.
 #' 
 #' You must specify the ARN or the name, and you can specify both.
-#' @param FirewallPolicy &#91;required&#93; The updated firewall policy to use for the firewall.
+#' @param FirewallPolicy &#91;required&#93; The updated firewall policy to use for the firewall. You can't add or
+#' remove a TLSInspectionConfiguration after you create a firewall policy.
+#' However, you can replace an existing TLS inspection configuration with
+#' another `TLSInspectionConfiguration`.
 #' @param Description A description of the firewall policy.
 #' @param DryRun Indicates whether you want Network Firewall to just check the validity
 #' of the request, rather than run the request.
@@ -1662,13 +1666,14 @@ networkfirewall_update_subnet_change_protection <- function(UpdateToken = NULL, 
 #' Network Firewall re-encrypts the traffic before sending it to its
 #' destination.
 #' 
-#' To use a TLS inspection configuration, you add it to a Network Firewall
-#' firewall policy, then you apply the firewall policy to a firewall.
-#' Network Firewall acts as a proxy service to decrypt and inspect inbound
-#' traffic. You can reference a TLS inspection configuration from more than
-#' one firewall policy, and you can use a firewall policy in more than one
-#' firewall. For more information about using TLS inspection
-#' configurations, see [Decrypting SSL/TLS traffic with TLS inspection
+#' To use a TLS inspection configuration, you add it to a new Network
+#' Firewall firewall policy, then you apply the firewall policy to a
+#' firewall. Network Firewall acts as a proxy service to decrypt and
+#' inspect inbound traffic. You can reference a TLS inspection
+#' configuration from more than one firewall policy, and you can use a
+#' firewall policy in more than one firewall. For more information about
+#' using TLS inspection configurations, see [Decrypting SSL/TLS traffic
+#' with TLS inspection
 #' configurations](https://docs.aws.amazon.com/network-firewall/latest/developerguide/)
 #' in the *Network Firewall Developer Guide*.
 #' @param Description A description of the TLS inspection configuration.

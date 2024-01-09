@@ -30,33 +30,33 @@ NULL
 #' config
 #' Optional configuration of credentials, endpoint, and/or region.
 #' \itemize{
-#' \item{\strong{credentials}:} {\itemize{
-#' \item{\strong{creds}:} {\itemize{
-#' \item{\strong{access_key_id}:} {AWS access key ID}
-#' \item{\strong{secret_access_key}:} {AWS secret access key}
-#' \item{\strong{session_token}:} {AWS temporary session token}
+#' \item{\strong{credentials}: \itemize{
+#' \item{\strong{creds}: \itemize{
+#' \item{\strong{access_key_id}: AWS access key ID}
+#' \item{\strong{secret_access_key}: AWS secret access key}
+#' \item{\strong{session_token}: AWS temporary session token}
 #' }}
-#' \item{\strong{profile}:} {The name of a profile to use. If not given, then the default profile is used.}
-#' \item{\strong{anonymous}:} {Set anonymous credentials.}
-#' \item{\strong{endpoint}:} {The complete URL to use for the constructed client.}
-#' \item{\strong{region}:} {The AWS Region used in instantiating the client.}
+#' \item{\strong{profile}: The name of a profile to use. If not given, then the default profile is used.}
+#' \item{\strong{anonymous}: Set anonymous credentials.}
 #' }}
-#' \item{\strong{close_connection}:} {Immediately close all HTTP connections.}
-#' \item{\strong{timeout}:} {The time in seconds till a timeout exception is thrown when attempting to make a connection. The default is 60 seconds.}
-#' \item{\strong{s3_force_path_style}:} {Set this to `true` to force the request to use path-style addressing, i.e. `http://s3.amazonaws.com/BUCKET/KEY`.}
-#' \item{\strong{sts_regional_endpoint}:} {Set sts regional endpoint resolver to regional or legacy \url{https://docs.aws.amazon.com/sdkref/latest/guide/feature-sts-regionalized-endpoints.html}}
+#' \item{\strong{endpoint}: The complete URL to use for the constructed client.}
+#' \item{\strong{region}: The AWS Region used in instantiating the client.}
+#' \item{\strong{close_connection}: Immediately close all HTTP connections.}
+#' \item{\strong{timeout}: The time in seconds till a timeout exception is thrown when attempting to make a connection. The default is 60 seconds.}
+#' \item{\strong{s3_force_path_style}: Set this to `true` to force the request to use path-style addressing, i.e. `http://s3.amazonaws.com/BUCKET/KEY`.}
+#' \item{\strong{sts_regional_endpoint}: Set sts regional endpoint resolver to regional or legacy \url{https://docs.aws.amazon.com/sdkref/latest/guide/feature-sts-regionalized-endpoints.html}}
 #' }
 #' @param
 #' credentials
 #' Optional credentials shorthand for the config parameter
 #' \itemize{
-#' \item{\strong{creds}:} {\itemize{
-#' \item{\strong{access_key_id}:} {AWS access key ID}
-#' \item{\strong{secret_access_key}:} {AWS secret access key}
-#' \item{\strong{session_token}:} {AWS temporary session token}
+#' \item{\strong{creds}: \itemize{
+#' \item{\strong{access_key_id}: AWS access key ID}
+#' \item{\strong{secret_access_key}: AWS secret access key}
+#' \item{\strong{session_token}: AWS temporary session token}
 #' }}
-#' \item{\strong{profile}:} {The name of a profile to use. If not given, then the default profile is used.}
-#' \item{\strong{anonymous}:} {Set anonymous credentials.}
+#' \item{\strong{profile}: The name of a profile to use. If not given, then the default profile is used.}
+#' \item{\strong{anonymous}: Set anonymous credentials.}
 #' }
 #' @param
 #' endpoint
@@ -185,7 +185,7 @@ NULL
 #'  \link[=route53_update_health_check]{update_health_check} \tab Updates an existing health check\cr
 #'  \link[=route53_update_hosted_zone_comment]{update_hosted_zone_comment} \tab Updates the comment for a specified hosted zone\cr
 #'  \link[=route53_update_traffic_policy_comment]{update_traffic_policy_comment} \tab Updates the comment for a specified traffic policy version\cr
-#'  \link[=route53_update_traffic_policy_instance]{update_traffic_policy_instance} \tab Updates the resource record sets in a specified hosted zone that were created based on the settings in a specified traffic policy version
+#'  \link[=route53_update_traffic_policy_instance]{update_traffic_policy_instance} \tab After you submit a UpdateTrafficPolicyInstance request, there's a brief delay while Route 53 creates the resource record sets that are specified in the traffic policy definition
 #' }
 #'
 #' @return

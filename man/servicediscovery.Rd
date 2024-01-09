@@ -14,32 +14,32 @@ servicediscovery(
 \arguments{
 \item{config}{Optional configuration of credentials, endpoint, and/or region.
 \itemize{
-\item{\strong{credentials}:} {\itemize{
-\item{\strong{creds}:} {\itemize{
-\item{\strong{access_key_id}:} {AWS access key ID}
-\item{\strong{secret_access_key}:} {AWS secret access key}
-\item{\strong{session_token}:} {AWS temporary session token}
+\item{\strong{credentials}: \itemize{
+\item{\strong{creds}: \itemize{
+\item{\strong{access_key_id}: AWS access key ID}
+\item{\strong{secret_access_key}: AWS secret access key}
+\item{\strong{session_token}: AWS temporary session token}
 }}
-\item{\strong{profile}:} {The name of a profile to use. If not given, then the default profile is used.}
-\item{\strong{anonymous}:} {Set anonymous credentials.}
-\item{\strong{endpoint}:} {The complete URL to use for the constructed client.}
-\item{\strong{region}:} {The AWS Region used in instantiating the client.}
+\item{\strong{profile}: The name of a profile to use. If not given, then the default profile is used.}
+\item{\strong{anonymous}: Set anonymous credentials.}
 }}
-\item{\strong{close_connection}:} {Immediately close all HTTP connections.}
-\item{\strong{timeout}:} {The time in seconds till a timeout exception is thrown when attempting to make a connection. The default is 60 seconds.}
-\item{\strong{s3_force_path_style}:} {Set this to \code{true} to force the request to use path-style addressing, i.e. \verb{http://s3.amazonaws.com/BUCKET/KEY}.}
-\item{\strong{sts_regional_endpoint}:} {Set sts regional endpoint resolver to regional or legacy \url{https://docs.aws.amazon.com/sdkref/latest/guide/feature-sts-regionalized-endpoints.html}}
+\item{\strong{endpoint}: The complete URL to use for the constructed client.}
+\item{\strong{region}: The AWS Region used in instantiating the client.}
+\item{\strong{close_connection}: Immediately close all HTTP connections.}
+\item{\strong{timeout}: The time in seconds till a timeout exception is thrown when attempting to make a connection. The default is 60 seconds.}
+\item{\strong{s3_force_path_style}: Set this to \code{true} to force the request to use path-style addressing, i.e. \verb{http://s3.amazonaws.com/BUCKET/KEY}.}
+\item{\strong{sts_regional_endpoint}: Set sts regional endpoint resolver to regional or legacy \url{https://docs.aws.amazon.com/sdkref/latest/guide/feature-sts-regionalized-endpoints.html}}
 }}
 
 \item{credentials}{Optional credentials shorthand for the config parameter
 \itemize{
-\item{\strong{creds}:} {\itemize{
-\item{\strong{access_key_id}:} {AWS access key ID}
-\item{\strong{secret_access_key}:} {AWS secret access key}
-\item{\strong{session_token}:} {AWS temporary session token}
+\item{\strong{creds}: \itemize{
+\item{\strong{access_key_id}: AWS access key ID}
+\item{\strong{secret_access_key}: AWS secret access key}
+\item{\strong{session_token}: AWS temporary session token}
 }}
-\item{\strong{profile}:} {The name of a profile to use. If not given, then the default profile is used.}
-\item{\strong{anonymous}:} {Set anonymous credentials.}
+\item{\strong{profile}: The name of a profile to use. If not given, then the default profile is used.}
+\item{\strong{anonymous}: Set anonymous credentials.}
 }}
 
 \item{endpoint}{Optional shorthand for complete URL to use for the constructed client.}
@@ -110,10 +110,11 @@ service receive an answer that contains up to eight healthy records.
 \link[=servicediscovery_delete_service]{delete_service} \tab Deletes a specified service\cr
 \link[=servicediscovery_deregister_instance]{deregister_instance} \tab Deletes the Amazon Route 53 DNS records and health check, if any, that Cloud Map created for the specified instance\cr
 \link[=servicediscovery_discover_instances]{discover_instances} \tab Discovers registered instances for a specified namespace and service\cr
+\link[=servicediscovery_discover_instances_revision]{discover_instances_revision} \tab Discovers the increasing revision associated with an instance\cr
 \link[=servicediscovery_get_instance]{get_instance} \tab Gets information about a specified instance\cr
 \link[=servicediscovery_get_instances_health_status]{get_instances_health_status} \tab Gets the current health status (Healthy, Unhealthy, or Unknown) of one or more instances that are associated with a specified service\cr
 \link[=servicediscovery_get_namespace]{get_namespace} \tab Gets information about a namespace\cr
-\link[=servicediscovery_get_operation]{get_operation} \tab Gets information about any operation that returns an operation ID in the response, such as a CreateService request\cr
+\link[=servicediscovery_get_operation]{get_operation} \tab Gets information about any operation that returns an operation ID in the response, such as a CreateHttpNamespace request\cr
 \link[=servicediscovery_get_service]{get_service} \tab Gets the settings for a specified service\cr
 \link[=servicediscovery_list_instances]{list_instances} \tab Lists summary information about the instances that you registered by using a specified service\cr
 \link[=servicediscovery_list_namespaces]{list_namespaces} \tab Lists summary information about the namespaces that were created by the current Amazon Web Services account\cr

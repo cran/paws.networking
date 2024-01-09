@@ -14,32 +14,32 @@ route53resolver(
 \arguments{
 \item{config}{Optional configuration of credentials, endpoint, and/or region.
 \itemize{
-\item{\strong{credentials}:} {\itemize{
-\item{\strong{creds}:} {\itemize{
-\item{\strong{access_key_id}:} {AWS access key ID}
-\item{\strong{secret_access_key}:} {AWS secret access key}
-\item{\strong{session_token}:} {AWS temporary session token}
+\item{\strong{credentials}: \itemize{
+\item{\strong{creds}: \itemize{
+\item{\strong{access_key_id}: AWS access key ID}
+\item{\strong{secret_access_key}: AWS secret access key}
+\item{\strong{session_token}: AWS temporary session token}
 }}
-\item{\strong{profile}:} {The name of a profile to use. If not given, then the default profile is used.}
-\item{\strong{anonymous}:} {Set anonymous credentials.}
-\item{\strong{endpoint}:} {The complete URL to use for the constructed client.}
-\item{\strong{region}:} {The AWS Region used in instantiating the client.}
+\item{\strong{profile}: The name of a profile to use. If not given, then the default profile is used.}
+\item{\strong{anonymous}: Set anonymous credentials.}
 }}
-\item{\strong{close_connection}:} {Immediately close all HTTP connections.}
-\item{\strong{timeout}:} {The time in seconds till a timeout exception is thrown when attempting to make a connection. The default is 60 seconds.}
-\item{\strong{s3_force_path_style}:} {Set this to \code{true} to force the request to use path-style addressing, i.e. \verb{http://s3.amazonaws.com/BUCKET/KEY}.}
-\item{\strong{sts_regional_endpoint}:} {Set sts regional endpoint resolver to regional or legacy \url{https://docs.aws.amazon.com/sdkref/latest/guide/feature-sts-regionalized-endpoints.html}}
+\item{\strong{endpoint}: The complete URL to use for the constructed client.}
+\item{\strong{region}: The AWS Region used in instantiating the client.}
+\item{\strong{close_connection}: Immediately close all HTTP connections.}
+\item{\strong{timeout}: The time in seconds till a timeout exception is thrown when attempting to make a connection. The default is 60 seconds.}
+\item{\strong{s3_force_path_style}: Set this to \code{true} to force the request to use path-style addressing, i.e. \verb{http://s3.amazonaws.com/BUCKET/KEY}.}
+\item{\strong{sts_regional_endpoint}: Set sts regional endpoint resolver to regional or legacy \url{https://docs.aws.amazon.com/sdkref/latest/guide/feature-sts-regionalized-endpoints.html}}
 }}
 
 \item{credentials}{Optional credentials shorthand for the config parameter
 \itemize{
-\item{\strong{creds}:} {\itemize{
-\item{\strong{access_key_id}:} {AWS access key ID}
-\item{\strong{secret_access_key}:} {AWS secret access key}
-\item{\strong{session_token}:} {AWS temporary session token}
+\item{\strong{creds}: \itemize{
+\item{\strong{access_key_id}: AWS access key ID}
+\item{\strong{secret_access_key}: AWS secret access key}
+\item{\strong{session_token}: AWS temporary session token}
 }}
-\item{\strong{profile}:} {The name of a profile to use. If not given, then the default profile is used.}
-\item{\strong{anonymous}:} {Set anonymous credentials.}
+\item{\strong{profile}: The name of a profile to use. If not given, then the default profile is used.}
+\item{\strong{anonymous}: Set anonymous credentials.}
 }}
 
 \item{endpoint}{Optional shorthand for complete URL to use for the constructed client.}
@@ -138,7 +138,7 @@ queries), or both.
 \link[=route53resolver_create_firewall_domain_list]{create_firewall_domain_list} \tab Creates an empty firewall domain list for use in DNS Firewall rules\cr
 \link[=route53resolver_create_firewall_rule]{create_firewall_rule} \tab Creates a single DNS Firewall rule in the specified rule group, using the specified domain list\cr
 \link[=route53resolver_create_firewall_rule_group]{create_firewall_rule_group} \tab Creates an empty DNS Firewall rule group for filtering DNS network traffic in a VPC\cr
-\link[=route53resolver_create_outpost_resolver]{create_outpost_resolver} \tab Creates an Route 53 Resolver on an Outpost\cr
+\link[=route53resolver_create_outpost_resolver]{create_outpost_resolver} \tab Creates a Route 53 Resolver on an Outpost\cr
 \link[=route53resolver_create_resolver_endpoint]{create_resolver_endpoint} \tab Creates a Resolver endpoint\cr
 \link[=route53resolver_create_resolver_query_log_config]{create_resolver_query_log_config} \tab Creates a Resolver query logging configuration, which defines where you want Resolver to save DNS query logs that originate in your VPCs\cr
 \link[=route53resolver_create_resolver_rule]{create_resolver_rule} \tab For DNS queries that originate in your VPCs, specifies which Resolver endpoint the queries pass through, one domain name that you want to forward to your network, and the IP addresses of the DNS resolvers in your network\cr
@@ -197,7 +197,7 @@ queries), or both.
 \link[=route53resolver_update_outpost_resolver]{update_outpost_resolver} \tab You can use UpdateOutpostResolver to update the instance count, type, or name of a Resolver on an Outpost\cr
 \link[=route53resolver_update_resolver_config]{update_resolver_config} \tab Updates the behavior configuration of Route 53 Resolver behavior for a single VPC from Amazon Virtual Private Cloud\cr
 \link[=route53resolver_update_resolver_dnssec_config]{update_resolver_dnssec_config} \tab Updates an existing DNSSEC validation configuration\cr
-\link[=route53resolver_update_resolver_endpoint]{update_resolver_endpoint} \tab Updates the name, or enpoint type for an inbound or an outbound Resolver endpoint\cr
+\link[=route53resolver_update_resolver_endpoint]{update_resolver_endpoint} \tab Updates the name, or endpoint type for an inbound or an outbound Resolver endpoint\cr
 \link[=route53resolver_update_resolver_rule]{update_resolver_rule} \tab Updates settings for a specified Resolver rule
 }
 }

@@ -12,33 +12,33 @@ NULL
 #' config
 #' Optional configuration of credentials, endpoint, and/or region.
 #' \itemize{
-#' \item{\strong{credentials}:} {\itemize{
-#' \item{\strong{creds}:} {\itemize{
-#' \item{\strong{access_key_id}:} {AWS access key ID}
-#' \item{\strong{secret_access_key}:} {AWS secret access key}
-#' \item{\strong{session_token}:} {AWS temporary session token}
+#' \item{\strong{credentials}: \itemize{
+#' \item{\strong{creds}: \itemize{
+#' \item{\strong{access_key_id}: AWS access key ID}
+#' \item{\strong{secret_access_key}: AWS secret access key}
+#' \item{\strong{session_token}: AWS temporary session token}
 #' }}
-#' \item{\strong{profile}:} {The name of a profile to use. If not given, then the default profile is used.}
-#' \item{\strong{anonymous}:} {Set anonymous credentials.}
-#' \item{\strong{endpoint}:} {The complete URL to use for the constructed client.}
-#' \item{\strong{region}:} {The AWS Region used in instantiating the client.}
+#' \item{\strong{profile}: The name of a profile to use. If not given, then the default profile is used.}
+#' \item{\strong{anonymous}: Set anonymous credentials.}
 #' }}
-#' \item{\strong{close_connection}:} {Immediately close all HTTP connections.}
-#' \item{\strong{timeout}:} {The time in seconds till a timeout exception is thrown when attempting to make a connection. The default is 60 seconds.}
-#' \item{\strong{s3_force_path_style}:} {Set this to `true` to force the request to use path-style addressing, i.e. `http://s3.amazonaws.com/BUCKET/KEY`.}
-#' \item{\strong{sts_regional_endpoint}:} {Set sts regional endpoint resolver to regional or legacy \url{https://docs.aws.amazon.com/sdkref/latest/guide/feature-sts-regionalized-endpoints.html}}
+#' \item{\strong{endpoint}: The complete URL to use for the constructed client.}
+#' \item{\strong{region}: The AWS Region used in instantiating the client.}
+#' \item{\strong{close_connection}: Immediately close all HTTP connections.}
+#' \item{\strong{timeout}: The time in seconds till a timeout exception is thrown when attempting to make a connection. The default is 60 seconds.}
+#' \item{\strong{s3_force_path_style}: Set this to `true` to force the request to use path-style addressing, i.e. `http://s3.amazonaws.com/BUCKET/KEY`.}
+#' \item{\strong{sts_regional_endpoint}: Set sts regional endpoint resolver to regional or legacy \url{https://docs.aws.amazon.com/sdkref/latest/guide/feature-sts-regionalized-endpoints.html}}
 #' }
 #' @param
 #' credentials
 #' Optional credentials shorthand for the config parameter
 #' \itemize{
-#' \item{\strong{creds}:} {\itemize{
-#' \item{\strong{access_key_id}:} {AWS access key ID}
-#' \item{\strong{secret_access_key}:} {AWS secret access key}
-#' \item{\strong{session_token}:} {AWS temporary session token}
+#' \item{\strong{creds}: \itemize{
+#' \item{\strong{access_key_id}: AWS access key ID}
+#' \item{\strong{secret_access_key}: AWS secret access key}
+#' \item{\strong{session_token}: AWS temporary session token}
 #' }}
-#' \item{\strong{profile}:} {The name of a profile to use. If not given, then the default profile is used.}
-#' \item{\strong{anonymous}:} {Set anonymous credentials.}
+#' \item{\strong{profile}: The name of a profile to use. If not given, then the default profile is used.}
+#' \item{\strong{anonymous}: Set anonymous credentials.}
 #' }
 #' @param
 #' endpoint
@@ -103,6 +103,7 @@ NULL
 #'  \link[=route53recoverycontrolconfig_describe_control_panel]{describe_control_panel} \tab Displays details about a control panel\cr
 #'  \link[=route53recoverycontrolconfig_describe_routing_control]{describe_routing_control} \tab Displays details about a routing control\cr
 #'  \link[=route53recoverycontrolconfig_describe_safety_rule]{describe_safety_rule} \tab Returns information about a safety rule\cr
+#'  \link[=route53recoverycontrolconfig_get_resource_policy]{get_resource_policy} \tab Get information about the resource policy for a cluster\cr
 #'  \link[=route53recoverycontrolconfig_list_associated_route_53_health_checks]{list_associated_route_53_health_checks} \tab Returns an array of all Amazon Route 53 health checks associated with a specific routing control\cr
 #'  \link[=route53recoverycontrolconfig_list_clusters]{list_clusters} \tab Returns an array of all the clusters in an account\cr
 #'  \link[=route53recoverycontrolconfig_list_control_panels]{list_control_panels} \tab Returns an array of control panels in an account or in a cluster\cr

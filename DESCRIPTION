@@ -1,6 +1,6 @@
 Package: paws.networking
 Title: 'Amazon Web Services' Networking & Content Delivery Services
-Version: 0.6.0
+Version: 0.7.0
 Authors@R: c(
     person("David", "Kretch", , "david.kretch@gmail.com", role = "aut"),
     person("Adam", "Banker", , "adam.banker39@gmail.com", role = "aut"),
@@ -14,10 +14,10 @@ Description: Interface to 'Amazon Web Services' networking and content
 License: Apache License (>= 2.0)
 URL: https://github.com/paws-r/paws
 BugReports: https://github.com/paws-r/paws/issues
-Imports: paws.common (>= 0.6.0)
+Imports: paws.common (>= 0.7.5)
 Suggests: testthat
 Encoding: UTF-8
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Collate: 'apigateway_service.R' 'apigateway_interfaces.R'
         'apigateway_operations.R' 'apigatewaymanagementapi_service.R'
         'apigatewaymanagementapi_interfaces.R'
@@ -59,11 +59,11 @@ Collate: 'apigateway_service.R' 'apigateway_interfaces.R'
         'telconetworkbuilder_operations.R' 'vpclattice_service.R'
         'vpclattice_interfaces.R' 'vpclattice_operations.R'
 NeedsCompilation: no
-Packaged: 2024-05-10 13:19:10 UTC; dyfanjones
+Packaged: 2024-09-11 08:29:44 UTC; dyfanjones
 Author: David Kretch [aut],
   Adam Banker [aut],
   Dyfan Jones [cre],
   Amazon.com, Inc. [cph]
 Maintainer: Dyfan Jones <dyfan.r.jones@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-05-10 16:50:02 UTC
+Date/Publication: 2024-09-11 22:50:50 UTC

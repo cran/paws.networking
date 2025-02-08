@@ -9,24 +9,32 @@ NULL
 #' developers who need detailed information about the Network Firewall API
 #' actions, data types, and errors.
 #' 
-#' -   The REST API requires you to handle connection details, such as
-#'     calculating signatures, handling request retries, and error
-#'     handling. For general information about using the Amazon Web
-#'     Services REST APIs, see [Amazon Web Services
-#'     APIs](https://docs.aws.amazon.com/general/latest/gr/).
+#' The REST API requires you to handle connection details, such as
+#' calculating signatures, handling request retries, and error handling.
+#' For general information about using the Amazon Web Services REST APIs,
+#' see [Amazon Web Services
+#' APIs](https://docs.aws.amazon.com/general/latest/gr/).
 #' 
-#'     To access Network Firewall using the REST API endpoint:
-#'     `https://network-firewall.<region>.amazonaws.com `
+#' To view the complete list of Amazon Web Services Regions where Network
+#' Firewall is available, see [Service endpoints and
+#' quotas](https://docs.aws.amazon.com/general/latest/gr/network-firewall.html)
+#' in the *Amazon Web Services General Reference*.
 #' 
-#' -   Alternatively, you can use one of the Amazon Web Services SDKs to
-#'     access an API that's tailored to the programming language or
-#'     platform that you're using. For more information, see [Amazon Web
-#'     Services SDKs](https://aws.amazon.com/developer/tools/#SDKs).
+#' To access Network Firewall using the IPv4 REST API endpoint:
+#' `https://network-firewall.<region>.amazonaws.com `
 #' 
-#' -   For descriptions of Network Firewall features, including and
-#'     step-by-step instructions on how to use them through the Network
-#'     Firewall console, see the [Network Firewall Developer
-#'     Guide](https://docs.aws.amazon.com/network-firewall/latest/developerguide/).
+#' To access Network Firewall using the Dualstack (IPv4 and IPv6) REST API
+#' endpoint: `https://network-firewall.<region>.aws.api `
+#' 
+#' Alternatively, you can use one of the Amazon Web Services SDKs to access
+#' an API that's tailored to the programming language or platform that
+#' you're using. For more information, see [Amazon Web Services
+#' SDKs](https://aws.amazon.com/developer/tools/#SDKs).
+#' 
+#' For descriptions of Network Firewall features, including and
+#' step-by-step instructions on how to use them through the Network
+#' Firewall console, see the [Network Firewall Developer
+#' Guide](https://docs.aws.amazon.com/network-firewall/latest/developerguide/).
 #' 
 #' Network Firewall is a stateful, managed, network firewall and intrusion
 #' detection and prevention service for Amazon Virtual Private Cloud
@@ -35,8 +43,6 @@ NULL
 #' coming from an internet gateway, NAT gateway, or over VPN or Direct
 #' Connect. Network Firewall uses rules that are compatible with Suricata,
 #' a free, open source network analysis and threat detection engine.
-#' Network Firewall supports Suricata version 6.0.9. For information about
-#' Suricata, see the [Suricata website](https://suricata.io/).
 #' 
 #' You can use Network Firewall to monitor and protect your VPC traffic in
 #' a number of ways. The following are just a few examples:
@@ -232,7 +238,7 @@ networkfirewall <- function(config = list(), credentials = list(), endpoint = NU
 
 .networkfirewall$metadata <- list(
   service_name = "networkfirewall",
-  endpoints = list("*" = list(endpoint = "network-firewall.{region}.amazonaws.com", global = FALSE), "cn-*" = list(endpoint = "network-firewall.{region}.amazonaws.com.cn", global = FALSE), "eu-isoe-*" = list(endpoint = "network-firewall.{region}.cloud.adc-e.uk", global = FALSE), "us-iso-*" = list(endpoint = "network-firewall.{region}.c2s.ic.gov", global = FALSE), "us-isob-*" = list(endpoint = "network-firewall.{region}.sc2s.sgov.gov", global = FALSE), "us-isof-*" = list(endpoint = "network-firewall.{region}.csp.hci.ic.gov", global = FALSE)),
+  endpoints = list("^(us|eu|ap|sa|ca|me|af|il|mx)\\-\\w+\\-\\d+$" = list(endpoint = "network-firewall.{region}.amazonaws.com", global = FALSE), "^cn\\-\\w+\\-\\d+$" = list(endpoint = "network-firewall.{region}.amazonaws.com.cn", global = FALSE), "^us\\-gov\\-\\w+\\-\\d+$" = list(endpoint = "network-firewall.{region}.amazonaws.com", global = FALSE), "^us\\-iso\\-\\w+\\-\\d+$" = list(endpoint = "network-firewall.{region}.c2s.ic.gov", global = FALSE), "^us\\-isob\\-\\w+\\-\\d+$" = list(endpoint = "network-firewall.{region}.sc2s.sgov.gov", global = FALSE), "^eu\\-isoe\\-\\w+\\-\\d+$" = list(endpoint = "network-firewall.{region}.cloud.adc-e.uk", global = FALSE), "^us\\-isof\\-\\w+\\-\\d+$" = list(endpoint = "network-firewall.{region}.csp.hci.ic.gov", global = FALSE)),
   service_id = "Network Firewall",
   api_version = "2020-11-12",
   signing_name = "network-firewall",

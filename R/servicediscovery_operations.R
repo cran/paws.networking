@@ -30,7 +30,8 @@ servicediscovery_create_http_namespace <- function(Name, CreatorRequestId = NULL
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$create_http_namespace_input(Name = Name, CreatorRequestId = CreatorRequestId, Description = Description, Tags = Tags)
   output <- .servicediscovery$create_http_namespace_output()
@@ -74,7 +75,8 @@ servicediscovery_create_private_dns_namespace <- function(Name, CreatorRequestId
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$create_private_dns_namespace_input(Name = Name, CreatorRequestId = CreatorRequestId, Description = Description, Vpc = Vpc, Tags = Tags, Properties = Properties)
   output <- .servicediscovery$create_private_dns_namespace_output()
@@ -118,7 +120,8 @@ servicediscovery_create_public_dns_namespace <- function(Name, CreatorRequestId 
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$create_public_dns_namespace_input(Name = Name, CreatorRequestId = CreatorRequestId, Description = Description, Tags = Tags, Properties = Properties)
   output <- .servicediscovery$create_public_dns_namespace_output()
@@ -209,7 +212,8 @@ servicediscovery_create_service <- function(Name, NamespaceId = NULL, CreatorReq
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$create_service_input(Name = Name, NamespaceId = NamespaceId, CreatorRequestId = CreatorRequestId, Description = Description, DnsConfig = DnsConfig, HealthCheckConfig = HealthCheckConfig, HealthCheckCustomConfig = HealthCheckCustomConfig, Tags = Tags, Type = Type)
   output <- .servicediscovery$create_service_output()
@@ -239,7 +243,8 @@ servicediscovery_delete_namespace <- function(Id) {
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$delete_namespace_input(Id = Id)
   output <- .servicediscovery$delete_namespace_output()
@@ -251,10 +256,10 @@ servicediscovery_delete_namespace <- function(Id) {
 }
 .servicediscovery$operations$delete_namespace <- servicediscovery_delete_namespace
 
-#' Deletes a specified service
+#' Deletes a specified service and all associated service attributes
 #'
 #' @description
-#' Deletes a specified service. If the service still contains one or more registered instances, the request fails.
+#' Deletes a specified service and all associated service attributes. If the service still contains one or more registered instances, the request fails.
 #'
 #' See [https://www.paws-r-sdk.com/docs/servicediscovery_delete_service/](https://www.paws-r-sdk.com/docs/servicediscovery_delete_service/) for full documentation.
 #'
@@ -269,7 +274,8 @@ servicediscovery_delete_service <- function(Id) {
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$delete_service_input(Id = Id)
   output <- .servicediscovery$delete_service_output()
@@ -280,6 +286,38 @@ servicediscovery_delete_service <- function(Id) {
   return(response)
 }
 .servicediscovery$operations$delete_service <- servicediscovery_delete_service
+
+#' Deletes specific attributes associated with a service
+#'
+#' @description
+#' Deletes specific attributes associated with a service.
+#'
+#' See [https://www.paws-r-sdk.com/docs/servicediscovery_delete_service_attributes/](https://www.paws-r-sdk.com/docs/servicediscovery_delete_service_attributes/) for full documentation.
+#'
+#' @param ServiceId &#91;required&#93; The ID of the service from which the attributes will be deleted.
+#' @param Attributes &#91;required&#93; A list of keys corresponding to each attribute that you want to delete.
+#'
+#' @keywords internal
+#'
+#' @rdname servicediscovery_delete_service_attributes
+servicediscovery_delete_service_attributes <- function(ServiceId, Attributes) {
+  op <- new_operation(
+    name = "DeleteServiceAttributes",
+    http_method = "POST",
+    http_path = "/",
+    host_prefix = "",
+    paginator = list(),
+    stream_api = FALSE
+  )
+  input <- .servicediscovery$delete_service_attributes_input(ServiceId = ServiceId, Attributes = Attributes)
+  output <- .servicediscovery$delete_service_attributes_output()
+  config <- get_config()
+  svc <- .servicediscovery$service(config, op)
+  request <- new_request(svc, op, input, output)
+  response <- send_request(request)
+  return(response)
+}
+.servicediscovery$operations$delete_service_attributes <- servicediscovery_delete_service_attributes
 
 #' Deletes the Amazon Route 53 DNS records and health check, if any, that
 #' Cloud Map created for the specified instance
@@ -302,7 +340,8 @@ servicediscovery_deregister_instance <- function(ServiceId, InstanceId) {
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$deregister_instance_input(ServiceId = ServiceId, InstanceId = InstanceId)
   output <- .servicediscovery$deregister_instance_output()
@@ -372,7 +411,8 @@ servicediscovery_discover_instances <- function(NamespaceName, ServiceName, MaxR
     http_method = "POST",
     http_path = "/",
     host_prefix = "data-",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$discover_instances_input(NamespaceName = NamespaceName, ServiceName = ServiceName, MaxResults = MaxResults, QueryParameters = QueryParameters, OptionalParameters = OptionalParameters, HealthStatus = HealthStatus)
   output <- .servicediscovery$discover_instances_output()
@@ -405,7 +445,8 @@ servicediscovery_discover_instances_revision <- function(NamespaceName, ServiceN
     http_method = "POST",
     http_path = "/",
     host_prefix = "data-",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$discover_instances_revision_input(NamespaceName = NamespaceName, ServiceName = ServiceName)
   output <- .servicediscovery$discover_instances_revision_output()
@@ -436,7 +477,8 @@ servicediscovery_get_instance <- function(ServiceId, InstanceId) {
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$get_instance_input(ServiceId = ServiceId, InstanceId = InstanceId)
   output <- .servicediscovery$get_instance_output()
@@ -490,7 +532,8 @@ servicediscovery_get_instances_health_status <- function(ServiceId, Instances = 
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list(input_token = "NextToken", output_token = "NextToken", limit_key = "MaxResults")
+    paginator = list(input_token = "NextToken", output_token = "NextToken", limit_key = "MaxResults"),
+    stream_api = FALSE
   )
   input <- .servicediscovery$get_instances_health_status_input(ServiceId = ServiceId, Instances = Instances, MaxResults = MaxResults, NextToken = NextToken)
   output <- .servicediscovery$get_instances_health_status_output()
@@ -520,7 +563,8 @@ servicediscovery_get_namespace <- function(Id) {
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$get_namespace_input(Id = Id)
   output <- .servicediscovery$get_namespace_output()
@@ -551,7 +595,8 @@ servicediscovery_get_operation <- function(OperationId) {
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$get_operation_input(OperationId = OperationId)
   output <- .servicediscovery$get_operation_output()
@@ -581,7 +626,8 @@ servicediscovery_get_service <- function(Id) {
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$get_service_input(Id = Id)
   output <- .servicediscovery$get_service_output()
@@ -592,6 +638,37 @@ servicediscovery_get_service <- function(Id) {
   return(response)
 }
 .servicediscovery$operations$get_service <- servicediscovery_get_service
+
+#' Returns the attributes associated with a specified service
+#'
+#' @description
+#' Returns the attributes associated with a specified service.
+#'
+#' See [https://www.paws-r-sdk.com/docs/servicediscovery_get_service_attributes/](https://www.paws-r-sdk.com/docs/servicediscovery_get_service_attributes/) for full documentation.
+#'
+#' @param ServiceId &#91;required&#93; The ID of the service that you want to get attributes for.
+#'
+#' @keywords internal
+#'
+#' @rdname servicediscovery_get_service_attributes
+servicediscovery_get_service_attributes <- function(ServiceId) {
+  op <- new_operation(
+    name = "GetServiceAttributes",
+    http_method = "POST",
+    http_path = "/",
+    host_prefix = "",
+    paginator = list(),
+    stream_api = FALSE
+  )
+  input <- .servicediscovery$get_service_attributes_input(ServiceId = ServiceId)
+  output <- .servicediscovery$get_service_attributes_output()
+  config <- get_config()
+  svc <- .servicediscovery$service(config, op)
+  request <- new_request(svc, op, input, output)
+  response <- send_request(request)
+  return(response)
+}
+.servicediscovery$operations$get_service_attributes <- servicediscovery_get_service_attributes
 
 #' Lists summary information about the instances that you registered by
 #' using a specified service
@@ -623,7 +700,8 @@ servicediscovery_list_instances <- function(ServiceId, NextToken = NULL, MaxResu
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list(input_token = "NextToken", output_token = "NextToken", limit_key = "MaxResults")
+    paginator = list(result_key = "Instances", output_token = "NextToken", input_token = "NextToken", limit_key = "MaxResults"),
+    stream_api = FALSE
   )
   input <- .servicediscovery$list_instances_input(ServiceId = ServiceId, NextToken = NextToken, MaxResults = MaxResults)
   output <- .servicediscovery$list_instances_output()
@@ -675,7 +753,8 @@ servicediscovery_list_namespaces <- function(NextToken = NULL, MaxResults = NULL
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list(input_token = "NextToken", output_token = "NextToken", limit_key = "MaxResults")
+    paginator = list(result_key = "Namespaces", output_token = "NextToken", input_token = "NextToken", limit_key = "MaxResults"),
+    stream_api = FALSE
   )
   input <- .servicediscovery$list_namespaces_input(NextToken = NextToken, MaxResults = MaxResults, Filters = Filters)
   output <- .servicediscovery$list_namespaces_output()
@@ -727,7 +806,8 @@ servicediscovery_list_operations <- function(NextToken = NULL, MaxResults = NULL
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list(input_token = "NextToken", output_token = "NextToken", limit_key = "MaxResults")
+    paginator = list(result_key = "Operations", output_token = "NextToken", input_token = "NextToken", limit_key = "MaxResults"),
+    stream_api = FALSE
   )
   input <- .servicediscovery$list_operations_input(NextToken = NextToken, MaxResults = MaxResults, Filters = Filters)
   output <- .servicediscovery$list_operations_output()
@@ -779,7 +859,8 @@ servicediscovery_list_services <- function(NextToken = NULL, MaxResults = NULL, 
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list(input_token = "NextToken", output_token = "NextToken", limit_key = "MaxResults")
+    paginator = list(result_key = "Services", output_token = "NextToken", input_token = "NextToken", limit_key = "MaxResults"),
+    stream_api = FALSE
   )
   input <- .servicediscovery$list_services_input(NextToken = NextToken, MaxResults = MaxResults, Filters = Filters)
   output <- .servicediscovery$list_services_output()
@@ -810,7 +891,8 @@ servicediscovery_list_tags_for_resource <- function(ResourceARN) {
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$list_tags_for_resource_input(ResourceARN = ResourceARN)
   output <- .servicediscovery$list_tags_for_resource_output()
@@ -986,7 +1068,8 @@ servicediscovery_register_instance <- function(ServiceId, InstanceId, CreatorReq
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$register_instance_input(ServiceId = ServiceId, InstanceId = InstanceId, CreatorRequestId = CreatorRequestId, Attributes = Attributes)
   output <- .servicediscovery$register_instance_output()
@@ -1020,7 +1103,8 @@ servicediscovery_tag_resource <- function(ResourceARN, Tags) {
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$tag_resource_input(ResourceARN = ResourceARN, Tags = Tags)
   output <- .servicediscovery$tag_resource_output()
@@ -1052,7 +1136,8 @@ servicediscovery_untag_resource <- function(ResourceARN, TagKeys) {
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$untag_resource_input(ResourceARN = ResourceARN, TagKeys = TagKeys)
   output <- .servicediscovery$untag_resource_output()
@@ -1088,7 +1173,8 @@ servicediscovery_update_http_namespace <- function(Id, UpdaterRequestId = NULL, 
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$update_http_namespace_input(Id = Id, UpdaterRequestId = UpdaterRequestId, Namespace = Namespace)
   output <- .servicediscovery$update_http_namespace_output()
@@ -1122,7 +1208,8 @@ servicediscovery_update_instance_custom_health_status <- function(ServiceId, Ins
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$update_instance_custom_health_status_input(ServiceId = ServiceId, InstanceId = InstanceId, Status = Status)
   output <- .servicediscovery$update_instance_custom_health_status_output()
@@ -1158,7 +1245,8 @@ servicediscovery_update_private_dns_namespace <- function(Id, UpdaterRequestId =
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$update_private_dns_namespace_input(Id = Id, UpdaterRequestId = UpdaterRequestId, Namespace = Namespace)
   output <- .servicediscovery$update_private_dns_namespace_output()
@@ -1194,7 +1282,8 @@ servicediscovery_update_public_dns_namespace <- function(Id, UpdaterRequestId = 
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$update_public_dns_namespace_input(Id = Id, UpdaterRequestId = UpdaterRequestId, Namespace = Namespace)
   output <- .servicediscovery$update_public_dns_namespace_output()
@@ -1214,7 +1303,8 @@ servicediscovery_update_public_dns_namespace <- function(Id, UpdaterRequestId = 
 #' See [https://www.paws-r-sdk.com/docs/servicediscovery_update_service/](https://www.paws-r-sdk.com/docs/servicediscovery_update_service/) for full documentation.
 #'
 #' @param Id &#91;required&#93; The ID of the service that you want to update.
-#' @param Service &#91;required&#93; A complex type that contains the new settings for the service.
+#' @param Service &#91;required&#93; A complex type that contains the new settings for the service. You can
+#' specify a maximum of 30 attributes (key-value pairs).
 #'
 #' @keywords internal
 #'
@@ -1225,7 +1315,8 @@ servicediscovery_update_service <- function(Id, Service) {
     http_method = "POST",
     http_path = "/",
     host_prefix = "",
-    paginator = list()
+    paginator = list(),
+    stream_api = FALSE
   )
   input <- .servicediscovery$update_service_input(Id = Id, Service = Service)
   output <- .servicediscovery$update_service_output()
@@ -1236,3 +1327,36 @@ servicediscovery_update_service <- function(Id, Service) {
   return(response)
 }
 .servicediscovery$operations$update_service <- servicediscovery_update_service
+
+#' Submits a request to update a specified service to add service-level
+#' attributes
+#'
+#' @description
+#' Submits a request to update a specified service to add service-level attributes.
+#'
+#' See [https://www.paws-r-sdk.com/docs/servicediscovery_update_service_attributes/](https://www.paws-r-sdk.com/docs/servicediscovery_update_service_attributes/) for full documentation.
+#'
+#' @param ServiceId &#91;required&#93; The ID of the service that you want to update.
+#' @param Attributes &#91;required&#93; A string map that contains attribute key-value pairs.
+#'
+#' @keywords internal
+#'
+#' @rdname servicediscovery_update_service_attributes
+servicediscovery_update_service_attributes <- function(ServiceId, Attributes) {
+  op <- new_operation(
+    name = "UpdateServiceAttributes",
+    http_method = "POST",
+    http_path = "/",
+    host_prefix = "",
+    paginator = list(),
+    stream_api = FALSE
+  )
+  input <- .servicediscovery$update_service_attributes_input(ServiceId = ServiceId, Attributes = Attributes)
+  output <- .servicediscovery$update_service_attributes_output()
+  config <- get_config()
+  svc <- .servicediscovery$service(config, op)
+  request <- new_request(svc, op, input, output)
+  response <- send_request(request)
+  return(response)
+}
+.servicediscovery$operations$update_service_attributes <- servicediscovery_update_service_attributes

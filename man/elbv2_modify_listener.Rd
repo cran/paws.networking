@@ -18,20 +18,20 @@ elbv2_modify_listener(
 \arguments{
 \item{ListenerArn}{[required] The Amazon Resource Name (ARN) of the listener.}
 
-\item{Port}{The port for connections from clients to the load balancer. You cannot
+\item{Port}{The port for connections from clients to the load balancer. You can't
 specify a port for a Gateway Load Balancer.}
 
 \item{Protocol}{The protocol for connections from clients to the load balancer.
 Application Load Balancers support the HTTP and HTTPS protocols. Network
 Load Balancers support the TCP, TLS, UDP, and TCP_UDP protocols. You
 can’t change the protocol to UDP or TCP_UDP if dual-stack mode is
-enabled. You cannot specify a protocol for a Gateway Load Balancer.}
+enabled. You can't specify a protocol for a Gateway Load Balancer.}
 
 \item{SslPolicy}{[HTTPS and TLS listeners] The security policy that defines which
 protocols and ciphers are supported.
 
 For more information, see \href{https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html#describe-ssl-policies}{Security policies}
-in the \emph{Application Load Balancers Guide} or \href{https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-tls-listener.html#describe-ssl-policies}{Security policies}
+in the \emph{Application Load Balancers Guide} or \href{https://docs.aws.amazon.com/elasticloadbalancing/latest/network/#describe-ssl-policies}{Security policies}
 in the \emph{Network Load Balancers Guide}.}
 
 \item{Certificates}{[HTTPS and TLS listeners] The default certificate for the listener.
@@ -51,7 +51,7 @@ possible values:
 \item \code{None}
 }
 
-For more information, see \href{https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-tls-listener.html#alpn-policies}{ALPN policies}
+For more information, see \href{https://docs.aws.amazon.com/elasticloadbalancing/latest/network/#alpn-policies}{ALPN policies}
 in the \emph{Network Load Balancers Guide}.}
 
 \item{MutualAuthentication}{The mutual authentication configuration information.}
